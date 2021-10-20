@@ -1,0 +1,4060 @@
+23-july-2021 (Friday)
+---------------------
+jenkins practices
+------------------
+1))Continuous intigration define:-
+ -> Source Code repositor-> open Source commercial continuous intigration server
+ 
+  1)Automated Build verification by continuously intigrating code from code repository
+  2)Continuous unit test execution and static code analysis to verify the code  and functionalities, 
+    Notification management on build status
+  3)continuous feedback and deployment into environment is the next step in the pipeline.
+
+other tools (CI)
+----------------
+
+jenkins  ->completely open source -> CloudBees these guy implement own code through java langauge inside ->after we download the open source Saas platform we can use that we put the data ,verify and mentaince everything
+
+circleCI
+bamboo
+tarver ci
+udeploy 
+gitlab
+github actions
+
+2)jenkins support
+---------------
+
+lot plugins support -> different 400+ plugins support means docker.nexus etc
+
+
+jenkins Before naming call is hudson previous use only continuous intigration. version 1.0 1.1.
+
+who is the owner of the jenkins Oracle.
+
+Oracle aquired hudson they are change the name jenkins also ci/cd support and version 2.0 to start
+
+jenkins implemented using the java langauge
+
+If we want install jenkins in our system we should need java(jdk+jre) 1.8 above
+
+jenkins-> web application server ->which default port 8080.
+
+we can download jenkins.war ,jenkins.exe,docker image and linux.
+
+jenkins.war -> tomcat server
+
+jenkins.war (java -jar jenkins.war)  ->directly use this command it work.
+
+jenkins internally running one server name jetty server
+
+practices
+=================
+
+aws ami linux and name it jenkins server
+------------------------------------------
+
+create one instance name jenkins
+-----------------------------------
+
+connect to mobaxterm
+--------------------
+whatenver new liberary install it
+---------------------------------
+$ sudo yum update -y
+
+we check java version are here are not
+--------------------------------------
+
+$ java -version
+
+we can install rpm packages
+---------------------------
+If java version below 1.8 you must be upgrade to 1.8 is minimum version is 1.8
+
+$ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
+
+sudo amazon-linux-extras install java-openjdk11
+
+$ sudo yum install -y jdk-8u141-linux-x64.rpm
+
+$ java -version
+
+Now install Jenkins
+---------------------
+
+Update the yum package management tool.
+--------------------------------------
+$ sudo yum update –y
+
+Download the latest Jenkins code package.
+-----------------------------------------
+
+$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat/jenkins.repo
+
+Import a key file from Jenkins-CI to enable installation from the package.
+---------------------------------------------------------------------------
+$ sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+
+$ sudo rm -rf /var/cache/yum
+$ sudo yum-complete-transaction
+
+Install Jenkins.
+---------------
+$ sudo yum install jenkins -y
+
+Start Jenkins as a service.
+----------------------------
+$ sudo service jenkins start
+
+To start the jenkins service at boot-up, you can run.
+-------------------------------------------------------
+$ sudo chkconfig jenkins on 
+
+$ sudo service jenkins status
+
+10. Access you Jenkins url
+-----------------------------
+http://yourserverip:8080/
+
+
+what is inside Jenkins platform
+---------------------------------
+see the 
+
+new item
+----------
+
+here the different kind of the job
+----------------------------------
+------------------------------------
+freestyle job
+pipeline job
+multi-configuration job
+folder job
+Github Organizations
+Multibranch Pipeline
+
+Manage jenkins
+--------------
+----------------
+
+System configuration
+--------------------
+configure system:->
+----------------
+  any server level configuration like nexus and sonar server,email smpt server
+Global Tool configuration:->
+---------------------------
+ maven ,ant gradel,git,sonar cube agent
+manage Plugins:->
+-----------------
+  400+ plugins 
+  interview questions:-> how you can install without internet plugin manually->advanced->upload plugins
+  
+Manage Nodes and clouds :-> 
+---------------------------
+if we want add master slave,if you want to multiple nodes
+
+security
+--------
+configure the global security:-> 
+--------------------------------
+who want access jenkins like permissions ,administrations per, autherization ,authentication
+manage credentials :-> 
+-------------------
+if you want nexus ,git credential
+configure credential provider:->
+---------------------------------
+manage user:-> any new user add it.jenkin user login purpose.
+
+How to create jenkins job
+-------------------------
+new item
+ enter the item name :-> first job
+ 
+ click the freestyle job
+ -------------------------
+ general,source code management,build trigger,build environment,build,post-build-access
+ 
+ general
+ --------
+ first jenkins job
+ 
+ Build
+ -----
+  execute shell
+  -------------
+  echo "hey guys good evening"
+  
+  apply
+  
+  save
+  
+  build now
+  ----------
+  
+  console output
+  --------------
+  
+  success
+  --------
+  
+  
+  Freestyle job what will execute my recuirement (freestyle and pipelinejob)
+  --------------------------------------------------------------------------
+   1)print hello msg
+   2)print today date
+   3)print ip address
+   4)clone project from github ->integrate github
+   5)exute a hello world java project
+
+
+
+
+
+
+
+27-july-2021 (monday)
+----------------------
+
+Freestyle job task
+-------------------
+  1)print hello msg
+   2)print today date
+   3)print ip address
+   
+   
+ 1)  new ietm
+   --------
+   freestyle
+   --------
+   name :-date
+   -----------
+   freestyle
+   ----------
+   ok
+   ---
+   decription
+   -----------
+   print today date
+   
+   
+   build
+   -----
+   execute shell
+   -------------
+    date
+	
+	apply
+	save
+	
+    build now
+	---------
+	
+	console output
+	--------------
+	success
+	
+	
+	again i need to edit
+	---------------------
+	configure
+	-----------
+    echo "hi baby today date"
+     date
+
+    apply
+	save
+	
+    build now
+	---------
+	
+	console output
+	--------------
+	success
+
+ 2)  new item
+   --------
+   freestyle
+   --------
+   name :-whatismyip
+   -----------
+   freestyle
+   ----------
+   ok
+   ---
+   decription
+   -----------
+   print ip address
+   
+    build
+   -----
+   execute shell
+   -------------
+    ifconfig
+	
+	apply
+	save
+	
+    build now
+	---------
+	
+	console output
+	--------------
+	success
+
+
+3) i need create one java project
+   -------------------------------
+   push  java code github
+   ----------------------
+   integrate jenkin github repo
+   -----------------------------
+   build tech project
+   ------------------
+   execution job
+   -------------
+
+ mkdir hello_java
+ 
+ cd hello_java
+ ls -ltra
+ 
+ 
+google  search it
+-----------------
+
+https://github.com/leereilly/hello-world-java	
+
+ vi  HelloWorld.java
+ 
+ public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World");
+  }
+}
+
+:wq
+
+
+compile the java code use:-> javac <filename> 
+                             javac HelloWorld.java
+							 
+   runtime execution in java :-> java <classname>
+                                  java HelloWorld   
+
+
+  out put
+   Hello, World
+   
+   cat HelloWorld.java
+   --------------------
+    public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World ");
+  }
+}
+
+
+again once modified
+-------------------
+vi HelloWorld.java
+
+    public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World  ,,,,,,,,,,,,,,,,,,,");
+  }
+}
+
+   :wq
+   
+   
+javac HelloWorld.java
+
+java HelloWorld  
+
+
+this above steps are manually- so we can use the jenkin how the 
+----------------------------------------------------------------
+
+we can convert the git project
+-------------------------------
+
+install git 
+----------
+sudo yum install git -y
+
+git init
+
+git status
+
+i dont want push .class 
+-----------------------
+ vi .gitignore
+ 
+ *.class
+ 
+ :wq
+ 
+ git status
+ 
+ thats gone
+ ----------
+ 
+ 
+ git add .
+ 
+ git commit -m "added the java project"
+ 
+ git config --global --edit
+
+  name:
+  email:
+  
+  :wq
+  
+  git log
+  
+  git push origin master
+  
+  not work
+  --------
+  
+  go to central repository
+  ------------------------
+  
+  folder(repo) name: hello_java1
+  
+  git remote add origin https://github.com/vijayammanagi1234/hello_java1.git
+  
+  
+  ssh-keygen
+  
+  enter
+  enter
+  
+  cat /home/ec2-user/.ssh/id_rsa.pub                or cat ~/.ssh/id_rsa_pub
+  
+   copy key
+   --------
+   
+   github->settings>ssh&GPS key> jenkins-key> paste here key
+   -----------------------------------------------------------
+   
+   
+   git remote -v
+   
+   if want overide this use set-url
+   ---------------------------------
+   
+   
+  git remote set-url origin  git@github.com:vijayammanagi1234/hello_java.git   ->(ssh)
+  
+  git remote -v
+  ------------
+  
+  now create jenkins job
+  --------------------------
+  new item
+  ----------
+  name:->hello_java1
+  
+  freestyle job
+  
+  apply
+  save
+  
+  decription
+  -------------
+  print hello msg using the java code
+  
+  
+  
+  source code management
+  ----------------------
+  Git 
+  
+  url
+  ---
+  https://github.com/vijayammanagi1234/hello_java1.git
+  
+  Credentials
+    add credential
+	 username and  password
+	 
+	 global
+	 
+	 username
+	 
+	 password
+	 
+	 ID  -> should give
+	 --
+	 
+	 github_credentials
+	 
+	 decription
+	 github_credentials
+	 
+	 
+	 save
+	 
+	 Branch to buils
+	 ---------------
+	 
+	 master
+	 
+	 apply
+	 save
+	 
+	 build now
+	 
+	 
+	 workspace  ->entire code will come
+	 
+	 console
+	 
+	 
+	 where will store the code
+	 ----------------------------
+	 cd var/lib/jenkins/
+	 
+	 ls -ltra
+	 
+	 
+	 manage jenkin:-> configure system there -> home directly
+	
+	
+	configure
+	
+	build
+	
+   execute shell
+     javac HelloWorld.java
+     java HelloWorld 
+	 
+	 apply and save
+	 
+	 similary edit the code and just do jenkins build now just short job
+	 -----------------------------------------------------------------------
+	 
+	 
+
+	
+Jenkins dashboard
+------------------
+    manage jenkin:-> global tool configuration :-> git is showing red color means git not install and jdk red color means not install
+	
+	cd
+	whereis java
+	cd /usr/bin/
+	ls -ltra
+	ls -ltra | grep java
+	cd /etc/alternatives/        ->main softlink of java
+	ls -ltra
+	ls -ltra | grep javac
+	
+	java home directly:-> /usr/java/jdk1.8.0_141/bin/javac 
+
+	 manage jenkin:->
+	    JDK
+		  Name:->java8
+		    java_Home
+			  /usr/java/jdk1.8.0_141/
+			  apply
+			  save
+			  
+	JDK
+		  Name:->java9
+		    java_Home
+			  /usr/java/jdk1.8.0_141/
+			  apply
+			  save		  
+			  
+  Go to dashboard
+    hello_java1
+	  configure
+	  multiple jdk that time came and showing  (if you want delete any one)
+	  
+	  
+	  
+	  One more task on shell script
+	  ------------------------------
+	  shell script
+	  sh shellname.sh
+	  
+	  
+27-july-2021
+-------------
+
+Build automation options
+------------------------
+
+ 1)webhooks
+ 2)poll scm
+ 3)build periodically
+ 
+ 
+ what purpose automation build tool
+ ------------------------------------
+ build now :-> automate execute code 
+ 
+ shell script automate build what we can do use
+ -----------------------------------------------
+ cron job 
+ -------
+ 
+ * * * * * respective that minute ,hour ,day of the month,month of the year ,day of the week
+ 
+ min hour dom moy dow
+ 
+ build periodically:-> its run on a perticular time (it wont worry about you pushed), job  trigger automatically -> pull base mechanism
+ -------------------
+ 
+ poll scm :-> pull and after pushing (means it change in code  then only) some time whatenver time you mention ->pull base mechanism.
+ ---------
+ 
+ webhooks:-> after push immediatly ->push base mechanism
+------------
+
+
+Hands On
+----------
+ Jenkins
+ ----------
+ 1)build periodically
+ ------------------
+ configure
+ ------------
+    build trigger
+	----------------
+	build periodically
+	------------------
+	 */1 * * * *
+	 
+	 
+	 apply and save  -> means after every one minute itself trigger  (No build now ,itself do)
+	 ------------------------------------------------------------------------------------------
+	 
+  2)poll scm
+---------------
+  poll scm :-> pull and after pushing (means it change in code  then only) some time whatenver time you mention ->pull base mechanism.
+  ---------
+  
+  we push and change code then only poll scm work
+  ------------------------------------------------
+  cd hello_java1
+  
+  git branch
+  
+   git pull origin master
+   
+   vi HelloWorld.java
+
+    some change
+
+  :wq
+   
+  git add .
+
+ git commit -m " meaning full msg"
+
+ git push origin master
+
+ got to check github and jenkins itself trigger
+------------------------------------------------ 
+	 
+	
+ 3)webhooks:-> after push immediatly build trigger itself in jenkins ->push base mechanism
+  ------------
+  its repository work go to means github 
+  ------------------------------------------
+  particular repository->settings:-> webhooks:->add webhook
+  ------------------------------------
+  payload URL
+  ----------
+  jenkinsj url:->http://13.232.156.13:8080/github-webhook/
+  
+  add webhook
+  ----------------
+  
+  
+  go jenkins configure
+  ------------------
+  github hook trigger for GITscm polling
+  -----------------------------------------
+  
+  apply and save
+  --------------
+  
+  vi HelloWorld.java
+  
+   we need to change
+   
+   :wq
+   
+   git add .
+   
+   git commit -m "added the new webhook"
+   
+   git push origin master
+   
+   after pushed immediatly come to jenkins trigger go and see
+   ----------------------------------------------------------
+   
+   
+  #) ngrok :-> when we use  jenkins in  windowds -> we talk to github
+   ------
+   
+   1)archirve file that path CMD
+   
+   2) ngrok.exe authtoken <YOUR_AUTH_TOKEN>
+	
+	3)ngrok.exe http 8080
+	
+	4)here http://13057325.ngrok.io this is out public domain of your system we need to configure this your in github weebhooks.
+	
+	5) Now our Public DNS is ready lets move into the jenkins configuration.
+	
+	 6) go to github
+	
+	   webbhooks
+	
+     http://13057325.ngrok.io/github-webhook/
+  
+   
+	
+29-july-2021
+-------------
+vi ~/.bash
+
+vi ~/.bashrc
+
+export JAVA_HOME="/usr/java/jdk1.8.0_141/"	
+
+:wq
+
+
+source ~/.bashrc
+
+javac
+
+
+
+Maven
+-----
+sample  jenkins
+
+java hello world example ->console level
+
+
+
+Build tools
+-------------
+	1)Should create proper project structure
+    2)adding libraries
+	3)lifecycle
+
+ javac -> we install java software
+
+ java application
+
+ php
+
+ android
+ 
+ IOS
+ 
+ Spring application
+
+
+
+cd  /usr/bin/
+
+ls -ltra
+
+cd /etc/alternatives/
+
+cd /usr/java/jdk1.8.0_141/
+
+cd lib/
+
+ls -ltra    -> all the the java softwares are here libraries
+
+
+cd ../bin/
+
+ls -ltra   -> all the java software are here bineries
+
+
+ls -ltra/
+ 
+	 
+  
+  
+what are the build tools are here
+----------------------------------
+java-> ant ,maven,gradle
+.net->msbuild
+python->egg,wheel,grapes
+
+
+one are the we learning
+------------------------
+  Ant
+  ----
+ Build tool
+ no inbuilt lifecycle 
+ built.xml
+ no reusable
+ 
+
+
+ Maven
+ -----
+ build and project management tool
+ in built lifecycle
+ pom.xml
+ resuable
+ 
+ 3 Repositories
+ ---------------
+ 1)local repo
+ 2)remote repo
+ 3)central repo
+ 
+ 
+ MAVEN architecture
+ -------------------
+ Developer
+ ---------
+ pom.xml
+ ----------
+     dependencies means libraries
+	 ----------------------------
+	 developer add the libraries
+	 ----------------------------
+	 just go for internete
+	 ---------------------
+	 mvnrepository
+	 -------------
+	 spring-core
+	 specific version
+	 copy
+	 paste in local
+	 ---------------
+	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+              <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>5.3.9</version>
+           </dependency>
+
+	 
+ 
+ 
+ .m2 ->maven local repository all the store inside dependencies
+ 
+ remote repository :> nexus /jfrog ,it keep the backup (Company)
+
+ central repo:-> download and keep the dependencies in local
+ but next time same artifactries if want to go first check the local ,if configure remote ,if not remote ,will go to central repo.
+ if central also not there  it will kick out
+ 
+ Interview Question
+ ------------------
+1)how your project create war and jar file ?
+ -> inside the pom.xml
+    the tag name called as packaging,base on the packaging create our final output of your project.
+	
+2) what is the diff b/w snapshot and version release.
+-> snapshot means still under the developing .
+ once complete development final release version.
+	
+ 3)what is the pom.xml contains
+ ->it contains the plugins then dependencies of project.
+ 
+ maven lifecycle
+ =================
+ validate
+ compile
+ test
+ package
+ verify
+ install
+ deploy
+ 
+ 
+   deault lifecycle ,clean :-> inbuilt lifecycle ,old target folder
+  
+  
+4)how to execute the code in maven?
+->mvn package
+ 
+5)pom.xml and build.xml and gradel.xml which are the build tools terminology ?
+-> pom.xml :->maven build tool
+   build.xml :-> ant build tool
+   gradel.xml :-> gradel build tool
+   
+   
+ 
+ 
+ 
+ 
+29-july-2021
+ -----------
+ 
+1)  https://github.com/ybmadhu/spring-petclinic
+2) https://github.com/ybmadhu/spring3-mvc-maven-xml-hello-world
+3) https://github.com/wakaleo/game-of-life
+	
+ Note:-> how to get aws account number /id based on EC2 instance which is hosted in amazons
+ link (https://stackoverflow.com/questions/51597492/how-to-get-aws-account-number-id-based-on-ec2-instance-which-is-hosted-in-amazo)
+ 
+ Name of account id AWS :-> curl -s http://169.254.169.254/latest/dynamic/instance-identity/document
+ 
+ 
+Maven installation
+--------------------
+sudo yum install maven -y
+
+mvn --version
+
+
+Note:-> maven is the java framework it need jre.
+------------------------------------------------
+We can go on search maven in 5 minute
+--------------------------------------
+
+
+Creating a Project
+--------------------
+You need somewhere for your project to reside. Create a directory somewhere and start a shell in that directory. On your command line, execute the following Maven goal:
+-------------------------------------------------
+
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+artifactId :->my-first-maven-app
+
+Note:-> -D symbolically enviromnet variable in java.
+-----------------------------------------------------
+
+archetype:generate  :-> project creation
+
+
+6)how to create maven project in console
+->archetype:generate  :-> project creation
+
+
+
+cd my-first-maven-app
+
+
+
+we build one plant tree
+-----------------------
+
+sudo yum install tree -y
+
+
+tree
+
+
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- mycompany
+    |               `-- app
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- mycompany
+                    `-- app
+                        `-- AppTest.java
+						
+cat src/main/java/com/mycompany/app/App.java
+
+  
+/**
+ * Hello world!
+ *
+ */
+public class App
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
+
+vi pom.xml
+
+git init
+
+
+Go to Github and create one empty repository  or (fork)
+------------------------------------------------------
+new:-> my-first-maven-app
+
+
+git remote add origin git@github.com:vijayammanagi1234/my-first-maven-app.git
+
+git add .
+
+git commit -m "maven project added "
+
+
+Now go to jenkins create job
+---------------------------------
+ New item
+ ---------
+ 
+ name :-my-first-maven-app
+ 
+ freestyle job
+ 
+   decription:- this is my first maven project
+   
+   git
+   
+   url :-https://github.com/vijayammanagi1234/my-first-maven-app.git
+   
+   apply and save
+   
+   build now
+   
+   console
+   
+   configure 
+   ---------
+   build:-
+   
+   invoke top level maven
+   
+   goal     (inside default mvn)
+   ----
+   package
+   
+   
+   apply and save
+   
+   build now
+   
+   
+   success
+   
+   then go workspace
+   
+   target folder
+   
+   
+  7) how can we execute the jar file
+   --------------------------------
+   java -jar <jarname>
+   
+   
+   manage jenkins
+   --------------
+   
+   Global tool configuration
+   ---------------------------
+    maven
+	 we dont want default version so we remove and add new version like maven3
+	 
+mvn --version
+ copy 
+   MAVEN_HOME
+    paste:-/usr/share/maven
+
+
+  we get custome maven version
+  ------------------------------
+  
+  we particular job
+  -------------------
+  configure 
+     build 
+	   select custome mvn version
+	   
+	   build now
+	   
+	   console 
+	   
+	   success
+	   
+	we want clean lifecycle
+ ------------------------------
+ build
+   remove goal package
+   add  goal clean
+
+apply and save
+
+ build now
+ 
+  some people give both time  that will work means old target folder delete and new one create
+  --------------------------------------------------------------------------------------------
+  clean package
+  
+  save and apply
+  
+  
+  where is the target folder is there
+  ------------------------------------
+  
+  go to configure
+  ---------------
+  build
+  -----
+  execute shell
+  --------------
+  java -jar target/<copy from workspace in target inside jar file and paste here>
+  
+  
+  
+  build and  no main manifest attribute error
+  
+  what we can do search in google
+  ---------------------------------
+  no main manifest attribute
+  ---------------------------
+  copy and plugin
+  ------------------
+  go and github respective project
+  ---------------------------------
+  pom.xml
+  edit
+  add the plugin
+  --------------
+  <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>com.mypackage.MyClass</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+	
+	
+	
+	build success 
+	
+	application main coding error  it developer problem then  developer get email notifications
+	---------------------------------------------------------------------------------------------
+	
+	Error: Could not find or load main class com.mypackage.MyClass
+	
+	
+  
+  
+  2)) project
+  
+  https://github.com/ybmadhu/spring3-mvc-maven-xml-hello-world  
+  
+  fork the code in github
+  ------------------------
+  
+  3) project
+    https://github.com/ybmadhu/spring-petclinic
+	
+	
+ 4) project
+   https://github.com/wakaleo/game-of-life
+   
+   
+   
+
+
+30-july-2021
+=============
+	
+  
+  where is the store settings.xml in maven
+  ========================================
+  cd ~/.m2
+  ls -ltra
+  cd repository/
+  ls -ltra
+        -> these are the jar files of dependencies
+		
+  mvn --version
+  cd net/
+  ls -ltra
+  cd sourceforge/           ->this is company
+  
+  ls -ltra
+       ->this is the domain artifact/id
+  cd jchardet/
+       -> this is the dependencies
+  ls -ltra
+  cd 1.0         -> this is the version
+  ls -ltra
+      -> inside that keep it the jar files
+	  
+  mvn --version
+  cd /usr/share/maven
+  ls -ltra
+  cd conf/
+  ls -ltra
+     here is the settings.xml file -> /etc/maven/settings.xml
+  cat /etc/maven/settings.xml
+  -> here the modified that ,what is the username and password thus will  developer  be modified,if you want tomcat path deploy
+   any server username and password ,any proxy server.
+   
+   
+   
+ Apache tomacat
+===================
+ Spring boot  -> java framework 
+     -> Inbuild server  ->we no need deploy this is continuous running in war and jar files.
+	   1) inbuilt server->tomcat
+	   2)inbuilt server -> jetty
+	   3)inbuilt server ->undertow
+	   
+	   
+	   
+jenkins download in windowds
+-----------------------------
+https://www.jenkins.io/download/   lts ->long time support
+
+generic_java package(.war) download it.
+
+
+
+What is the Apache tomacat server?
+
+->web server ,we deploy the war(web archirve) file.
+
+
+whatever the web server do as well Application server do
+---------------------------------------------------------
+
+What is the difference between application server and web server?
+
+https://stackoverflow.com/questions/936197/what-is-the-difference-between-application-server-and-web-server
+
+2
+
+Application server and web server both are used to host web application. Web Server is deal with web container on the other hand Application Server is deal with web container as well as EJB (Enterprise JavaBean) container or COM+ container for Microsoft dot Net.
+
+Web Server is designed to serve HTTP static Content like HTML, images etc. and for the dynamic content have plugins to support scripting languages like Perl, PHP, ASP, JSP etc and it is limited to HTTP protocol. Below servers can generate dynamic HTTP content.
+
+Web Server's Programming Environment:
+
+IIS : ASP (.NET)
+
+Apache Tomcat: Servlet
+
+Jetty: Servlet
+
+Apache: Php, CGI
+
+Application Server can do whatever Web Server is capable and listens using any protocol as well as App Server have components and features to support Application level services such as Connection Pooling, Object Pooling, Transaction Support, Messaging services etc.
+
+Application Server's Programming Environment:
+
+MTS: COM+
+
+WAS: EJB
+
+JBoss: EJB
+
+WebLogic Application Server: EJB
+
+
+windowds+cmd
+==============
+java
+javac
+java -jar jenkins.war
+
+jar -> Executable jar file
+
+java -jar jenkins.war   8080
+java -jar jenkins.war  --httpdPort=1234
+
+tomacat java deault port
+--------------------------
+8080
+  bin
+   -- 
+    start
+	stop
+  conf
+   ---
+     tomcat-users.xml ->roles and username and password
+	 server.xml -> default port change and ssl certificate
+  webapps
+    ------
+	 copy the war files
+	 
+	 
+	  edit it
+	  ----------
+	  <!--
+  <role rolename="tomcat"/>
+  <role rolename="role1"/>
+  <user username="tomcat" password="<must-be-changed>" roles="tomcat"/>
+  <user username="both" password="<must-be-changed>" roles="tomcat,role1"/>
+  <user username="role1" password="<must-be-changed>" roles="role1"/>
+	
+  
+  we can search google ->tomcat-users.xml from github copy it -> 
+  
+  <role rolename="manager-gui"/>
+  <role rolename="admin-gui"/>
+  <role rolename="manager-script"/>
+  <user username="vijay" password="vijay" roles="manager-gui,admin-gui,manager-script"/>
+
+
+bin
+   -- 
+    start
+	stop
+	
+	Now open the UI of the apache tomcat server 
+	-----------------------------------------------
+	now we can deploy war files
+	----------------------------
+	
+	
+NOW In Linux how to install Apache tomacat
+---------------------------------------------
+
+install tomcat
+----------------
+$ sudo yum install java-1.8.0  -y  -> already is there no worry about this install, if no there then will install .
+
+$ sudo yum install tomcat –y
+
+$ sudo yum install tomcat-webapps tomcat-docs-webapp tomcat-admin-webapps -y	
+	
+goto tomcat installation directory i.e /etc/tomcat/ for change any configuration.
+For ex need to be configure port and users and roles. if the file is ready only mode open the file with sudo permissions.
+
+
+cd /etc/tomcat/
+
+ls -ltra
+
+sudo vi tomcat-users.xml
+
+ <role rolename="admin"/> 
+ <role rolename="admin-gui"/> 
+ <role rolename="admin-script"/>
+ <role rolename="manager"/> 
+ <role rolename="manager-gui"/> 
+ <role rolename="manager-script"/> 
+ <role rolename="manager-jmx"/> 
+ <role rolename="manager-status"/> 
+ <user name="admin" password="admin" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" /> 
+ 
+ 
+ Start the tomcat service and check the status.
+ -------------------------------------------------
+$ sudo service tomcat start
+$ sudo service tomcat status
+
+Now I want to change default port I.e 8080 to 8181. Because my Jenkins also running on same port. If both are same port the server won’t be start its trough the error address already bind exception.
+
+Open the server.xml file under /etc/tomcat/server.xml file and and chage the port and save it.
+
+sudo vi server.xml 
+
+ connector port = '8081'
+ 
+ :wq
+
+$ sudo service tomcat restart
+
+Open inbound out bound rules to access out tomcat server webui with new port i.e 8081
+
+go to google check
+------------------
+
+jenkins spring3-mvc on master war file we deploy to apache tomacat
+-------------------------------------------------------------------------------
+workspace
+-----------
+inside 
+--------
+war file 
+-------------
+	configure
+	-----------
+	
+	Post and build actions
+	---------
+	
+	and there no features so we add extra features in build
+	-----------------------------------------------------------
+	go manage jenkins
+	----------------
+	manage-plugins
+	---------------
+	available 
+	----------search
+	
+	deploy to container
+	-------------------add it
+	select and install without restart
+	-----------------------------------
+	success
+	
+	the go to configure
+	-------------------
+	Post and build actions
+	-----------------------
+	
+	deploy war/ear to container
+	------------------------------
+	**/target/*.war                 -> ** ->root path any project ,project name target, inside target my war file.
+	
+	
+	context path
+	---------------
+	whatenver project name
+	-----------------------
+	spring3
+	
+	
+	apply and save
+	-----------------
+	
+	the go Build now
+	------------------
+	
+	success
+	
+	the go refresh the tomacat server in web
+	-------------------------------------------
+	
+	
+	same like 2 project do it
+	----------------------------
+	
+	
+	
+2-August-2021
+-------------
+https://github.com/jmstechhome11/spring-petclinic
+
+
+
+heap memory increase
+------------------------
+
+https://stackoverflow.com/questions/5936519/how-to-give-jenkins-more-heap-space-when-it%C2%B4s-started-as-a-service-under-windows
+
+
+
+JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=512m"
+
+
+
+
+1)https://github.com/ybmadhu/spring-petclinic
+
+ **/gameoflife-web/target/*.war              ->big project proper to check where is the file so
+ 
+ 
+
+
+
+3-August-2021
+-------------
+
+https://accounts.google.com/DisplayUnlockCaptcha
+
+	
+	
+Email Notification [SMTP] Simple Mail 
+
+Project spring3-mvc-maven-xml-hello-world:-> example project
+-------------------------------------------------------------
+
+How to find out error for regarding to devopss guy
+---------------------------------------------------
+
+Configure
+------------
+post build actions
+-------------------
+
+Recipients who want to mail
+----------------------------
+
+Recipients
+-----------
+vijura38gmail.com vijura40@gmail.com
+
+Apply and save
+--------------
+    but we are not configure
+	-----------------------------
+we set up email server
+----------------------
+manage-jenkins
+--------------
+ configure-system
+ ------------------
+ 
+SMTP server
+-----------
+smtp.gmail.com
+
+default usere-mail.suffix
+-------------------------
+@gmail.com
+
+use SMTP Authentication
+-----------------------
+ username
+--------------
+vijura38@gmail.com
+
+password
+---------
+djjhdfsdhfg
+
+
+	
+
+E-mail Notification
+---------------------
+	
+	
+https://accounts.google.com/DisplayUnlockCaptcha	
+	
+
+
+
+4-August-2021
+-------------
+
+Junit
+---------
+developer the code test the test engineers
+-----------------------------------------
+100% pure dev
+
+
+HelloSum
+HelloSumeTest
+Junit
+asserteqauls(expecting,cominvalue)
+
+JENKINS
+-------
+spring-petclinic
+------------------
+src
+---
+main
+----
+
+
+test
+----
+test folder is there
+---------------------
+model
+-------
+valuedate
+
+when the test case folder execute
+----------------------------------
+after compile the maven lifecycle
+
+
+configure
+---------
+ Add post -build actions
+ -------------------------
+ publish Juinit test result report
+ -------------------------------------
+ 
+ test report XMLs
+ -----------------
+ **/target/surefire-reports/*.xml
+ 
+ 
+ apply and save
+ 
+ build Now
+ ---------
+ 
+ 
+ 
+ 
+ you can some change in petclinicTestjava
+ -----------------------------------------
+ 
+ 
+ totally 60 test case
+ --------------------
+ 
+ 
+ youn can add plugins
+ ---------------------
+ manage plugins
+ -------------------
+ test result analyser
+ --------------------
+ 
+ -
+
+
+
+
+
+ 3 job
+ ---------
+ 
+ there is the dependencies from one job(service) to another job,we can execute multiple jobs at time.
+ 
+ in this filed we can use upstream/downstream.
+ 
+ 
+ Upstream/Downstream job
+ ------------------------
+ some logic
+ -----------
+ 
+ UI               -service-1
+ 
+ business         -service-2
+ 
+ db               -service-3
+ 
+ 
+ 6-August-2021
+ -------------
+ 
+ https://github.com/up1/maven_java_web_example/blob/master/pom.xml
+
+ 
+  Upstream/Downstream job
+  -----------------------
+   upstsream                   downstream
+  
+  no             UI             business
+  
+  
+  ui            Bussiness       DB
+			
+  
+  business         DB           no
+  
+  
+  
+  
+  when click on UI what is trigger (any one  trigger that ui or Bussiness or DB its take downstream not to upstsream )
+ -----------------------------------  
+  UI---->Bussiness---->DB
+  1         1           1     ->how many builds trigger there ->one Build
+            1           1     ->how many builds trigger there -> two build
+                        1     ->how many builds trigger there -> tree build
+						
+
+
+Dashboard JENKINS
+---------------------
+
+Go to manage plugins
+---------------------
+dashboard View
+-----------------
+install it
+------------
+which format plugins are there
+
+
+Note:-> all the plugins exetation is ->hpi
+
+How to install plugins manually-
+---------------------------------
+already we hpi format plugins save we can deploy to ->plugin manager ->advanced-> upload plugin ->choose file:-> upload
+
+
+dashboard click on +
+---------------------
+manager
+------
+dashboard
+----------
+description
+-----------
+somthing write it
+-----------------
+whatever want see jobs select it
+---------------------------------
+
+portlets at the top of the page
+---------------------------------
+job statics
+-----------
+portlets at the left colomn
+----------------------------
+latest builds
+-------------
+4
+portlets in the right colomn
+----------------------------
+test  statics  chart
+---------------------
+
+portlets at the top of the page
+-------------------------------
+unstable jobs
+---------------
+
+apply and save
+
+
+
+
+
+
+PIPELine view
+---------------
+
+manage-plugins
+---------------
+Build Pipeline
+ apply and save
+ 
+  dashboard + myview
+  
+  apply ans save
+  ---------------
+  
+  
+  
+ Try the one application
+---------------------------
+simple -java -maven-app
+-----------------------
+
+
+
+9-August-2021
+--------------
+automation -> single click deployment
+ ----------------------------------------
+Some input  you pass --> parameterized builds
+
+we create  the new job
+----------------------
+first-parameter
+
+decription
+------------
+this is the free style job
+
+
+this project parameter
+------------------------
+ add Parameter
+ --------------
+ string parameter
+ name:->ENV
+ default:->staging
+ description
+  this is the staging parameter
+ 
+ 
+ Build section
+ --------------
+ execute shell
+ -------------
+ echo $ENV
+ 
+ apply and save
+ 
+ build and parameter
+ --------------------
+ its ask the Env
+ ---------------
+ whatenver you want that output will execute
+ ----------------------------------------------
+ 
+ 
+ we add multiple string parameter
+ --------------------------------
+ 
+ add parameter not come default git we can add plugins then only come
+ ----------------------------------------------------------------------
+ manage-jenkins
+ available
+ git parameter
+ 
+ go and first-parameter
+ add parameter
+ git parameter
+ name:->INPUT
+ decription:->select tag
+ parameter type:->tag
+ default avalue:->v0.1
+ 
+ vijayammanagi1234/first  in github
+-------------------------------------
+branch->hotfix  ,  select clone :-> htt----
+
+jenkin
+------
+
+git
+ paste
+ 
+ branch-> master
+ 
+ 
+ apply and save
+ 
+ 
+
+configure
+---------
+parameter type:->master
+
+
+apply and save 
+
+
+
+
+then go to github select any project means First
+------------------------------------------------
+git clone http------------
+cd First/
+git branch
+git log
+
+git tag v2.0
+
+go and check in github refresh
+--------------------------------
+
+then go to jenkin in configure git parameter
+--------------------------------------------
+git parameter
+---------------
+parameter type:->tag
+
+ default avalue:->refs/tags/V2.0          ->tag base deployment
+
+branch
+refs/tags/${INPUT}
+
+apply and save
+
+
+ 
+how we can branch base deployment 
+-----------------------------------
+git checkout -b feature
+
+git branch
+
+vi feature1.log
+
+dshjgsdhfvgs
+cjhgsafw
+
+:wq
+
+git add .
+
+git status
+
+git commit -m "we added the git branch"
+
+git push origin feature
+
+github and refresh it
+--------------------
+
+only new file in branch feature see and go in jenkins
+-----------------------------------------------------
+configure
+---------
+parameter type:->branch
+
+branch
+--------
+${INPUT}
+
+apply and save
+--------------
+
+build and parameter
+
+
+
+git parameter
+-----------------
+
+both select
+-----------
+
+parameter type
+----------------
+branch or tag
+
+
+${INPUT}
+
+    add branch
+
+refs/tags/${INPUT}
+
+
+apply and save
+----------------
+
+now go see in build and parameter
+----------------------------------
+	
+
+
+
+
+10-August-2021
+--------------
+https://www.sonatype.com/products/repository-oss-vs-pro-features
+
+
+
+sonatype
+nexus -OSS
+nexus -pro
+
+artifactory
+---------------
+jfrog
+ 
+ 
+ Nexus on ubuntu -18.04
+ ----------------------------
+ 
+ Note: must have t2.medium instance
+ 
+Install Java
+$ sudo apt-get update
+$ sudo apt install openjdk-8-jre-headless -y                or $ sudo apt-get install openjdk-11-jdk -y
+Download Nexus
+$cd /opt
+
+$ sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+$ sudo tar -zxvf latest-unix.tar.gz                       ->untar file
+
+ls -ltra
+
+rename latest (nexus)
+-------------
+
+$ sudo mv /opt/nexus-3.33.1-01 /opt/nexus
+
+we create add user
+-------------------
+
+$ sudo adduser nexus
+
+Set no password for nexus user and enter below command to edit sudo file
+---------------------------------------------------------------------------
+$sudo visudo
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+nexus ALL=(ALL) NOPASSWD: ALL
+
+control+x and Y and enter
+---------------------------
+
+Change file and owner permission for nexus files
+-----------------------------------------------
+$ sudo chown -R nexus:nexus /opt/nexus
+$ sudo chown -R nexus:nexus /opt/sonatype-work
+
+
+Add nexus as a service at boot time
+--------------------------------------
+Open /opt/nexus/bin/nexus.rc file, uncomment run_as_user parameter and set it as following.
+-------------------------------------------------------------------------------------------
+
+$ sudo vim /opt/nexus/bin/nexus.rc
+
+run_as_user="nexus"                ->(file shold have only this line)
+
+:wq
+
+
+Add nexus as a service at boot time
+------------------------------------
+
+$ sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+
+Log in as a nexus user and start service
+-----------------------------------------
+ switch user
+ --------------
+$ su - nexus
+
+ask the password:->enter it
+
+soft link
+----------
+
+$ /etc/init.d/nexus start
+
+check the port is running or not using netstat command
+-----------------------------------------------------------
+
+$ sudo apt install net-tools
+
+$ sudo netstat -plnt
+
+$ ps -ef | grep nexus
+
+add port in ubuntu server
+---------------------------
+add port
+inbond rules
+add port 8081 means default port of the nexus
+
+
+ip address:8081
+
+now open the nexus
+------------------
+
+now login
+
+go to moXterm
+--------------
+cd /opt/
+
+cd sonatype-work
+
+cd nexus3
+
+ls -ltra
+
+admin.password
+
+cat admin.password
+
+bb09d8b8-5597-4b97-a891-bdf20787685
+
+now got nexus login
+-----------------------
+username:-> admin
+password:->bb09d8b8-5597-4b97-a891-bdf20787685d
+
+
+password change
+------------------
+
+
+settings
+--------
+repositories
+
+created repository
+
+maven2(hosted)
+
+name:->spring3
+
+
+Go to start jenkins server
+---------------------------
+ip address:8080
+
+go to :->sping-mvc
+
+configure
+
+add build setup :->
+-------------------
+any option is there nexus if not there add plugins.
+
+manage plugins
+---------------
+nexus platform
+
+manage-jenkins
+--------------
+
+configure server
+-----------------
+configure system
+-----------------
+sonatype nexus
+--------------
+add 3.1 server
+
+Display Name
+------------
+nexus_remote
+
+server_ID
+-----------
+nexus_remote
+
+server URL
+----------
+http://65.1.107.53:8081/
+
+credential
+-------------
+nexus
+
+test connections
+-----------------
+once successfully
+
+apply and save
+
+
+sping-mvc
+---------
+configure
+----------
+build
+-------
+Nexus Repository Manager Publisher
+
+nexus_instance
+--------------
+nexus_remote
+
+nexus repository
+------------------
+spring3
+
+tag
+---
+leave about it
+
+package
+-------
+
+group:
+com.msr
+
+Artifact
+--------
+spring3
+
+
+version
+1.0
+
+
+packaging
+war
+
+Maven Artifact
+--------------
+abslute path
+
+how we find the it
+-------------------
+
+go to jenkins serevr connect it
+--------------------------------
+/var/lib/jenkins/workspace/spring3-mvc-maven-xml-hello-world/target/spring3-mvc-maven-xml-hello-world-1.2.war 
+
+apply and save
+
+
+11-August-2021
+===============
+
+What is the SonarQube?
+-------------------------
+SonarQube is an open source tool for managing the code quality of an application. 
+It manages seven axes of code quality, such as architecture and design, duplications, unit tests, potential bugs, complexities, coding rules, and comments.
+
+
+
+Http Ports
+----------
+smtp->25
+Gmail Smtp ->465
+ssh->22
+https->443
+httpd->80
+nginx->80
+jenkin->8080
+nexus->8081
+sonarQube->
+
+create one ubuntu server:-
+---------------------------
+t2.medium
+
+start also jenkin server
+--------------------------
+
+
+Ubuntu serevr
+-------------------
+$ sudo apt update
+
+$ sudo apt-get install -y software-properties-common
+
+Install java
+
+Note : java11 is needed to install latest sonarqube $ sudo apt-get install openjdk-11-jdk -y
+
+//$ sudo apt install openjdk-8-jre-headless//  not support in ubuntu and also jenkins
+
+$ sudo apt-get install unzip
+
+$ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+
+$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+
+$ sudo apt-get -y install postgresql postgresql-contrib
+
+$ sudo adduser sonar
+
+password
+
+enter
+enter
+
+$ cd /opt
+ 
+
+Go to google search and sonarQube.org/downloads/
+--------------------------------------------------
+
+community link copy it
+
+$ sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.0.1.46107.zip
+
+$ sudo apt install unzip
+
+$ sudo unzip sonarqube-9.0.1.46107.zip
+
+ubuntu@ip-172-31-42-74:/opt$ sudo mv sonarqube-9.0.1.46107 sonar
+
+cd sonar/
+
+
+ls -ltra
+
+$ sudo chown -R sonar:sonar /opt/sonar
+
+$ sudo passwd postgres
+
+password and change
+---------------------
+
+enter password and renter password
+-------------------------------------
+$ su - postgres
+
+create one database
+-------------------
+
+$ createuser sqube
+
+$ psql
+
+postgres=# ALTER USER sqube WITH ENCRYPTED password 'sqube';
+
+postgres=# CREATE DATABASE sqube OWNER sqube;
+
+come out from 
+---------------
+postgres=# \q
+
+exit -> logout
+
+$ sudo nano sonar/conf/sonar.properties
+
+ls -ltra
+
+$ sudo vi conf/sonar.properties
+
+
+Database
+----------
+sonar,jdbc.username=sqube
+sonar,jdbc.password=sqube
+
+
+postgresql 9.6 or  greater
+---------------------------
+sonar.jdbc.url=jdbc:postgresql://localhost/sqube
+
+sonar.web.host=127.0.0.1
+
+sonar.ce.javaAdditionalopts=-server
+
+:wq
+
+
+sudo vi bin/linux-x86-64/sonar.sh
+
+RUN_AS_USER=sonar
+
+
+:wq
+
+vi elasticsearch/config/
+sudo vi elasticsearch/config/elasticsearch.yml
+
+node.name: ${hostname}
+
+network.host: 0.0.0.0
+
+:wq
+
+$ sudo visudo
+
+add No password permissions for sonar user
+--------------------------------------------
+
+Add the below line and Save.
+root all=(ALL:ALL) ALL
+
+sonar ALL=(ALL) NOPASSWD: ALL
+
+
+control+X and y and enter
+
+
+$ su - sonar
+
+password: enter
+
+cd opt/sonar/
+
+la -ltra
+
+cd bin/linux-x86-64/
+
+ls -ltra
+
+./sonar.sh start &
+
+netstat -nlpt
+
+sudo yum install net-tools
+
+netstat -nlpt
+
+ps -ef | grep sonar
+
+cd ../../
+
+cd logs/
+
+tail 100 sonar.20210811.log
+
+sudo sysctl -w vm.max_map_count=262144
+
+cd ../bin/linux-x86-64/
+
+./sonar.sh start &
+
+netstat -nlpt
+
+ps -ef | grep sonar
+
+
+
+Go to Ubuntu server in aws
+-----------------------------
+
+add ports
+
+inbond
+
+custom TCP 9000 anywhere
+
+custom TCP 80 custom
+
+save
+
+$ sudo apt-get install apache2 -y
+
+enable proxy
+----------------
+
+sudo a2enmod proxy
+
+sudo a2enmod proxy_http
+
+$ sudo nano /etc/apache2/sites-available/sonar.conf
+
+  <VirtualHost *:80>
+ServerName ec2-52-66-210-205.ap-south-1.compute.amazonaws.com
+ServerAdmin admin@example.com
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:9000/
+ProxyPassReverse / http://127.0.0.1:9000/
+TransferLog /var/log/apache2/sonarm_access.log
+ErrorLog /var/log/apache2/sonar_error.log
+</VirtualHost>
+
+
+
+sudo systemctl restart apache2
+
+
+sudo a2ensite sonar
+
+
+sudo systemctl restart apache2
+ 
+./sonar.sh start &
+
+
+go and google put it search
+--------------------------
+c2-52-66-210-205.ap-south-1.compute.amazonaws.com
+
+sonarqube
+
+admin
+admin
+
+
+
+
+
+
+
+
+
+
+
+
+12-August-2021
+--------------
+$ su - sonar
+modified the Public DNS server
+-------------------------------
+
+$ sudo nano /etc/apache2/sites-available/sonar.conf
+
+  <VirtualHost *:80>
+ServerName ec2-52-66-210-205.ap-south-1.compute.amazonaws.com
+ServerAdmin admin@example.com
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:9000/
+ProxyPassReverse / http://127.0.0.1:9000/
+TransferLog /var/log/apache2/sonarm_access.log
+ErrorLog /var/log/apache2/sonar_error.log
+</VirtualHost>
+
+$ sudo a2ensite sonar
+
+$ sudo systemctl restart apache2
+ 
+$ /opt/sonar/bin/linux-x86-64/sonar.sh restart
+
+go and google put it search
+--------------------------
+c2-52-66-210-205.ap-south-1.compute.amazonaws.com
+
+sonarqube
+
+admin
+admin
+
+Memory is not enough we can change it how let see
+--------------------------------------------------
+cd /opt/sonar/
+ls -ltra
+cd logs/
+ls -ltra
+vi sonar.20210812.log
+
+we can see max heap memory issues
+----------------------------------
+
+[1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+-----------------------------------------------------------------------------------------------------
+Solution:
+-----------
+sudo sysctl -w vm.max_map_count=262144
+
+cd ..
+
+/opt/sonar$ /opt/sonar/bin/linux-x86-64/sonar.sh restart
+
+netstat -nlpt
+
+
+or
+$ grep vm.max_map_count /etc/sysctl.conf
+vm.max_map_count=262144
+issue
+
+go and google put it search
+--------------------------
+c2-52-66-210-205.ap-south-1.compute.amazonaws.com
+
+sonarqube
+
+admin
+admin
+
+Administrator
+----------------
+security
+----------
+create user
+-----------
+A
+My Account
+security
+generate token
+--------------
+jenkins   -> generate
+
+copy  -> very careful once generate token never show you second time ,copy somewhere paste it.
+
+Administrator
+security
+user
+
+now integrate with jenkins
+--------------------------
+aws console in jenkins server run it
+--------------------------------------
+
+go has a petclinic project
+--------------------------
+
+we can add as plugins
+------------------------
+manage-jenkins -> sonarqube scanner ->install without restart
+
+configure syatem
+----------------
+sonarQube servers
+
+add sonarqube
+--------------
+name
+------
+mysonar
+
+serevr url
+-----------
+ec2-52-66-210-205.ap-south-1.compute.amazonaws.com
+
+authentication token
+--------------------
+
+apply and save
+--------------
+
+manage-jenkins ->manage credentials -> global ->add credential
+
+kind
+-----
+secret text
+------------
+
+secret ->paste token here
+
+ID
+--
+sonar_server
+
+
+description
+------------
+sonar_server
+
+ok
+
+
+go back to manage-jenkins -> system configure
+
+sonarqube
+-----------
+
+add credential
+---------------
+sonar_server
+
+apply and save
+--------------
+
+manage-jenkins
+---------------
+global tool configure
+----------------------
+
+sonarqube scanner
+------------------
+name:mascanneragent
+
+
+apply and svae
+
+
+
+petclinic project
+------------------
+configure
+---------
+execute sonarQube
+-------------------
+jdk
+---
+java8
+
+path to project properties
+---------------------------      {go to github spring-petclinic/sonar-project.properties}
+sonar-project.properties
+
+OR
+---|
+   | use it below
+
+Analysis properties
+-------------------
+# Required metadata
+sonar.projectKey=java-sonar-runner-simple
+sonar.projectName=Simple Java project analyzed with the SonarQube Runner
+sonar.projectVersion=1.0
+# Comma-separated paths to directories with sources (required)
+#sonar.sources=src/main/java/org/springframework/samples/petclinic
+sonar.sources=src
+# Language
+sonar.language=java
+# Encoding of the source files
+sonar.sourceEncoding=UTF-8
+sonar.java.binaries=target/classes
+
+
+apply and save
+
+
+
+Build now
+----------
+
+
+
+go to aws console and jenkins server connet it
+-----------------------------------------------
+
+$ sudo yum install openjdk-11-jdk -y
+
+OR
+
+$ sudo amazon-linux-extras install java-openjdk11
+
+$ sudo alternatives --config java
+
+$ whereis java
+
+$ cd /usr/bin/
+$ cd /etc/alternatives/
+$ sudo ls -ltra | grep java
+
+$ curl -LO https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz
+
+$ sudo tar -xvzf amazon-corretto-11-x64-linux-jdk.tar.gz -C /usr/java/
+
+softlink java files in (/usr/bin) directory
+-------------------------------------------
+$ for i in /usr/java/amazon-corretto-11.0.12.7.1-linux-x64/bin/java /usr/java/amazon-corretto-11.0.12.7.1-linux-x64/bin/javac /usr/java/amazon-corretto-11.0.12.7.1-linux-x64/bin/jfr; do f=$(basename $i); echo $f; sudo alternatives --install /usr/bin/$f $f $ i 20000 ; sudo update-alternatives --config $f ; done
+
+
+$ cd /usr/java/
+
+$ ls -ltra
+
+$ cd amazon-corretto-11.0.12.7.1-linux-x64/
+
+$ pwd
+
+Copy the path(sudo yum install java-11-amazon-corretto-headless)
+--------------
+
+go to jenkins in manage-jenkins-> Global tool configuration-> jdk add it 
+
+name:-java11
+Java_Home:->sudo yum install java-11-amazon-corretto-headless
+
+apply and save
+
+go back and petclinic project -> build Now
+
+in jenkins server heap memory issue how to solve
+--------------------------------------------------
+
+jenkins in aws reboot it
+-------------------------
+
+build now
+
+in console
+-----------
+analysis successfull click on it
+----------------------------------
+
+inside bugs,Quality gate status
+
+note :-> https://stackoverflow.com/questions/59430965/aws-how-to-install-java11-on-an-ec2-linux-machine
+
+
+
+
+13-August-2021
+----------------
+sonar server start it also IP will change
+-----------------------------------------
+
+su - sonar
+
+modified the Public DNS server
+-------------------------------
+
+$ sudo nano /etc/apache2/sites-available/sonar.conf
+
+  <VirtualHost *:80>
+ServerName ec2-52-66-210-205.ap-south-1.compute.amazonaws.com
+ServerAdmin admin@example.com
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:9000/
+ProxyPassReverse / http://127.0.0.1:9000/
+TransferLog /var/log/apache2/sonarm_access.log
+ErrorLog /var/log/apache2/sonar_error.log
+</VirtualHost>
+
+$ sudo systemctl restart apache2
+
+Increase the heap memory also
+-------------------------------
+sudo sysctl -w vm.max_map_count=262144
+
+$ /opt/sonar/bin/linux-x86-64/sonar.sh restart
+
+
+go and google put it search
+--------------------------
+c2-52-66-210-205.ap-south-1.compute.amazonaws.com
+
+sonarqube
+
+admin
+admin
+
+Setup Quality gates
+---------------------
+
+create
+
+create Quality gate
+-------------------
+
+name:
+------
+bug_tracker
+
+save
+
+add condition
+-------------
+on overall code
+------------------
+bugs
+
+ value:20
+ 
+ add it
+ 
+ set as default
+ ----------------
+ 
+ 
+ go to jenkins server
+ -----------------------
+ petclinic
+ 
+ 
+ go to jenkins -> configure ->manage-jenkins->
+ sonar Quality gates
+ --------------------
+ 
+ first check in ->configure syatem
+ --------------------------------
+ 
+ Quality Gates -  SonarQube
+ ---------------------------
+ name:->bug_quality
+ 
+ server url:->c2-52-66-210-205.ap-south-1.compute.amazonaws.com
+ 
+ sonarqube token :-> previous we took the one token backup that put here.
+ 
+ soanrqube account login
+ ----------------------
+ admin
+ 
+ soanrqube account password
+ --------------------------
+ admin
+ 
+ we can change also sonarQube server
+ -------------------------------------
+ name:->
+ server url :-> change it since our IP will change so also change Public ip
+ 
+ 
+ apply and save 
+ 
+ 
+petclinic
+------------
+
+configure
+---------
+ 
+ add post build action
+ ---------------
+ quality gate sonarqube plugin 
+ 
+ project key              -> dont apply save just remove it go progress
+ -------------
+ java-sonar-runner-simple
+ 
+ Failed
+ 
+ apply and save 
+ 
+ build now
+ -----------
+ 
+ build successfully
+ ------------------- link open it
+ 
+
+go jenkins server and stop server and increase instance type
+-------------------------------------------------------------
+ actions
+ -------
+ instance settings
+ --------------------
+ change instance type
+ --------------------
+ t2.medium
+ 
+ 
+ start it
+ ---------
+ 
+ 
+ the guy will change so the jenkin public ip once time browse it 
+ ---------------------------------------------------------------
+ IP:8080
+ 
+ petclinic 
+ ----------
+ build now
+ 
+ it success
+ -------------
+ 
+ 
+ Quality gate
+ ------------
+ bugs_tracker -> edit
+ 
+          value:-60 
+		  
+		  it fail or success let see
+		  --------------------------
+
+jenkins in petclinic
+-------------------
+
+build now
+		 
+
+ 
+ Quality gate
+ ------------
+ bugs_tracker -> edit
+ 
+          value:-10
+
+it fail
+
+		 
+project key              
+ -------------
+ java-sonar-runner-simple
+ 
+ unstable
+ 
+ apply and save 
+ 
+ build now		 
+ 
+ 
+ its fail more than 10 percentage also jenkins fail
+ ------------------------------------------------------
+ 
+ 
+ Quality gate
+ ------------
+ bugs_tracker -> edit
+ 
+          value:-50
+		  
+build now 
+
+sonar is passed but jenkins build fail
+----------------------------------------mostly plugins issues  in post build action
+
+
+
+jacoco read it 
+
+next topic
+------------
+master/slave
+
+pipeline
+
+
+16-August-2021
+=================
+
+master/slave
+------------
+
+start the already jenkins server (master)  (t2.medium)
+----------------------------------------------		 
+
+before going to manage-jenkins
+------------------------------
+we can see  build execution status
+-----------------------------------
+idle
+idle
+
+
+Manage-jenkins
+--------------
+manage nodes and clouds
+------------------------
+master means this like ec2 instance default
+-------------------------------------------
+
+now fresh ec2 instance create 
+------------------------------
+slave1 
+-------
+
+start the already jenkins server (master)  (t2.medium)
+------------------------------------------------------
+note:-
+----------------------------
+jenkins HOME_PATH
+-----------------
+/var/lib/jenkins/
+
+jeva -jar jenkins.war
+-----------------------------
+
+cd /var/lib/jenkins/
+
+cd workspace/
+
+ls -ltra
+
+cd petclinic
+
+ls -ltra
+
+
+now connect the server slave1
+--------------------------------
+connect it 
+
+sudo yum install update -y
+
+i create one folder
+---------------------
+mkdir jenkins_data
+
+cd jenkins_data
+
+Go to jenkins ->
+---------------
+manage jenkins
+---------------
+manage nodes and clouds
+------------------------
+new node
+
+Node name:-> slave1
+-----------
+Permanent Agent
+
+ok
+
+decription:-> this is my first slave
+
+number of executer:-1    -> interview questions be careful
+
+remote root directly :- jenkins_data
+---------------------
+
+labels:-slave1
+
+launch method:-> launch agent via SSH
+
+Host:-> public IP
+
+credential:->
+
+add
+
+SSH username with private key
+-----------------------------
+ID:->slave1
+
+description:->slave1
+
+username:->ec2-user
+
+private key:->
+
+pem file paste here
+-----------------------
+
+Add
+---
+
+credential:->ec2-user select it
+
+Host key verification stratergy
+---------------------------------
+manually trusted by verification stratergy
+
+save
+
+click on slave1 and also if launch agent, its ask the jdk installation latest
+------------------------------------------------------------------------------
+
+go to slave1 terminal
+---------------
+jenkins_data] $ sudo amazon-linux-extras install java-openjdk11 -y
+
+java --version
+
+
+click on slave1 and also if launch agent and success
+-----------------------------------------------------
+
+
+ls -ltra
+
+cd jenkins_data
+
+cd remoting/
+
+ls -ltra
+
+cd ..
+
+
+go to jenkins dashboard its show you slave1
+--------------------------------------------
+
+Jenkins dashboard
+------------------
+new item
+---------
+name:->hello_baby
+
+freestyle
+
+save
+
+go to github inside->spring3-mvc-maven-xml-hello-world -> clone https copy it.
+
+Configure
+----------
+jdk:
+restrict  where this project can be run
+-----------------------------------------
+slave1  select it
+
+source code management
+----------------------
+git
+----
+url:-> paste it https clone
+
+apply and save
+
+build now
+
+Exception came here sinece we not install git 
+----------------------------------------------                             
+sudo yum install git -y
+
+configure
+----------
+build
+
+-----
+maven version
+--------------
+maven4
+
+apply and save
+--------------
+
+build now
+----------
+fail due to we not install maven
+---------------------------------
+sudo yum install maven -y
+
+
+
+slave1 terminal  (father everithing create baby is enjoying)
+-------------------------------------------------------------
+ls -ltra
+
+cd workspace
+
+ls -ltra
+
+cd hello_baby
+
+ls -ltra
+
+go to check in master terminal(jenkins)
+-------------------------------------------
+ls -ltra
+
+cd workspace
+
+ls -ltra
+
+
+
+19-August-2021
+===============
+1)https://support.cloudbees.com/hc/en-us/articles/115003908372-Main-differences-between-Freestyle-Scripted-Pipeline-Job-Declarative-Pipeline-Job
+(official statemnt above link)
+ 
+Pileline as a code (Real time code)
+-----------------------------------
+
+Pipeline Jobs
+--------------
+where we can feel complexity ci cd flow pipeline as a code.
+
+read data pom.xml
+
+Jenkins pipeline two type 
+---------------------------
+1)script base pipeline  -> old method
+2)declarative pipeline  -> new method,less executers to execute this problem
+
+script base pipeline  |  declarative pipeline
+
+node {                       pipeline{
+                            }
+}
+
+two ways
+--------
+groovy 
+jenkinsfile
+
+start the jenkins server
+------------------------
+new item
+
+first pipeline
+
+select :-> pipeline
+
+decription:->this is the my first pipeline
+ 
+second option -> 
+1)pipeline script
+2)pipeline script from SCM
+
+we can go for pipeline script
+------------------------------
+
+pipeline script
+----------------
+
+
+pipeline{
+   agent any
+    stages{
+	   stage{
+	     step("get code"){
+	       git clone 
+	   }
+	 }
+	stage{
+	     step("maven"){
+	       maven
+	   }
+	 }
+	 stage{
+	     step("sonar"){
+	       sonar
+	   }
+	 }
+	 stage{
+	     step("nexus"){
+	       nexus
+	   }
+	 }
+	 stage{
+	     step("deploy"){
+	       tomacat
+	   }
+	 }
+	}
+}
+
+
+
+
+script base pipeline code
+----------------------------
+
+node{
+ stage("scm"){
+  git clone 
+  }
+  stage("build") {
+  
+  }
+}
+
+
+execute  two free style jobs using pipeline job
+------------------------------------------------
+
+
+pipeline
+|
+pipeline syntax-> click on it
+
+its go for some where
+
+simple step
+--------------
+build a job
+
+project to build
+-----------------
+first  and date 
+copy
+
+
+
+
+
+
+go to pipeline
+----------------
+
+ first paste here
+
+ date paste here
+ 
+ 
+ pipeline{
+     agent any
+   stages{
+     stage('first job'){
+	   steps{
+        build 'first'
+           }
+   }
+      stage('date'){
+	  steps{
+	     build  'date'
+         }
+      }   
+   }   
+ }
+ 
+ 
+apply and save
+ 
+ build now
+ 
+ 
+ 
+Example 2)
+------------
+
+new item
+---------
+ second-pipeline
+ ----------------
+ pipeline
+ 
+ description:->this is the second pipeline
+ 
+  pipeline{
+   agent any
+    stages{
+	   stage("get code"){
+	     steps{
+	       echo "get the code from git" 
+	   }
+	 }
+	stage("maven"){
+	     steps{
+	       echo "build the maven command"
+	   }
+	 }
+	 stage("deploy"){
+	     steps{
+	       echo "deploy the tomcat"
+	   }
+	 }
+	}
+}
+
+
+apply and save
+
+build now
+
+
+
+20-August-2021
+==================
+1)Tasks
+------------
+ 1)I want clone my github repo code
+ 2)execute maven command
+ 3)publish artifact root path
+ 4)deploy into tomcat  [CURL_RESPONSE=$("curl -v -u $TOMCAT_USER:$TOMCAT_PASSWORD -T $WAR_PATH 'http://$TOMCAT_HOST:$TOMCAT_PORT/manager/text/deploy?path=/$CONTEX_NAME&update=true'")]
+ 
+ 5)send email notification [emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, replyTo: 'email@xxx.com',
+       subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'email123@xxx.com']
+ 
+ 2)Tasks
+ ---------
+ 1)I want clone my github repo code
+ 2)execute maven command
+ 3)push war to nexus repo
+ 4)deploy into tomcat from nexus
+ 5)if failure email notification
+ 
+ 
+ 
+ New item
+ 
+ git-project-pipeline
+ --------------------
+ 
+ decription:-> get the source code using the pipeline
+ 
+ pipeline script
+ ---------------
+ 
+ ///
+ 
+ go to github select any project in spring3-mvc-maven-xml-hello-world
+ 
+pipeline syntax
+
+git
+
+repository URL :-> https paste here
+
+branch:-> master
+
+generate pipeline script
+-------------------------
+copy it and paste there pipeline code
+-------------------------------------
+pipeline{
+  agent any
+   tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven3"
+    }
+  stages{
+       stage('get SCM'){
+	       steps{
+	         git credentialsId: 'Github_credentials', url: 'https://github.com/vijayammanagi1234/spring3-mvc-maven-xml-hello-world.git'
+	        }
+	    }
+		
+		stage('gbuild'){
+	       steps{
+	         sh "mvn packages"
+	        }
+	    }
+		stage('artifact'){
+	       steps{
+	         archiveArtifacts artifacts: 'target/*.war'
+	        }
+	    }
+		stage('deploy_to_tomcat'){
+	       steps{
+	         sh "curl -v -u admin:admin -T /var/lib/jenkins/workspace/git-project-pipeline/target/spring3-mvc-maven-xml-hello-world-1.2.war 'http://3.108.62.214:8081//manager/text/deploy?path=/pipeline-spring3&update=true'"
+	        }
+	    }
+		stage('Email from pipeline'){
+	       steps{
+	         emailext attachLog: true, body: 'Email from pipeline', compressLog: true,replyTo: 'vijura38@gmail.com',
+			 subject: 'Email from pipeline', to: 'vijura38@gmail.com'
+	        }
+	    }
+		stage("SonarQube Analysis") {
+         steps {
+              script {
+          // requires SonarQube Scanner 2.8+
+             scannerHome = tool 'SonarQube Scanner'
+        }
+                withSonarQubeEnv('mysonar') {
+                withCredentials([string(credentialsId: 'sonar_server', variable: 'sonar_credential')]) {    
+                sh "${scannerHome}/bin/sonar-scanner \
+                -D ${sonar_credential} \
+                -D sonar.projectKey=java-sonar-runner-simple \
+                -D sonar.exclusions=vendor/*,resources/,/.java \
+                -D sonar.host.url=http://ec2-54-159-54-177.compute-1.amazonaws.com/"
+                
+              }
+                }
+				}
+             }
+		
+    }
+}
+
+
+24-August-2021
+=================
+
+ 
+sonatype
+nexus -OSS
+nexus -pro
+
+artifactory
+---------------
+jfrog
+ 
+ 
+ Nexus on ubuntu -18.04
+ ----------------------------
+ 
+ Note: must have t2.medium instance
+ 
+Install Java
+$ sudo apt-get update
+$ sudo apt install openjdk-8-jre-headless -y                or $ sudo apt-get install openjdk-11-jdk -y
+Download Nexus
+$cd /opt
+
+$ sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+$ sudo tar -zxvf latest-unix.tar.gz                       ->untar file
+
+ls -ltra
+
+rename latest (nexus)
+-------------
+
+$ sudo mv /opt/nexus-3.33.1-01 /opt/nexus
+
+we create add user
+-------------------
+
+$ sudo adduser nexus
+
+
+Set no password for nexus user and enter below command to edit sudo file
+---------------------------------------------------------------------------
+$sudo visudo
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+nexus ALL=(ALL) NOPASSWD: ALL
+
+control+x and Y and enter
+---------------------------
+
+Change file and owner permission for nexus files
+-----------------------------------------------
+$ sudo chown -R nexus:nexus /opt/nexus
+$ sudo chown -R nexus:nexus /opt/sonatype-work
+
+
+Add nexus as a service at boot time
+--------------------------------------
+Open /opt/nexus/bin/nexus.rc file, uncomment run_as_user parameter and set it as following.
+-------------------------------------------------------------------------------------------
+
+$ sudo vim /opt/nexus/bin/nexus.rc
+
+run_as_user="nexus"                ->(file shold have only this line)
+
+:wq
+
+
+Add nexus as a service at boot time
+------------------------------------
+
+$ sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+
+Log in as a nexus user and start service
+-----------------------------------------
+ switch user
+ --------------
+$ su - nexus
+
+ask the password:->enter it
+
+soft link
+----------
+
+$ /etc/init.d/nexus start
+
+check the port is running or not using netstat command
+-----------------------------------------------------------
+
+$ sudo apt install net-tools
+
+$ sudo netstat -plnt
+
+$ ps -ef | grep nexus
+
+add port in ubuntu server
+---------------------------
+add port
+inbond rules
+add port 8081 means default port of the nexus
+
+
+ip address:8081
+
+now open the nexus
+------------------
+
+now login
+
+go to moXterm
+--------------
+cd /opt/
+
+cd sonatype-work
+
+cd nexus3
+
+ls -ltra
+
+admin.password
+
+cat admin.password
+
+bb09d8b8-5597-4b97-a891-bdf20787685
+
+now got nexus login
+-----------------------
+username:-> admin
+password:->bb09d8b8-5597-4b97-a891-bdf20787685d
+
+
+password change
+------------------
+
+
+settings
+--------
+repositories
+
+created repository
+
+maven2(hosted)
+
+Go to start jenkins server
+---------------------------
+ip address:8080
+
+go to :->sping-mvc
+
+configure
+
+add build setup :->
+-------------------
+any option is there nexus if not there add plugins.
+
+manage plugins
+---------------
+nexus platform
+
+manage-jenkins
+--------------
+
+configure server
+-----------------
+configure system
+-----------------
+sonatype nexus
+--------------
+add 3.1 server
+
+Display Name
+------------
+nexus_remote
+
+server_ID
+-----------
+nexus_remote
+
+server URL
+----------
+http://65.1.107.53:8081/
+
+credential
+-------------
+nexus
+
+test connections
+-----------------
+once successfully
+
+apply and save
+
+
+sping-mvc
+---------
+configure
+----------
+build
+-------
+Nexus Repository Manager Publisher
+
+nexus_instance
+--------------
+nexus_remote
+
+nexus repository
+------------------
+spring3
+
+tag
+---
+leave about it
+
+package
+-------
+
+group:
+com.msr
+
+Artifact
+--------
+spring3
+
+
+version
+1.0
+
+
+packaging
+war
+
+Maven Artifact
+--------------
+abslute path
+
+how we find the it
+-------------------
+
+go to jenkins serevr connect it
+--------------------------------
+/var/lib/jenkins/workspace/spring3-mvc-maven-xml-hello-world/target/spring3-mvc-maven-xml-hello-world-1.2.war 
+
+apply and save
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 25-August-2021
+ -----------------
+ https://github.com/jmstechhome11/spring3-mvc-maven-xml-hello-world.git
+ 
+ Pipeline script from SCM
+ -------------------------
+ first clone any one project
+ ---------------------------
+ spring3-mvc-maven-xml-hello-world
+ 
+ git clone https://github.com/vijayammanagi1234/spring3-mvc-maven-xml-hello-world.git
+ 
+ cd spring3-mvc-maven-xml-hello-world
+ 
+ ls -ltra
+ 
+ vi jenkinsfile
+ 
+ mv jenkinsfile jenkinsfile_old_nexus
+ 
+ ls -ltra
+ 
+ vi jenkinsfile
+ ===================
+ 
+ pipeline{
+  agent any
+   tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven3"
+    }
+  stages{
+       stage('get SCM'){
+	       steps{
+	         git credentialsId: 'Github_credentials', url: 'https://github.com/vijayammanagi1234/spring3-mvc-maven-xml-hello-world.git'
+	        }
+	    }
+		
+		stage('gbuild'){
+	       steps{
+	         sh "mvn packages"
+	        }
+	    }
+	}
+}
+
+:wq
+
+git 	
+ 
+ 
+ GitHub Actions this one of the CI/CD:
+ -------------------------------------
+ =======================================
+ jenkins
+ udeploy
+ bamboo
+ teamcity
+ circleCI
+ travis ci
+ github actions
+ gitlab
+ azure devops
+ 
+ 
+ We are going in GitHub Actions
+ -------------------------------
+ 1)jenkins -> pipeline
+ 
+ 2)github action -> workflow
+  hello_java1
+  Actions
+ set up a workflow yourself
+ 
+ hello_java1/.github/workflows/ main.yaml
+ ========================================
+ we should maintain proper indendent
+ -----------------------------------
+ name: MyFirstJob
+ 
+ on: this section work like in jenkins poll scm,webhooks,build periodically
+ 
+ =========================================
+ # This is a basic workflow to help you get started with Actions
+
+name: MyFirstJob 
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Run a one-line script 
+         run:echo Hello, world!
+      - name: java version 
+         run:java -version
+      - name: java version 
+         run:mvn --version   
+      - name: python version 
+         run:python --version
+      - name: docker version 
+         run:docker -v  
+      - name: terraform version
+         run:terraform --version 
+      - name: compile javacode
+         run:javac  HelloWorld.java
+      - name: run javacode
+         run:java Helloworld
+
+ 
+ 
+ 
+ 
+ 
+ 
+ Spring3-mvc-maven-xml-hello-world
+ --------------------------------------
+ 
+ - name: deploy to tomcat
+    run: curl -v -u admin:admin -T /home/runner/work/spring3-mvc-maven-xml-hello-world/spring3-mvc-maven-xml-hello-world/target/spring3-mvc-maven-xml-hello-world-1.2.war 'https://ec2-13-235-132-208.ap-south-1.compute.amazonaws.com/:8081/manager/text/deploy?path=githubAction_tomcat_springapplication&update=true'
+ 
+ 
+
+
+username and password hiding
+--------------------------------
+particular yaml file
+settings
+secrets
+add usernam and password hide it
+
+${{secrets.tomcat_username}}:${{ secrets.tomcat_Password}}
+
+
+
+
+https://ec2-13-235-132-208.ap-south-1.compute.amazonaws.com/
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  
+
+
+
+
+
+
+
+
+
+						
+
+						
+						
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+	   
+	   
+    
+  	  
+  
+  
+
+ 
+	  
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

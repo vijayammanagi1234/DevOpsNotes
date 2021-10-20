@@ -1,0 +1,2554 @@
+Otherwise, if ec2-user and root don't work, check with the AMI provider.
+3)https://mobaxterm.mobatek.net/download.html
+
+
+4)// ssh -i "DevopsMadhu.pem" ec2-user@IP //
+
+SSH or Secure Shell is a network communication protocol 
+that enables two computers to communicate 
+c.f http or hypertext transfer protocol, 
+which is the protocol used to transfer hypertext such as web pages and share data.
+
+ssh -> we can access remote server ->ppk
+
+what is the pem?
+------------------
+PEM stands for Privacy Enhanced Mail. The PEM format is often used to represent certificates, certificate requests, certificate chains, and keys.
+
+what is the ppk?
+-------------------
+PPK files are PuTTY Private Key Files developed by Putty and they serve as storage for the private keys the program generated. These files are used to enable communication securely with another party having the corresponding public key. ... The putty software is the main application using PPK files.
+
+
+5).pem -> ppk ->Puttygen
+
+6)mputty,superputty
+
+7)Mobaexterm
+
+
+Unix --> open Source(Open source tools)->free tools
+
+Linux
+------
+suse linux
+redhat (core os) --> advanced features
+
+ubuntu --> apt install git
+centos --> yum install git
+
+jenkins -->
+
+
+ami linux -> centos
+ubuntu
+
+
+Devops Related Commands
+------------------------
+pwd -> present working directory
+
+grep ->search for a string of characters in a specified file
+
+df -kh ->display information related to file systems about total space and available space
+
+ls ->list
+
+wget ->downloading files from the web
+
+rm -i ->will ask before deleting each file
+
+rm -r ->will recursively delete a directory
+
+ll -R ->List the names of the files in the current directory and all subdirectories along with the permissions, date, time and size
+
+ll -rt ->List the names of the files in the current directory and all subdirectories along with the permissions, date, time and size
+
+mkdir directory ->Creates a new directory called directory
+
+rmdir directory ->Creates a new directory called directory
+
+rm file ->	Deletes the file called file
+
+diff file1 file2 ->Compares file1 to file2 and displays the differences
+
+which command ->Displays the path to command or the alias
+
+xkill ->Terminates the program that you click on with the mouse
+
+man command ->Display the on-line manual page for command
+
+awk
+
+cat
+
+whoami
+
+echo
+
+uname
+
+top
+
+head
+
+ln
+
+ps -ef
+
+cp 
+
+touch
+
+vi -->editor
+
+gedit
+
+nano
+
+telnet
+
+kill
+
+chmod
+
+sed
+
+ping
+
+mount | ubmount
+
+man
+
+tee
+
+sudo
+
+export
+
+cd | cd .. | cd ../../../
+
+alias
+
+chown
+
+curl
+
+ifconfig
+
+gzip | tar | untar
+
+unzip
+
+free
+
+lsof
+
+fdisk
+
+useradd | adduser
+
+passwd
+
+deluser | userdel
+
+hostname
+
+crontab
+
+at
+
+apt
+
+yum
+
+du
+
+ssh
+
+ssh-keygen
+
+w
+
+locate
+
+find
+
+whereis
+
+whichis
+
+history
+
+cut
+
+addgroup
+
+systemctl
+
+
+Commands are using realtime project
+===================================
+drive coonection  cd d:
+
+mkdir test
+
+ls
+
+ll
+
+ls -l
+
+ls -la
+
+ls -ltra
+
+pwd
+
+touch sample.txt
+
+ls -ltr
+
+echo "hello"
+
+echo "hello" > sample.txt
+
+cat sample.txt
+
+echo "hello madhu devops" >> sample.txt
+
+sample.txt
+
+alias file="cat sample.txt"
+
+cat sample.txt
+
+file
+
+ifconfig
+
+top
+
+df -k     -->8GB he'df' stands for "disk filesystem." It defines the number of blocks used
+
+du -k sample.txt  ->display the disk space used by files
+
+df -kh    -> disk file system for human readable
+
+lsof  ->list of open files
+
+sudo lsof  -> root list of open files
+
+vi example.txt
+
+
+ this is devops class
+ this linux in Devops
+ good to learn devops
+ Devops has many tools
+ 
+ 
+cat example.txt
+
+grep- Global regular expression print (plain-text data sets for lines that match a regular expression)
+
+cat example.txt | grep linux      
+
+cat example.txt | grep devops
+
+cat example.txt | grep -i devops
+
+ifconfig
+
+free
+
+free -kh
+
+ifconfig
+
+ifconfig | grep -w inet
+
+ifconfig | grep -w inet | awk '{print $1}'
+
+ifconfig | grep -w inet | awk '{print $1}' | uniq -c
+
+
+sudo mkdir -p /devops/linux/docker/kubernetes
+
+mkdir -p devops/linux/docker/kubernetes
+
+ls
+
+devops
+
+ls
+
+linux
+
+ls
+
+docker
+
+ls
+
+kubernetes
+
+interview Questions
+
+How to create zero size file command -> touch 
+
+touch  sample.txt
+
+ls -ltra
+
+vi example.txt
+
+ls
+
+cat sample.txt
+
+cat example.txt
+  eytrehjwgfehjgsdf
+  
+  :wq
+  
+
+ls -ltr
+
+get   -> download
+
+put   -> update 
+
+post  -> new upload
+
+delete -> delete
+
+18/june/2021
+------------
+Big server longs apache tomact how to use in linux
+--------------------------------------------------
+1)  https://gist.github.com/rm-hull/bd60aed44024e9986e3c
+ 2)  http://www.almhuette-raith.at/apache-log/access.log
+ 
+ http return code
+ ----------------
+ 404 -> page web not found
+ 
+ HTTP Status code
+--------------------
+00 Continue
+101 Switching Protocols
+102 Processing
+
+2×× Success
+200 OK
+201 Created
+202 Accepted
+203 Non-authoritative Information
+204 No Content
+205 Reset Content
+206 Partial Content
+207 Multi-Status
+208 Already Reported
+226 IM Used
+
+
+3×× Redirection
+300 Multiple Choices
+301 Moved Permanently
+302 Found
+303 See Other
+304 Not Modified
+305 Use Proxy
+307 Temporary Redirect
+308 Permanent Redirect
+
+
+4×× Client Error
+400 Bad Request
+401 Unauthorized
+402 Payment Required
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+406 Not Acceptable
+407 Proxy Authentication Required
+408 Request Timeout
+409 Conflict
+410 Gone
+411 Length Required
+412 Precondition Failed
+413 Payload Too Large
+414 Request-URI Too Long
+415 Unsupported Media Type
+416 Requested Range Not Satisfiable
+417 Expectation Failed
+418 I'm a teapot
+421 Misdirected Request
+422 Unprocessable Entity
+423 Locked
+424 Failed Dependency
+426 Upgrade Required
+428 Precondition Required
+429 Too Many Requests
+431 Request Header Fields Too Large
+444 Connection Closed Without Response
+451 Unavailable For Legal Reasons
+499 Client Closed Request
+
+
+5×× Server Error
+500 Internal Server Error
+501 Not Implemented
+502 Bad Gateway
+503 Service Unavailable
+504 Gateway Timeout
+505 HTTP Version Not Supported
+506 Variant Also Negotiates
+507 Insufficient Storage
+508 Loop Detected
+510 Not Extended
+511 Network Authentication Required
+599 Network Connect Timeout Error
+ 
+ 
+vi server.log
+-------------
+ Search on Google and copy server and save it -  http://www.almhuette-raith.at/apache-log/access.log   
+
+
+
+:wq
+
+cat server.log
+
+cat serevr.log | grep -i get
+
+cat serevr.log | grep -i get | awk '{print $1}'
+
+cat serevr.log | grep -i get | awk '{print $1}' | uniq -c
+
+cat serevr.log | grep -i get | awk '{print $1}' | uniq -c | wc
+
+cat serevr.log | grep -i get | awk '{print $1}' | uniq -c | wc -1
+
+
+cat serevr.log | grep -i post 
+
+cat serevr.log | grep -i post | awk '{print $1,$6}'
+
+cat serevr.log | grep -i post | awk F '-' '{print $1,$3}' | awk '{print $1,$4}' | uniq -c
+                 \OR\
+cat serevr.log | grep -w post | awk F '-' '{print $1,$3}' | awk '{print $1,$4}' | uniq -c
+
+awk means 3 author (Aho, Weinberger and Kernighan)
+
+what is awk?
+->Awk is a scripting language used for manipulating data and generating reports.
+
+
+21/june/2021
+-------------
+yum --> installer
+
+yum (package manager)--> centos,amazon linux,redhat
+
+apt , apt-get --> ubuntu
+
+python --> pip
+
+node js --> npm
+
+alpine -->apk
+
+software --> git ,java, jenkins,docker,kubernetes
+
+Practice
+--------
+Ec2 - connect - where is the my pem and ppk file.
+
+ls -ltra
+
+git --version
+
+sudo yum install git -y
+
+yum remove git -y
+yum clean git 
+
+
+Nginx server(service and systemctl)
+------------
+systemctl status nginx
+sudo systemctl start nginx
+
+netstart --help
+netstart -nlpt  ->TCP ports running
+netstart -nlp
+
+sudo yum install nginx1
+
+sudo ^Vyum install nginx
+
+
+httpd apache web server (ami linux)
+-----------------------
+sudo yum install httpd -y
+
+sudo systemctl start httpd
+
+sudo sytemctl status httpd
+
+we can go to google browser paste public ip:port(80)
+
+
+Nginx in ubuntu server(ubuntu server)
+-----------------------
+sudo apt install update
+sudo apt install nginx -y
+sudo apt start nginx
+sudo apt status nginx
+
+
+we can go to google browser paste public-> ip:port(80)	
+
+
+systemctl and service differences
+---------------------------------
+what is the systemctl?
+->The systemctl command is a utility which is responsible for examining and controlling the systemd system and service manager. 
+It is a collection of system management libraries, utilities and daemons which function as a successor to the System V init daemon.
+
+sudo systemctl status httpd
+-------------------------------
+
+what is service in linux?
+->A service is a program that runs in the background outside the interactive control of system users as they lack an interface. ...
+ On the other hand, in systems like Unix or Linux, the services are also known as daemons. 
+ Sometimes the name of these services or daemons ends with the letter d
+
+sudo service httpd status
+-------------------------
+
+ps command -> process
+---------------------
+ps -ef (all servicing in process)
+
+ps -ef | grep httpd
+
+ps -ef | grep java
+
+
+we want to kill the process
+---------------------------
+ps -ef | grep nginx
+
+kill -9 6789   ->(id number kill)
+
+sudo kill -9 6789   ->(id number kill)
+
+
+22/june/2021
+--------------
+rest api -> http(protocol) api (webservice) ->one applicaton to another applicaton communicate via http api.(old webservice soap) now days micro service webservice.
+
+wget -> mainly purpose download (zip.file,tar file unzip)
+curl -> get,put,post,delete
+
+
+one of the apache tomcat server we can copy tar file 
+-----------------------------------------------------
+wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
+
+
+we want remove apache-tomcat-9.0.48.tar.gz
+------------------------------------------
+rm -rf apache-tomcat-9.0.48.tar.gz  (dont use any way sudo in realtime senario)
+
+we can download through curl command apache tomcat serevr(this is ask to output so we can put to -O it will store in output)
+----------------------------------------------------------------------------------------------------------------------------
+curl https://downloads.apache.org/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz -O
+
+rm pache-tomcat-9.0.48.tar.gz
+
+we can how to create cp (copy command)
+---------------------------------------
+cd vijay
+in vijay : cd docker
+in docker: cd kubernetes
+
+mkdir jijay/docker/kubernetes/
+
+
+vi sample.txt
+  hi everyone
+  
+escape and save :wq
+
+ls -ltra
+
+pwd
+
+
+we want copy file sample.txt to jijay/docker/kubernetes/mkdir jijay/docker/kubernetes/
+--------------------------------------------------------------------------------------
+
+cp sample.txt vijay/docker/kubernetes/
+cp sample.txt vijay/docker/kubernetes/madhu.txt
+
+cd vijay/docker/kubernetes/
+
+pwd
+
+ls -ltra
+
+cat sample.txt
+  the containt also same in madhu.txt
+  
+cat madhu.txt
+   the containt same from sample.txt
+   
+we can copy madhu.txt file to home folder(till{~/} symbol is home folder)
+-------------------------------------------------------------------------
+
+[kubernetes]$ cp mdhu.txt ~/
+
+ls -ltra
+
+cd means got home folder
+------------------------
+cd 
+
+ls -ltra
+
+pwd
+
+we can also sample.txt file to copy home folder in tiger
+----------------------------------------------------------
+
+cd vijay/docker/kubernetes/sample.txt tiger
+
+cp -r vijay/ tiger/    [entire vijay folder to copy in tiger folder -r means recursive that is folder inside files]
+
+cd tiger
+
+ls -ltra
+
+mv command(rename file) mv source to destination file 
+--------------------------------------------
+mv madhu.txt madhu1.txt
+
+ls -ltra
+
+we can use same in directory
+-----------------------------
+mv vijay vijay1
+
+ls -ltra
+
+Now adduser ,passwd and su(switch user)
+---------------------------
+
+   linux admin 
+         |
+developer want test apps in linux server so linux admin never ever share pem file since 
+if any developer can change in this serevr is effected by linux admin so 
+we can create publickey to developer to accecss server for test app.
+	 
+ 
+ssh-keygen -> entire ansible dependes on this keygen
+  
+
+adduser akshay
+sudo adduser akshay
+
+sudo passwd akshay
+
+we can set password
+--------------------
+
+su akshay
+
+ask the password
+
+cd 
+
+pwd
+
+akshay come home folder 
+------------------------
+ls -ltra
+
+we can  come out this akshay user not server what we can use command
+-----------------------------------------------------------------------
+exit
+
+we can switch to akshay
+------------------------
+
+su akshay
+
+this above command /ec2-user/
+---------------------------------
+
+su - akshay
+
+this above command directly come akshay
+------------------------------------------
+
+
+
+23/june/2021
+-----------------
+
+chmod (change mode)
+
+we can create one file 
+-----------------------
+vijay.txt
+
+ls -ltra
+
+-rw-rw-r-- [user,group,others]
+
+r->read  ->4
+w->write  ->2
+x->exutable ->1
+- -> nothing -> 0
+
+what is the default value in  AMI Linux permission
+-rw-rw-r-- [664] AMI linux permission
+
+664 -->AMI linux 
+umask -> 002
+
+ 
+666[File has 666 default value permission]
+ 022 -->umask (default umask)
+ 644
+
+we can search umask value in file
+----------------------------------
+cat /etc/bashrc
+
+vi /etc/bashrc
+
+umask 024
+vi sample.txt
+ls -ltra
+
+ 642
+   024 ->umask value
+
+
+ls -ltra
+
+-rw-rw-r-- vijay.txt
+
+What is the difference between umask and chmod?
+
+ umask sets the default permissions for your files when they are created, 
+   while chmod is used to change the file permissions after they are created. 
+    the OS which is 777 for directories and 666 for files in linux.
+
+What is default Umask?
+
+ By default, the system sets the permissions on a text file to 666, 
+  which grants read and write permission to user, group, and others, 
+    and to 777 on a directory or executable file. ... The value assigned by the umask command is subtracted from the default
+
+How do I create a user Umask?
+  There are three normal ways to set a user's umask.
+    1)Set UMASK in /etc/login.defs.
+    2)Add pam_umask.so to your PAM configuration in /etc/pam.d.
+    3)Set it in the shell startup files, e.g. /etc/profile.
+	
+	
+we what change mode only read
+-------------------------------
+
+chmod 400 vijay.txt
+
+ls -ltra
+
+-r-------- vijay.txt
+
+we only read above file we cant change in the file
+
+
+700 [read,write,exutable] permission
+
+chmod 700 vijay.txt
+ 
+  this file vijay will change
+  
+754->(read,write,exutable),(read,exutable),(read)
+
+777 [Folder has default value permission]  	
+
+we can create one folder default umask value
+---------------------------------------------
+777
+775 ->002 umask
+755
+022->umask default value 
+
+ssh-keygen (rsa algorithm - Rivest–Shamir–Adleman) : public-key cryptosystem that is widely used for secure data transmission
+------------------------------------------------------------------------------------------------------------------------------
+default path
+--------------
+developer server
+----------------
+cd ~/.ssh/
+
+ls -ltra
+
+ssh-keygen    ->[public and private key generate]
+
+ls -ltra
+
+      id_rsa.public
+	  id_rsa -> private key never share to any one
+
+cat id_rsa.public  -> copy public key and paste where we want to accecss serevr	  
+	  
+copy key
+Linux admin server
+-------------------
+cd ~/.ssh/
+
+ls -ltra
+
+vi authorized_keys
+
+short key(shift+a)move to cursor
+   paste public key from developer
+
+:wq
+
+
+develper server (now we can try to connect)
+-------------------------------------------
+ssh ec2-user@13.332.146.98
+
+now that admin linux machine connecting here
+
+exit (admin linux server come out)
+
+
+
+24-june/2021
+-------------
+softlink ,hard link and crontab 
+--------------------------------
+softlink
+hardlink
+inode
+
+crontab
+ 
+
+practices
+----------
+ls -ltra
+
+ls -ltri   ->(inode value)(FYI Two Same inode values that is Hardlinkfile and softlink file is l symbol)
+
+inode means unique value
+
+we can create file1.txt (sfile1.txt) and file2.txt (hfile2.txt)
+---------------------------------------------------------------
+vi file1.txt
+ 
+  this is line1 of the file1
+  
+  :wq
+
+vi file2.txt
+  
+ this is line1 of the file2
+  
+ :wq
+
+ln -s file1.txt sfile1.txt 
+
+ln file2.txt hfile2.txt
+
+ls -ltra
+
+ls -ltri   (we can find hard link file via inode and soft link is always l)
+
+
+
+vi sfile1.txt
+
+ this is line1 of the file1
+ this is line2 of the file1
+
+
+ :wq
+ 
+cat sfile1.txt
+ this is line1 of the file1
+ this is line2 of the file1
+ 
+cat file1.txt
+   this is line1 of the file1
+   this is line2 of the file1 
+  
+  
+vi hfile2.txt
+ this is line1 of the file2
+ this is line2 of the file2
+  
+  
+ :wq
+ 
+cat hfile2.txt
+ this is line1 of the file2
+ this is line2 of the file2
+ 
+cat file2.txt 
+ this is line1 of the file2
+ this is line2 of the file2
+
+
+rm -rf file2.txt
+rm -rf file1.txt
+
+ls -ltra
+
+
+sfile2.txt -> file1.txt(softlink showing the am dying)
+hfile2.txt
+
+cat sfile1.txt  -> its not showing
+
+cat hfile2.txt
+  this is line1 of the file2
+  this is line2 of the file2
+
+
+cd /usr/sbin/      -(softlink files list)
+---------------------------------------------
+
+pwd
+
+ls -ltra
+
+crontab                     ->shedular
+
+go to web site crontab.guru
+---> shedular
+              minute    hour   dom   moy   dow
+                *       *      *      *     *
+              0-59     0-23    1-31  1-12   0-6
+
+
+*  *  *  *  *      delete_yesterday_logfile.sh  ->12am 
+
+
+
+crontab -l
+
+crontab -e
+
+
+vi hello.sh
+
+ #!/bin/bash
+  echo "this is devops class"
+  
+  :wq
+  
+chmod +X hello.sh
+
+ ./hello.sh
+
+pwd
+
+
+crontab -l
+
+crontab -e
+
+ */1 * * * *  /home/ec2-user/hello.sh >> result.txt
+ 
+  :wq
+
+we wait for 1 minute since already set 1 minute
+  
+ls
+  
+cat result.txt
+
+  this is devops class
+
+
+we after 1 minute one more same line add 
+
+cat result.txt
+ 
+ this is devops class
+ this is devops class
+  
+  
+
+25-june/2021
+-------------
+ssh shortcut
+vi editor shortcut
+
+https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/
+
+public DNS every time change but realtime won't change
+-------------------------------------------------------
+everytime we dont copy ec2 connect to server we can change to DNS Name
+-----------------------------------------------------------------------
+Basically
+local system
+------------
+cd ~/.ssh/
+
+ls -ltra
+vi config
+host linux
+     User ec2-user
+     HostName ec2-13-232-190-148.ap-south-1.compute.amazonaws.com
+     identityFile /Desktop/AWSKeys/DevopsKeys1.pem
+
+ssh linux
+
+
+
+Shortcut Vi editor
+-------------------
+
+shift+H ->go first line
+
+shift+G ->bottom the line
+
+a -> where is the cursor next line with insert mods
+
+shift+A->where is the cursor that end line
+
+shift+B ->little bit backword word wise
+
+shift+W ->little bit forword wise
+
+yy ->where is the cursor that line copy onle one line
+
+p ->paste to next line
+
+u ->undo
+
+4yy -> how much line wnat copy 4 line so 4yy and p paste next cursor
+
+(Visual studio)control+shift+V -> select how much want line and y (save) and p (paste)
+
+
+shift+P ->yy and cursor above
+
+p -> yy and below
+
+shift+L ->line of the page end
+
+dd -> delete line
+
+shift+D -> Particular Line delete
+
+:1,$d -> if we want delete all the line 
+
+o -> cursor below space the line
+
+Shift+O -> cursor above space the line
+
+:%s/searchIsTheWhatIsTheWord/chagethename/g ->particular world change
+
+:set number  ->number of the lines
+
+:5 ->that line go to showing
+
+:/vijay  -> that world will select
+
+
+
+29-june/2021
+------------
+writting shell script
+----------------------
+why-> we want execute multiple linux commands,i would like to let say ,
+example, one folder is a inside many files we want delete and at time to copy another folder,that why we use shell script
+application repeted again again same task we use shell script
+
+
+Progrma file exetation
+-------------------------
+.sh
+.java
+.py
+.tf
+.json
+.ymal
+.groovy
+
+lets start (echo means println echo statement)
+-------------
+vi hello.ssh
+
+#!/bin/bash
+ echo "hello guys"
+ 
+ :wq
+ 
+sh hello.sh
+ o/p - hello guys
+
+without #!.bin/bash can we excute script->yes  we can excute (bash is old ,new sh)
+-----------------------------------------------------------------------------------
+vi hello.sh
+
+echo "hello guys"
+
+sh hello.sh
+
+or
+--
+we can execute like 
+
+/bin/bash hello.sh
+
+out can execute (sh means softlink of the bash)
+
+/bin/sh hello.sh
+
+ls -ltr /bin/     -> soft link of details
+
+bash one kind of program executable soft link of sh
+--------------------------------------------------
+we nwant IP address
+
+nslookup DomainName	
+
+nslookup en.wikipedia.org  ->we cat get Public ip address (static host name or IP  address)
+------------------------------------------------------------------------------------------
+
+nslookup google.com
+
+without sh hello.sh instead of the ./hello.sh -> permision denied 
+------------------------------------------------------------------
+we are telling the system i am writing the shell script just we are telling the understand 
+to kernel(is written in c langauge that can understand they are writting shell script or others) bash is system software.
+
+
+
+we can try execute with permision what we can do -> 
+---------------------------------------------------
+ls -ltra
+
+hello.sh  -> -rw-rw-r-- 
+
+we can make it without shebang permision what we can use (executable permission)
+-------------------------------------------------------------------------------
+chmod +X hello.sh 
+
+we can also use (777) yes we can use
+------------------------------------
+./hello.sh
+
+now we can execute output(interpreter means compiler that is shebang (#!/bin/bash))
+-----------------------------------------------------------------------------------
+this is interview questions
+------------------------------
+#!/bin/bash means
+-------------------
+shebang #!/ that is interpreter to call executable permission to program
+
+this is interview questions
+-------------------------------
+without #!/bin/bash can write execute program -yes 
+--------------------------------------------------- 
+we can use chmod +x execute permission and file or 777 (read,write and execute)
+-------------------------------------------------------------------------------
+./hello.sh that script can execute
+----------------------------------
+
+
+
+another one example (static value)
+---------------------------------
+vi addition.sh
+ 
+#!/bin/bash
+ ((sum = 20+30))
+  echo $sum
+  
+  
+chmod +x addition.sh
+
+./addition.sh
+
+50  
+  
+  
+we can use variable a=20 and b-30
+-----------------------------------
+vi addition.sh
+ 
+#!/bin/bash
+a=20
+b=30
+ ((sum = a+b))
+  echo $sum
+  
+
+we can use variable a=$1 and b=$2
+----------------------------------
+vi addition.sh
+ 
+#!/bin/bash
+a=$1
+b=$2
+ ((sum = a+b))
+  echo $sum
+  
+we can pass arguments value (dyanamic values)
+---------------------------------------------
+./addition.sh 20 30
+
+50
+
+./addition.sh 30 50  ->(command line arguments)
+
+80
+
+we can copy the addition to multifiction
+-----------------------------------------
+cp addition.sh multi.sh         ->(addition.sh default permission give to multi.sh)
+----------------------------
+
+but copy new create vi hello2.sh from hello.sh  since not default permission
+-----------------------------------------------------------------------------
+
+vi hello2.sh
+
+ls -ltra
+
+cp addition.sh hello2.sh
+
+rm -rf hello2.sh
+
+
+01/july/2021(12.linux)
+----------------------
+$#
+$*
+$?
+
+
+mkdir shell_script_practice
+
+ls -ltra
+
+cp addition.sh multi.sh hello.sh shell_script_practice/
+
+cd ..
+
+rm -rf addition.sh multi.sh hello.sh
+
+
+[shell_script_practice]$ vi expression.sh
+
+#! /bin/sh
+echo '$#' $#            -> length of the arguments
+echo '$*' $*            -> what are the all arguments   
+echo '$?' $?            -> previous command success->0  if not->1
+
+chmod +x expression.sh
+ 
+vi expression.sh vijay rachayya ammanagi
+
+$# 3
+$* vijay rachayya ammanagi
+$? 0
+
+[shell_script_practice]$ vi argumentpass.sh
+
+chmod +x argumentpass.sh 
+
+vi argumentpass.sh
+
+#!/bin/bash
+        if [  $# -lt 1 ]
+        then
+                echo $#
+                echo "USAGE: ./argumentpass.sh <appname>"
+                exit 1
+        fi
+
+
+echo "this is $1"
+
+./argumentpass.sh        ->condition true 
+
+0
+USAGE: ./argumentpass.sh <appname>
+
+./argumentpass.sh vijay    ->condition false
+  
+this is vijay  
+  
+
+ 
+[shell_script_practice]$ vi user_input.sh
+
+
+#!/bin/bash
+
+ echo "please enter your name"
+ read name
+ echo "hello $name welcome to devops course"
+
+:wq
+ 
+chmod +x user_input.sh
+
+./user_input.sh
+
+please enter your name
+vijay
+hello vijay welcome to devops course
+  
+ 
+Appending operator
+-------------------
+vi user_input.sh
+
+#!/bin/bash
+
+ echo "please enter your first name"
+ read firstname
+ echo "please enter your second name"
+ read secondname
+ echo "hello $fistname $secondname welcome to devops course"
+ 
+ 
+:wq
+
+
+./user_input.sh
+
+please enter your first name
+vijay
+please enter your second name
+ammanagi
+hello vijay ammanagi welcome to devops course
+
+
+
+
+[shell_script_practice]$ vi if_condition.sh
+
+#!/bin/bash
+
+echo "enter your age"
+read age
+if [ $age -gt 18 ]
+    then  
+	  echo "your age is $age eligible for vote"
+	  else
+	  echo "sorry... you are not eligible for vote"
+ fi
+ 
+ :wq
+ 
+ enter your age
+ 56
+ your 56 is $age eligible for vote
+ 
+ or
+ enter your age
+ 2
+ sorry... you are not eligible for vote
+ 
+ 
+ 
+ 
+ 
+cp user_input.sh if_condition_special.sh
+
+#!/bin/bash
+echo "please enter your first name"
+ read username
+ echo "please enter your second name"
+ read password
+ if [[ ( $username == "vijay" && $password == "devops" ) ]]
+  then
+   echo "successfully login devops course"
+  else 
+  echo "login failed"
+ fi  
+ 
+:wq
+
+chmod +x if_condition_special.sh
+
+./if_condition_special.sh
+
+please enter your first name
+vijay
+
+please enter your second name
+devops
+
+successfully login devops course
+
+
+or
+---
+
+
+please enter your first name
+vijay
+
+please enter your second name
+ncvsd
+
+login failed
+
+ 
+if_condition_special.sh   ->(||)
+------------------------------------
+ 
+#!/bin/bash
+echo "please enter your first name"
+ read username
+ echo "please enter your second name"
+ read password
+ if [[ ( $username == "vijay" || $password == "devops")  ]]
+  then
+   echo "successfully login devops course"
+  else 
+  echo "login failed"
+ fi 
+ 
+ 
+output
+-------
+any one above either username or password correct is login successfully
+if both wrong but not login its failed
+ 
+ 
+ 
+2/july/2021 (13.linux)
+-----------------------
+[shell_script_practice]$ vi if_else_if.sh
+
+#!/bin/bash
+echo "enter your roll no"
+read rollno
+if [ $rollno -eq 1 ]
+   then
+     echo "rollnumber $rollno  is madhu"
+   elif [ $rollno -eq 2 ]
+   then
+     echo "rollnumber $rollno is vijay"
+   elif [ $rollno -eq 3 ]
+     then
+	 echo "rollnumber $rollno is ramya"
+   else
+    echo "rollnumber $rollno doesnot exit"
+
+fi	
+
+
+ :wq
+ 
+ chmod +x if_else_if.sh
+ ./if_else_if
+ 
+ 
+ output
+ -------
+ enter your roll no
+ 1
+ rollnumber 1  is madhu
+ 
+ enter your roll no
+ 2
+ rollnumber 2 is vijay
+ 
+ enter your roll no
+ 3
+ rollnumber 3 is ramya
+ 
+ enter your roll no
+ 4
+ rollnumber 4 doesnot exit
+ 
+ cp if_else_if.sh if_else_if_phone.sh
+ 
+ #!/bin/bash
+echo "which mobile you want purchase"
+read amount
+if [ $amount -eq 10000 ]
+   then
+     echo "if your amount $amount you can buy realme oppo redmi"
+   elif [ $amount -eq 20000 ]
+   then
+    echo "if your amount $amount you can buy samsung"
+   elif [ $amount -eq 3 ]
+     then
+       echo "if your amount $amount you can buy One+"
+   else
+    echo "you cannot buy anything with this amount $amount "
+
+fi
+
+
+:wq
+
+
+chmod +x if_else_if_phone.sh
+
+./if_else_if_phone
+
+output
+------
+
+which mobile you want purchase
+10000
+if your amount 10000 you can buy realme oppo redmi
+
+which mobile you want purchase
+20000
+if your amount 20000 you can buy samsung
+
+which mobile you want purchase
+30000
+if your amount 30000 you can buy One+
+
+which mobile you want purchase
+12
+you cannot buy anything with this amount 12
+
+
+
+cp if_else_if_phone.sh switch_statement.sh
+
+vi switch_statement.sh
+
+#!/bin/bash
+echo "which mobile you want purchase"
+read amount
+case $amount in
+        10000)
+     echo "if your amount $amount you can buy realme oppo redmi" ;;
+       20000)
+    echo "if your amount $amount you can buy samsung";;
+     30000)
+    echo "if your amount $amount you can buy One+";;
+       50000)
+    echo "if your amount $amount you can buy iphone+";;
+     *)
+    echo "you cannot buy anything with this  $amount "
+
+esac
+
+:wq
+
+
+chmod +x switch_statement.sh
+
+./switch_statement.sh
+
+output
+------
+
+which mobile you want purchase
+10000
+if your amount 10000 you can buy realme oppo redmi
+
+which mobile you want purchase
+20000 
+if your amount 20000 you can buy samsung
+
+which mobile you want purchase
+30000
+if your amount 30000 you can buy One+
+
+which mobile you want purchase
+50000
+if your amount 50000 you can buy iphone+
+
+which mobile you want purchase
+500
+you cannot buy anything with this  500 
+ 
+
+
+cp switch_statement.sh mobile_standard.sh
+
+vi mobile_standard.sh
+
+#!/bin/bash
+echo "which mobile you want purchase"
+read mobilename
+case $mobilename in
+        realme)
+     echo "if your mobilename $mobilename its get beatifull photos" ;;
+       samsung)
+    echo "if your mobilename $mobilename standard phone";;
+     one+)
+    echo "if your mobilename $mobilename too costly";;
+       iphone)
+    echo "if your mobilename $mobilename more cost and beatiful";;
+     *)
+    echo "your moble you can enjoy  $mobilename "
+
+esac
+
+
+chmod +x mobile_standard.sh
+./mobile_standard.sh
+
+output
+--------
+which mobile you want purchase
+realme
+if your mobilename realme its get beatifull photos
+
+
+
+
+date command (real time bundle logs are we would troubleshoot)
+--------------------------------------------------------------
+date
+
+date  --date='1 day ago'     ->yesterday date
+
+date --help
+
+date +"%m-%d-%Y"
+
+date +"%m-%d-%Y-%H-%M-%S"
+
+
+#!/bin/bash
+touch "$1_$(date +"%m-%d-%Y-%H-%M-%S")"
+
+
+
+6-july/2021(14-linux) ()
+----------------------
+(
+epoch time 
+
+authentication token we want 
+----------------------------
+date +'%s'                     -> this kind of the command we use to get token copy,we can go to google  search epoch converter put it there.
+1625629815
+Convert epoch to human-readable date and vice versa
+
+while loop ,do while loop   ->what purpose use the loop since repeated the task
+--------------------------------------------------------------------------------
+what purpose?
+execute same logic,multiple time same task we are using the loop.
+
+while loop   -> we dont know how many times repeated when condition is true then execute until condition is satisfied.
+
+for loop   ->we know how many times execute we want repeated.
+
+               while [if condition]
+                 do 
+                  lublub
+                 done
+				 
+				 
+				 
+vi while_loop_syntax.sh
+-------------------------
+#!/bin/bash
+
+n=1
+while [[ $n -eq 1 ]]
+ do 
+  echo "hi devops"
+done
+
+
+output:
+n times executable system not understand how many that is execute.
+
+
+#!/bin/bash
+
+n=1
+while [[ $n -le 5 ]]
+ do 
+  echo "hi devops --> $n"
+  (( n++ ))
+done
+
+
+output:-
+--------
+hi devops --> 1
+hi devops --> 2
+hi devops --> 3
+hi devops --> 4
+hi devops --> 5
+
+(n++ means increment operator and n-- decrement operator)
+----------------------------------------------------------
+
+vi vijay.txt
+------------
+this is devops
+devops course
+devops is good 
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+:wq
+
+vi read_file_using_while.sh
+
+#!/bin/bash
+
+while read data
+ do 
+  echo "$data"
+ done < vijay.txt
+ 
+ :wq 
+ 
+ chmod +x read(simple tricks file initial name with tab+q)
+ -----------------------------------------------------------
+ chmod +x read_file_using_while.sh
+ ./read_file_using_while.sh
+ 
+ 
+ vi read_file_using_while.sh
+
+#!/bin/bash
+
+while read data
+ do 
+  echo "$data" >> result.log                   ->(>> append ,not override )
+ done < vijay.txt
+ 
+ :wq 
+ 
+ ./read_file_using_while.sh
+ 
+ ls -ltra
+ 
+ we can see here
+ ---------------
+ cat result.log
+ ---------------
+this is devops
+devops course
+devops is good 
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+
+
+
+for loop
+------------
+vi for_loop.sh
+
+#!/bin/bash
+for ( i=5; i>0 ; i-- )
+ do  
+  echo "hi devops --> $i"
+ done 
+  
+:wq
+
+chmod +x for_loop.sh
+./for_loop.sh
+
+output
+--------
+hi devops --> 5
+hi devops --> 4
+hi devops --> 3
+hi devops --> 2
+hi devops --> 1
+
+
+we can go to through google for shell script we were get more example ->https://www.shellscript.sh/loops.html
+--------------------------------------------------------------------------------------------------------------
+
+vi for_each.sh
+
+#!/bin/sh
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+
+:wq
+
+chmod +x for_each.sh
+./for_each.sh
+
+output
+------
+Looping ... number 1
+Looping ... number 2
+Looping ... number 3
+Looping ... number 4
+Looping ... number 5
+
+
+sed a stream editor -> search on google(https://www.gnu.org/software/sed/manual/sed.html)
+-----------------------------------------------------------------------------------------
+
+sed 's/devops/python/g' vijay.txt              ->  this is replace devops to python
+ 
+this is python
+python course
+python is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+but now we can open vijay.txt it showing now same devops
+--------------------------------------------------------- 
+cat vijay.txt
+---------------
+this is devops
+devops course
+devops is good 
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+
+sed -i 's/devops/python/g' vijay.txt 
+
+cat vijay.txt
+------------
+
+this is python
+python course
+python is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+sed --help
+
+sed -e 's/python/aws/g' vijay.txt
+------------------------------------
+this is aws
+aws course
+aws is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+cat vijay.txt
+------------
+this is python
+python course
+python is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+sed --help
+---------------
+
+
+sed 's/aws/python/g' vijay.txt | tee vijay2.txt
+------------------------------------------------
+
+this is python
+python course
+python is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+cat vijay2.txt
+-----------------
+this is python
+python course
+python is good
+aws
+terraform
+git
+linux
+nexus
+jenkins
+
+
+
+
+uname -a
+----------
+cat /etc/os-release
+
+
+awk -F";" '$3 < 101 ' /etc/passwd
+
+
+awk -F";" '{print $1}'
+
+
+
+
+08-july/2021 (15- linux)
+------------------------
+functions :- why need to functions basically clean code impliment on logic and execution some place.even without functions we can write.
+
+vi create_function.sh
+----------------------
+
+#!/bin/bash
+function greeting () {
+       echo "hello guys"
+      }
+	  greeting
+	  
+:wq
+
+chmod +x create_function.sh
+./create_function.sh
+ output
+ ------
+ hello guys
+ 
+vi function_return_test.sh (we can argumentpass through static method)
+----------------------------------------------------------------------
+
+#!/bin/bash
+
+addition() {
+     sum=$(($1 + $2))
+	 echo "this result is -->$sum" 
+}
+    addition 10 10
+	
+:wq
+
+chmod +x function_return_test.sh
+./function_return_test.sh
+
+output
+------
+20
+
+ 
+vi function_return_test.sh (we can argumentpass through dynamic method)
+-----------------------------------------------------------------------
+ #!/bin/bash
+
+addition() {
+     sum=$(($1 + $2))
+	 echo "this result is -->$sum" 
+}
+    addition $1 $2
+	
+	
+:wq
+
+./function_return_test.sh 10 10
+
+output:
+20
+
+
+cp create_function.sh append_function.sh
+vi append_function.sh
+--------------------
+#!/bin/bash
+function greeting() {
+   echo "hello guys"
+}
+val=$(greeting)
+
+echo "happy learning $val"
+
+
+:wq
+
+chmod +x append_function.sh
+./append_function.sh
+
+
+output
+------
+hello guys happy learning
+
+
+cut command  (awk)
+
+substr
+
+-f  ->check_file_exit_or_not
+-d  ->check_directory_exit_or_not
+
+
+let see one example
+-------------------
+vi check_file_exit_or_not.sh
+
+#!/bin/bash
+name=$1
+if [ -f $name ]
+  then 
+    echo " this is file available "
+  else
+ echo " file does not exit "
+ touch $name
+ echo "$name file now created"
+fi 
+
+:wq
+
+chmod +x check_file_exit_or_not.sh
+
+./check_file_exit_or_not.sh 
+
+
+above example we can replace -f to -d that\is directory.
+-------------------------------------------------------
+
+cat /etc/passwd  ->containts all user your system information
+
+cat /etc/passwd | awk -F ':' '{print $1}'   -> -F only name find out   
+->another way same like command > cat /etc/passwd | cut -d':' -f1    -> -d means delimeter and -f1 means field one  same out previous.
+
+or
+--
+
+cut -d':' -f1 /etc/passwd     ->we acn use this like
+
+
+
+
+
+
+
+
+                                                                                                                                   
+
+--------------------------------
+INTERVIEW QUESTIONS OF THE Linux
+--------------------------------
+
+1)What is the boot process in Linux?
+the boot process in Linux
+----------------------------
+->	1)BIOS. BIOS stands for Basic Input/Output System. ...
+    2)MBR. MBR stands for Master Boot Record, and is responsible for loading and executing the GRUB boot loader. ...
+    3)GRUB. ...
+    4)Kernel. ...
+    5)Init. ...
+    6)Runlevel programs	
+	
+	and
+	Steps In the Booting Process
+	-------------------------------
+	1: BIOS and Setup Program.
+    2: The Power-On-Self-Test (POST)
+    3: The Operating System (OS) Loads.
+    4: System Configuration.
+    5: System Utility Loads.
+    6: Users Authentication.
+	
+2)How to create zero size file Linux?
+->we are create empty file in Linux using touch command.
+
+3)What is soft link and hard link? How to create? What is the difference between these two?
+->A symbolic or soft link is an actual link to the original file, 
+   whereas a hard link is a mirror copy of the original file. 
+  If you delete the original file, the soft link has no value,because it points to a non-existent file
+
+
+How to create
+--------------
+this is for the softlink
+---------------------------
+ln -s file1.txt  sfile1.txt
+
+
+this is for the hardlink
+------------------------
+ln file2.txt hfile2.txt
+
+
+What is the difference between these two
+---------------------------------------------	
+Comparison Parameters	         Hard link	                                     Soft link
+File system	                    It cannot be used across file systems.	         It can be used across file systems.
+
+  inode          inode
+    |              |
+hardlink    my file.txt<-softlink
+
+4)What is first line written in shell script? What is the meaning of that? If I didn’t write that line what will happen? Then how to run the script?
+->
+first line written in shell script
+---------------------------------- 
+#!/bin/bash
+
+meaning that
+------------
+
+
+
+5)How to run a shell script in background?
+->5 Ways to Execute UNIX / Linux Commands (and Shell Scripts) in Background
+----------------------------------------------------------------------------
+  1)Execute a command in the background using & ...
+  2)Execute a command in the background using nohup. ...
+  3)Execute a command using screen command. ...
+  4)Executing a command as a batch job using at. ...
+  5)Execute a command continuously using watch.
+
+6)What is cron tab? Explain it? How to configure the schedule a job?
+-> crontab ->shedular
+-------------------------
+go to web site crontab.guru
+---> shedular
+              minute    hour   dom   moy   dow
+                *       *      *      *     *
+              0-59     0-23    1-31  1-12   0-7
+
+
+*  *  *  *  *      delete_yesterday_logfile.sh  ->12am 
+
+
+
+crontab -l
+
+crontab -e
+
+
+ */1 * * * *  /home/ec2-user/hello.sh >> result.txt
+ 
+  :wq
+
+we wait for 1 minute since already set 1 minute
+  
+ls
+  
+cat result.txt
+
+  this is devops class
+
+
+we after 1 minute one more same line add 
+
+cat result.txt
+ 
+ this is devops class
+ this is devops class
+
+How to configure the schedule a job
+------------------------------------
+The cron daemon is a long-running process that executes commands at specific dates and times. 
+You can use this to schedule activities, either as one-time events or as recurring tasks. 
+To schedule one-time only tasks with cron, use the at or batch command.
+
+7)How to allow the ports in Linux?
+->sudo ufw allow ssh
+
+
+8)How to trouble shoot the remote server having some issue?
+->trouble shoot the remote server having some issue
+----------------------------------------------------
+  #1: Use ping command
+ ---------------------
+Always ping the IP address of server and then try hostname. For example:
+$ ping 75.126.43.232
+$ ping cyberciti.biz
+
+If you can ping by IP address but not by hostname, 
+then make sure you have correct DNS name servers setup in /etc/resolv.conf file.
+
+$ less /etc/resolv.conf
+-----------------------
+
+Output:
+
+nameserver 192.168.1.10
+nameserver 208.67.222.222
+nameserver 208.67.220.220
+Make sure your own DNS server running.
+
+
+ #2: Use traceroute command
+----------------------------
+If you cannot ping your server at all, use traceroute to trace network problem.
+
+ $ traceroute cyberciti.biz
+ 
+ 
+ #3: Look for default route / gateway IP
+-----------------------------------------
+If traceroute point out that you cannot reach to your own gateway, 
+then check routing setting on your own workstation 
+# route
+# route add default gw 192.168.1.254 eth0
+
+ #4: Look for IP address
+-------------------------
+Make sure you have correct IP address assigned by DHCP server. 
+Some time network admin make changes to DHCP server or changes IP routing or other stuff. 
+It is a good idea to restart network interface:
+
+# /etc/init.d/network restart
+# tail -f /var/log/message
+# ifconfig -a
+# route
+
+
+ #5: Check for network cables and power supply
+-----------------------------------------------
+#6: Check firewall log
+Make sure your own firewall is not blocking access to remote server. Just try to stop your firewall.
+# iptables -L -n
+# tail -f /var/log/messages
+# /etc/init.d/iptables stop
+
+If you are using Cisco PIX or dedicated Linux / OpenBSD box as firewall, check logs for more information.
+
+ #7: Connect to correct ports
+--------------------------------
+Most service connects to default port such as
+HTTP – port 80
+Proxy – port 3128
+SSH – port 22
+FTP – port 21
+
+Sometime you change default ports to increase security, so make sure you are connecting to correct remote port.
+
+ #8 Network analysis
+---------------------
+Install Wireshark.
+# apt-get install wireshark
+$ sudo wireshark &
+
+ #9 Can I use GUI tools?
+------------------------- 
+You can use cheops – a network monitor tools for same purpose. 
+Itâ€™s a combination of a variety of network tools to provide system administrators and users with a simple interface to managing and accessing their networks. Install cheops with apt-get command:
+# apt-get install cheops
+$ sudo cheops & 
+
+
+9)What is ping? Telnet? Curl? Wget?
+->Ping is a command-line utility, available on virtually any operating system with network connectivity
+
+ Telnet is a network protocol used to virtually access a computer and to provide a two-way, 
+collaborative and text-based communication channel between two machines
+
+cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server
+
+
+10)How to check the services in Linux machine?
+->
+sudo service httpd status
+
+sudo systemctl status httpd
+
+11)How to kill the process in Linux?
+->
+ps command -> process
+---------------------
+ps -ef (all servicing in process)
+
+ps -ef | grep httpd
+
+ps -ef | grep java
+
+
+we want to kill the process
+---------------------------
+ps -ef | grep nginx
+
+kill -9 6789   ->(id number kill)
+
+sudo kill -9 6789   ->(id number kill)
+
+
+
+12)What is nice and renice?
+->nice command in Linux helps in execution of a program/process with modified scheduling priority,
+  
+  renice command allows you to change and modify the scheduling priority of an already running process.
+  
+13)What is inode value?
+->An Inode number is a uniquely existing number for all the files in Linux and all Unix type systems. 
+When a file is created on a system, a file name and Inode number is assigned to it. 
+... When all the other information is separated from the file name then only we can have various file names pointing to the same Inode.
+
+14)How to check the CPU utilization?
+->CPU utilization in Linux
+---------------------------
+ 1)The "sar" command. To display CPU utilization using "sar", use following command: $ sar -u 2 5t. ...
+ 2)The "iostat" command. The iostat command reports Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions. ...
+ 3)GUI Tools. 
+
+
+15)Difference between Top/HTop?
+->top is the default command-line utility that comes pre-installed on Linux distributions and Unix-like operating systems. 
+... htop is interactive process-viewer and process-manager for Linux and Unix-like operating system based on ncurses
+
+
+16)What is mount? How to create mount?
+->Mounting is a process by which the operating system makes files and directories on a storage device 
+(such as hard drive, CD-ROM, or network share) available for users to access via the computer's file system
+
+Mounting ISO Files
+-------------------
+  1)Start by creating the mount point, it can be any location you want: sudo mkdir /media/iso.
+
+  2)Mount the ISO file to the mount point by typing the following command: sudo mount /path/to/image.iso /media/iso -o loop. Don't forget to replace /path/to/image. 
+   iso with the path to your ISO file.
+
+17)How to trouble shoot live logs?
+
+
+18)What is sed command?
+->Sed command or Stream Editor is very powerful utility offered by Linux/Unix systems. 
+It is mainly used for text substitution , find & replace but it can also perform other text manipulations like insertion, deletion, search etc. 
+With SED, we can edit complete files without actually having to open it
+
+19)What is AWK command
+->AWK (awk) is a domain-specific language designed for text processing and typically used as a data extraction and reporting tool.
+
+20)What is grep and egrep?
+->
+grep -> plain-text data sets for lines that match a regular expression
+egrep -> egrep is a pattern searching command which belongs to the family of grep functions. 
+        It works the same way as grep -E does
+
+21)
+
+
+
+
+
+
+ 
+	
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+ 
+
+
+
+ 
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+

@@ -1,0 +1,5379 @@
+docker info
+docker -v
+docker --help
+docker images --> list of images in
+your system
+docker search <imagename>
+ex: docker search ubuntu
+docker pull <imagename>
+ex: docker pull ubuntu
+docker run -it jpetazzo/clock
+docker ps --> list of running containers
+docker ps -a
+ctrl+p+q
+docker run -it --name myclock jpetazzo/clock
+docker logs <containerid/name>
+ex: docker logs a3a4ada76a98
+docker logs --tail -f a3a4ada76a98
+docker rmi <imageid>
+docker rmi -f <imageid>
+docker rm <containerid/containername>
+ex: docker rm 576b8dfdefc9
+docker rm -f <containerid/containername>
+
+
+
+
+2-September-2021
+----------------
+Docker
+------
+
+dev ->war deploy-> monolithic
+
+micro service -> deploy many applications
+
+what your base os in docker -> alpine linux  (5 mb)  
+
+vm machine ubuntu  ->2gb
+
+docker ubuntu -> 70mb
+
+alpine linux -> 5mb
+
+reduce the esources and deployment is very fast.
+
+VM level
+-----------
+
+(ubuntu)    (cent os)
+Guest os    Guest os 
+  |           |
+ apps       apps
+ |            |
+ lib         lib 
+----------------------
+   Hypervisor
+----------------------
+   os
+----------------------
+   hardware
+----------------------
+  VM
+----------------------   
+
+Docker level
+------------
+
+container 
+app      app      app
+ |        | _______|
+ lib         lib
+ -------------------------
+ docker
+ -------------------------
+ os
+ --------------------------
+ hardware
+ --------------------------
+ 
+ 
+ docker->
+ --------
+         repo
+ build-> ship  ->run
+ image         container 
+
+dockerfiles         image        repo      
+------------
+FROM
+COPY           ->            ->   all image       -> run in container
+ADD
+CMD
+ENTRYPOINT  
+
+
+
+docker daemon -> backend service
+----------------------------------
+
+
+3-September-2021
+----------------
+
+Docker terminology
+-------------------
+Dockerfile
+docker daemon
+docker engine
+docker image
+docker container
+docker CLI
+docker compose
+docker swarm
+repo | registry | docker hub | private registry | ecr
+
+one create AMI linux (t2.micro)
+----------------------------------
+tag-> docker
+security -> docker_sec
+
+
+
+sudo yum update
+
+sudo yum install docker
+
+sudo service docker start
+
+sudo service docker status
+
+sudo docker version
+
+sudo docker images
+
+sudo usermod -aG docker ec2-user
+
+sudo docker images
+
+exit 
+
+re open the terminal
+------------------------
+docker images
+
+docker info
+
+docker -v
+
+docker search ubuntu
+
+docker search centos
+
+docker search jenkins
+
+docker pull ubuntu
+
+docker images 
+
+
+go to dockerhub login it check tag(version)
+-----------------------------------------------
+
+docker pull ubuntu:20.04
+
+docker images
+
+
+
+what is the base image use in docker -> alpine
+
+
+docker pull alpine
+
+docker pull ubuntu:xenial
+
+docker images
+
+docker search clock
+
+docker pull jpetazzo/clock
+
+docker images
+
+
+
+Go to google in docker scratch
+---------------------------------
+
+1)https://github.com/jpetazzo/dockerfiles           -> it is dockerfiles
+
+
+
+docker run -it jpetazzo/clock
+
+control+c   -> stop the run
+
+docker ps    ->list of running containers
+
+docker ps -a
+
+docker run -it --name myclock jpetazzo/clock
+
+control+p+q    -> without exit terminal
+
+docker ps
+
+docker logs <containerid/name>
+ex: docker logs a3a4ada76a98
+
+docker logs --tail -f a3a4ada76a98   -> we can check live login
+
+docker ps 
+
+we want remove the images
+--------------------------
+
+docker images
+
+docker rmi <imageid>
+ ex:->docker rmi a3a4ada76a98  a3a4ada76a97  a3a4ada66a98
+
+docker rmi -f <imageid>   -> forcable
+ ex:->ex:->docker rmi -f a3a4ada76a98  a3a4ada76a97  a3a4ada66a98
+ 
+ we want remove the container
+ -----------------------------
+docker rm <containerid/containername>
+ex: docker rm 576b8dfdefc9 
+
+docker rm -f <containerid/containername>
+docker exec -it <containerid> bash
+
+
+
+
+
+
+
+
+
+
+
+
+docker info
+docker -v
+docker --help
+docker images --> list of images in
+your system
+docker search <imagename>
+ex: docker search ubuntuocker pull <imagename>
+docker pull ubuntu
+docker run -it jpetazzo/clock ctrl+p+q
+docker ps --> list of running containers
+docker ps -a
+ctrl+p+q
+docker run -it --name myclock jpetazzo/clock
+docker logs <containerid/name>
+ex: docker logs a3a4ada76a98
+docker logs --tail -f a3a4ada76a98
+docker rmi <imageid>
+docker rmi -f <imageid>
+docker rm <containerid/containername>
+ex: docker rm 576b8dfdefc9
+docker rm -f <containerid/containername>
+docker exec -it <containerid> bash
+docker commit -m "figlet installation" <containerid> figlet_ubuntu31
+docker run -d --name web1 tutum/hello-world
+docker run -d -p 80 --name web2 tutum/hello-world
+docker run -d -p 80:80 --name web3 tutum/hello-world
+docker run -d -p 8081:80 --name web4 tutum/hello-world
+
+
+
+7-September-2021
+==================
+sudo systemctl start docker
+
+sudo systemctl enable docker   -> booting process
+
+docker images 
+
+docker ps
+
+docker ps -a
+
+docker rm a3a4ada76a98
+
+docker pull ubuntu
+
+docker images
+
+docker run -it --name myubuntu ubuntu
+
+docker run -d --name myubuntu2 ubuntu
+
+docker ps -a
+
+docker run -it --name myubuntu2 ubuntu
+ 
+docker ps
+
+docker exec -it <containerid myubuntu2> bash
+
+we go to the bash terminal
+
+root@<containerid>:# apt update
+
+root@<containerid>:# apt install figlet
+ 
+root@<containerid>:# figlet vijay
+
+i come out this container control +p+q
+--------------------------------
+
+docker ps
+
+docker rm -f <containerid of the myubuntu>
+
+docker commit -m "figlet installation" <myubuntu2 containerid> figlet_ubuntu31
+
+docker images
+
+docker ps
+
+docker rm -f <myubuntu2/containerid>
+
+docker ps -a
+
+docker ps
+
+docker images
+
+docker run -it --name myubuntu ubuntu
+
+root@<containerid>:# figlet madhu
+
+not get any thing since we lost data
+-------------------------------------
+control+p+q
+
+come out this terminal
+-----------------------
+
+docker ps
+
+docker run -it --name myfigy figlet_ubuntu31
+
+without any software installation we get output
+-----------------------------------------------  
+root@<containerid>:# figlet madhu
+
+control+p+q
+
+docker images
+
+docker history figlet_ubuntu31
+
+docker inspect figlet_ubuntu31
+
+ifconfig
+
+docker images
+
+docker ps 
+
+docker inspect <containerid figlet_ubuntu31>
+
+ifconfig
+
+docker pull tutum/hello-world
+
+docker run -it --name web1 tutum/hello-world
+
+docker ps
+
+docker rm web1
+
+docker run -d --name web1 tutum/hello-world
+
+docker ps
+
+we add inbond in aws port
+---------------------------
+80
+8081
+8082
+8083
+
+
+copy public ip in browser  its not working
+--------------------------------------------
+
+
+docker run -d -p 80 --name web2 tutum/hello-world
+
+docker ps
+
+we also add ports list in 0.0.0.0:49153 ->copy it add in aws port
+--------------------------------------------------------------------
+
+docker exec -it <containerid of web2> /bin/sh
+
+#: apk add curl
+
+#: apk update 
+
+#: apk add curl
+
+
+control+p+q
+
+docker ps
+
+docker run -d -p 80:80 --name web3 tutum/hello-world
+
+refresh browser
+------------------
+
+docker run -d -p 8081:80 --name web4 tutum/hello-world
+
+
+docker inspect <containerid of the 80 or web3>
+
+IPAddress copy it 
+
+curl <pste here ip >:80                       -> internally not public
+
+
+
+
+7-September-2021
+==================
+
+docker ps -a
+
+docker ps -aq
+
+docker rm $(docker ps -aq)
+
+docker ps -a   -> no container
+
+
+docker images
+
+docker push figlet_ubuntu31
+
+docker tag figlet_ubuntu31 dockervijayammanagi/figlet_ubuntu31:v1
+
+docker images
+
+
+docker push dockervijayammanagi/figlet_ubuntu31:v1
+
+docker login
+
+username
+password
+
+docker push dockervijayammanagi/figlet_ubuntu31:v1
+
+docker push dockervijayammanagi/figlet_ubuntu31:v2
+
+
+no ask credentials
+-------------------
+
+
+what is the dockerfile?
+-----------------------
+
+set of the dockerfile instructions
+-----------------------------------
+          Dockerfile
+		  ------------
+FROM                    ubuntu
+LABEL/MAINTAINER        vijay
+ARG                     port:8080
+ENV                     JAVA_HOME=/bin
+COPY                    <source><destination>
+ADD                     <s><v>
+RUN                     installation commands
+EXPOSE                  ports are exposing
+VALUME                  persistance you want data
+USER                     which you want use 
+WORKDIR                 
+HEALTHCHECK
+ONBUILD
+CMD                     executable
+ENTRYPOINT
+
+
+
+1). i want execute one sample java program
+
+ HelloWorld.java
+ -----------------
+ psvm{
+ }
+1)machine                        ubuntu
+2)java  installation             apt install java
+3)move the file new machine      copy
+4)compile the program            javac HelloWorld.java
+5)run the program                 java helloWorld
+
+
+
+FROM  openjdk:8
+COPY  HelloWorld.java .
+RUN   javac helloWorld.java
+CMD   java
+
+https://github.com/jmstechhome11/hello-java
+
+clone this project
+--------------------
+
+sudo yum install git -y
+
+git clone https://github.com/jmstechhome11/hello-java.git
+
+cd hello-java/
+
+ls -ltra
+
+vi Dockerfile
+
+FROM  openjdk:8
+COPY  HelloWorld.java .
+RUN   javac helloWorld.java
+CMD   java
+
+
+:wq
+
+docker build -t javaapp:v1 -t dockervijayammanagi/javaapp32:v1 .                        -> its download from dockerhub
+
+docker images
+
+docker run -it --name myjavapp  javaapp:v1
+
+docker ps 
+
+there is no list
+--------------------
+
+docker ps -a
+
+docker images
+
+we want to reduce resource what can do any option
+-----------------------------------------------------
+
+vi Dockerfile
+
+FROM  openjdk:8-alpine
+COPY  HelloWorld.java .
+RUN   javac helloWorld.java
+CMD   java
+
+
+:wq
+
+docker build -t javaapp_alpine:v2
+
+
+docker images 
+
+now realize that how much reduce resource since alpine linux
+---------------------------------------------------------------
+now this system run or not check it we can run javaapp_alpine
+---------------------------------------------------------------
+
+docker run -it --name myjavaapp_less javaapp_alpine:v2
+
+docker images 
+
+now very less resource how much application run in this alpine linux
+---------------------------------------------------------------------
+
+
+assignment
+-----------
+download sample war file
+
+https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/      ->through wget tool
+
+1)deploy sample war file in docker container
+
+2) spring3 also same like deploy in docker container
+  https://github.com/jmstechhome11/spring3-mvc-maven-xml-hello-world
+  
+
+---------------------------------
+
+docker pull ybmsr/figlet_ubuntu31:v2
+
+
+
+https://docs.docker.com/engine/reference/builder/
+
+
+https://github.com/docker-library/openjdk
+
+
+
+
+
+
+
+
+
+docker hub
+----------
+username:-> dockervijayammanagi
+password:-> Vijay@89042
+
+repo for docker images
+
+docker push <imagename>
+
+docker push figlet_ubuntu31
+docker tag figlet_ubuntu31 ybmsr/figlet_ubuntu31:v1
+docker login
+docker push ybmsr/figlet_ubuntu31:v1
+
+1. i want execute one sample java program
+HelloWorld.java
+--------------
+psvm(){
+}
+
+1. machine ubuntu
+2. java isntallation apt install java
+3. move the file new machine copy
+4. compile the program javac HelloWorld.java
+5. run the program java HelloWorld
+
+
+FROM openjdk:8
+COPY HelloWorld.java .
+RUN javac HelloWorld.java
+CMD java HelloWorld
+
+docker build -t javaapp:v1 .
+
+docker build -t javaapp:v2 -t ybmsr/javapp32:v1 .
+
+
+
+
+
+
+8-September-2021
+==================
+1)os
+2)java
+3)tomcat                    ->this is the base image
+4)copy the files
+
+
+https://github.com/ybmadhu/docker_practice
+
+above this link clone it 
+------------------------
+
+connect linux machine mobaxterm\
+---------------------------------
+
+docker images
+
+git clone https://github.com/ybmadhu/docker_practice.git
+
+ls -ltra
+
+cd docker_practice
+
+ls -ltra
+
+cd war_deployment
+
+ls -ltra
+
+we can deploy spring3 maven project
+------------------------------------
+cd ../../
+
+git clone https://github.com/jmstechhome11/spring3-mvc-maven-xml-hello-world.git
+
+cd spring3-mvc-maven-xml-hello-world/
+
+sudo yum install maven
+
+mvn --version
+
+ls -ltra
+
+mvn package
+
+ls -ltra
+
+cd target
+
+ls -ltra
+
+we can copy the war file in the target folder
+------------------------------------------------
+
+cp spring3-mvc-maven-xml-hello-world-1.2.war ../../docker_practice/war_deployment/
+
+cd ../../docker_practice/war_deployment/
+
+ls -ltra
+
+copy the spring3-mvc-maven-xml-hello-world-1.2.war 
+
+vi Dockerfile
+
+FROM
+LABEL
+#WORKDIR
+COPY   spring3-mvc-maven-xml-hello-world-1.2.war /usr/local/tomcat/webapps/spring3-mvc-maven-xml-hello-world-1.2.war
+
+
+:wq
+
+docker build -t tomcat_exp .
+
+docker run -d -p 8080:8080 --name mytomcat1 tomcat_exp
+
+docker ps
+
+if not enable in inbond that respective server we should enable port 8080
+-----------------------------------------------------------------------------
+
+copy the IP and add port
+exp:->192.168.12.199:8080
+
+
+we can deploy the war file
+----------------------------
+browser  192.168.12.199:8080/spring3-mvc-maven-xml-hello-world-1.2
+
+docker exec -it <containerid> /bin/bash
+
+we comeout that control+c
+
+without stop control+p+q
+
+vi Dockerfile
+
+remove # save it
+
+:wq
+
+docker build -t tomcat_exp:v1 .
+
+docker run -d -p 8080:8080 --name mytomcat2 tomcat_exp:v1
+
+docker rm mytomcat2
+
+docker run -d -p 8081:8080 --name mytomcat2 tomcat_exp:v1
+
+browser ip:8081/spring3-mvc-maven-xml-hello-world-1.2
+
+docker ps
+
+docker exec -it <new containerid> /bin/bash
+
+now we are working directory
+--------------------------------
+
+we reduce the images
+------------------------
+docker images
+
+
+
+
+
+9-September-2021
+====================
+
+code base
+docker
+
+start the server docker
+---------------------------
+
+ls -ltra
+
+cd docker_practice/
+
+ls -ltra
+
+URL:- https://github.com/ybmadhu/docker_practice.git
+
+cd Login_Docker
+
+ls -ltra
+
+sudo yum install tree -y
+
+tree
+cat  css/style.css
+
+ls -ltra
+
+vi index.html   -> just see and !q
+
+vi Dockerfile
+-------------
+
+From ubuntu
+
+delete ln -s /usr/bin/node js 
+
+ADD . ./
+
+delete index.html /usr/apps/
+
+
+remaines same
+
+:wq
+
+
+
+
+-----------------------
+note
+-----
+centos -> yum package
+ubuntu -> apt package
+alpine -> apk package
+python -> pip
+node js -> npm
+kubernetes -> helm
+============================
+
+
+docker build -t nodejsapp:v1 .
+
+docker run -d -p 8081:8080 --name mynodeapp nodejsapp:v1
+
+docker ps
+
+
+take ip and ip:8081 in browser
+---------------------------------
+
+docker images
+
+docker images | grep node
+
+cd ../
+
+ls -ltra
+
+cd Login_Docker_alphine/
+
+ls -ltra
+
+cat ../Login_Docker/Dockerfile
+
+
+Copy this all line
+------------------
+
+vi Dockerfile 
+
+paste here and change it
+=========================
+FROM alpine
+
+RUN apk update bash
+
+RUN apk add nodejs -y
+
+RUN apk add -y npm
+
+RUN npm install -g https-server
+
+ADD . . /
+
+remaines same
+
+:wq
+
+
+cd ..
+
+cd Login_Docker
+
+ls -ltra
+
+cp -r css/ ../Login_Docker_alphine/
+
+cp index.html ../Login_Docker_alphine/
+
+cd ../Login_Docker_alphine/
+
+ls -ltra
+
+docker build -t nodeapp_alpine:v1 .
+
+vi Dockerfile
+
+here and change it
+=========================
+FROM alpine
+
+MAINTAINER dockervijayammanagi <vijur40@gmail.com>
+
+WORKDIR /usr/apps/hello-docker/
+
+RUN apk update bash
+
+RUN apk add  nodejs --no-cache
+
+RUN apk add  npm
+
+
+
+RUN npm install -g http-server
+
+ADD . . /
+
+
+
+CMD ["http-server", "-s"]
+
+
+
+
+:wq
+================
+
+docker build -t nodeapp_alpine:v1 .
+
+docker run -d -p 8082:8080 --name nodeapp_small nodeapp_alpine:v1
+
+docker ps
+
+we can take ip from aws and IP:8081 browser it we get same application and compare it
+----------------------------------------------------------------------------------------
+
+docker images
+
+docker images | grep node
+
+now compare space
+-----------------
+
+
+
+
+Assignment
+----------
+docker multi stage build
+=========================
+
+1) dockerfile for install terraform git clone repo
+
+2)54 video session
+
+
+
+14-September-2021
+-----------------
+
+
+1)wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionProperties.properties
+
+2)wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionCheck.jar
+--2021-09-14 15:00:49-- https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionCheck.jar
+
+
+
+3)http://13.233.115.76/2021/09/14/docker-tutorial/
+
+we can put in s3 bucket 
+------------------------
+1)we go on S3
+
+2)we download jar file in s3 bucket 
+one is the property files and another one jar files.
+
+1)wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionProperties.properties
+
+2)wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionCheck.jar
+
+Knowledge purpose s3
+=========================
+create S3 bucket
+
+bucket name
+-----------
+postgreaql-java assignment
+
+Untick mark ->block Public Access settings for this bucket
+------------------------------------------------------------
+
+save it
+
+upload
+
+add files
+
+select add it files
+
+save 
+
+edit bucket policy
+
+policy generator
+-----------------
+select type of policy :-> s3 bucket policy
+
+effect:->allow
+principal:->*
+actions:->Getobject
+ARN:->Bucket ARN copy and paste here
+
+generate policy
+copy and 
+
+come back and paste here
+
+save and changes
+
+objects
+there are file click and share url
+==========================================
+
+Assignment java-app communicate with db database
+------------------------------------------------
+
+Docker machine start
+-----------------------
+mkdir machine_test
+
+cd machine_test/
+
+wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionCheck.jar
+
+wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionProperties.properties
+
+To communicate between java-app and postgres-db ==> Assignment
+-------------------------------------------------------------
+ docker run --name my-postgres -e POSTGRES_PASSWORD=madhupost -d -p 5432:5432 postgres
+ 
+ $ vi dbConnectionProperties.properties
+ 
+ postgres.jdbc.url=jdbc:postgresql://172.31.23.91:5432/postgres
+ 
+postgres.jdbc.username=postgres
+postgres.jdbc.password=madhupost
+
+ $ wget https://jmsth31-docker-assign.s3.ap-south-1.amazonaws.com/dbConnectionCheck.jar
+ 
+ $ vi Dockerfile
+ 
+: FROM openjdk
+ADD . .
+ENTRYPOINT java -DpropertyFileLocation=dbConnectionProperties.properties -jar dbConnectionCheck.jar
+
+ $  docker build -t dbtest .
+ 
+ $ docker run --name dbtest -d -p 9998:9998 dbtest               -> we can add port 9998s
+
+
+
+
+Wordpress link
+==============
+$ docker pull wordpress
+$ docker pull mysql
+
+$ docker run --name mysqlwp -e MYSQL_ROOT_PASSWORD=wordpressdocker \
+-e MYSQL_DATABASE=wordpress \
+-e MYSQL_USER=wordpress \
+-e MYSQL_PASSWORD=wordpresspwd \
+-d mysql
+
+docker run --name wordpress --link mysqlwp:mysql -p 80:80 \
+-e WORDPRESS_DB_NAME=wordpress \
+-e WORDPRESS_DB_USER=wordpress \
+-e WORDPRESS_DB_PASSWORD=wordpresspwd \
+-d wordpress
+
+
+docker ps 
+
+already running the 80 port so we can run in browser only IP address
+---------------------------------------------------------------------
+
+http://52.66.209.86/2021/09/15/docker-notes/  link of the wordpress
+----------------------------------------------------------------------
+
+
+16-September-2021
+------------------
+====================
+
+1)ADD Vs Copy
+---------------
+COPY and ADD are both Dockerfile instructions that serve similar purposes. They let you copy files from a specific location into a Docker image.
+
+Create tow sample files.
+-------------------------
+$ mkdir copy_add
+
+$ cd copy_add
+
+$ echo "this is sample file" > sample.txt
+
+$ echo "this is example file" > example.txt
+
+Write a Dockerfile using COPY and ADD
+-------------------------------------
+vi Dockerfile
+
+FROM busybox
+COPY sample.txt /tmp
+ADD example.txt /tmp
+CMD ["sh"]
+
+:wq
+
+Build the docker image
+----------------------------
+$ docker build -t copyaddtest .
+
+Run as a container
+---------------------
+$ docker run -it --name copyaddtest copyaddtest sh
+
+cd /tmp/
+
+ls -ltra
+
+exit   -> dont type realtime, now we can use
+
+docker ps
+
+no container
+
+Here as we seen COPY and ADD we can use same purpose but there are couple of difference, lets discuss
+-----------------------------------------------------------------------------------------------------
+Difference
+------------
+COPY
+------
+The COPY instruction copies files or directories into the Docker image.
+It takes a src and destination as arguments.
+Source can be absolute or relative from current WORKDIR or wild cards.
+Destination path can be absolute or relative to current WORKDIR.
+
+For Example:
+-------------
+COPY ./requirements.txt /app/requirements.txt
+COPY package.json package-lock.json /app
+COPY package*.json /app
+COPY . /app
+
+ADD
+----
+The ADD instruction copies files, directories, remote file or tar archive into the Docker image.
+It takes a src and destination as arguments.
+Source can be files and directories.
+Source can be a URL. The ADD instruction will download the file from the URL and save it to the destination. We don’t need to use curl or wget to download a file.
+Source can be a local tar/zip archive. The ADD instruction will automatically extract it to the destination. We don’t need to run unarchive commands manually.
+Use ADD when you want download a file from a URL or extract local archive file.
+
+For Example:
+For Example:
+ADD ./example.tar.gz /tmp/
+ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py /get-pip.py
+ADD example.txt /tmp/
+ADD https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.58/bin/apache-tomcat- 8.5.58.tar.gz /tmp/
+
+
+Create sample tar
+-----------------
+$ tar -cvzf example.tar.gz ./
+
+vi Dockerfile   -> previous and thing delele it and
+
+FROM busybox
+ADD example.tar.gz /tmp/
+CMD ["sh"]
+
+
+:wq
+
+
+docker images | grep copy
+
+Build the image
+----------------
+$ docker build -t copyaddtest:v1 .
+
+Run the container
+----------------------
+$ docker run -it --name copyaddtest1 copyaddtest:v1 sh
+
+Note :- ADD only download tar file and extract tar file also delete tar file so we can use the COPY .
+
+
+In COPY
+-------
+vi Dockerfile
+
+FROM busybox
+COPY example.tar.gz /tmp/
+CMD ["sh"]
+
+:wq
+
+$ docker build -t copyaddtest:v2 .
+
+$ docker run -it --name copyaddtest2 copyaddtest:v2 sh
+
+but extract but tar file here  thats difference between COPY and ADD
+---------------------------------------------------------------------
+
+we comout from this container
+---------------------------------
+exit
+
+vi Dockerfile
+-------------
+
+FROM busybox
+COPY example.tar.gz /tmp/
+WORKDIR /tmp/
+RUN tar -xvzf example.tar.gz .
+CMD ["sh"]
+
+:wq
+$ docker build -t copyaddtest:v3 .
+
+$ docker run -it --name copyaddtest3 copyaddtest:v3 sh
+
+cd /tmp/
+
+
+vi Dockerfile
+-------------
+
+FROM busybox
+COPY example.tar.gz /tmp/
+WORKDIR /tmp/
+RUN tar -xvzf example.tar.gz .
+RUN rm -rf example.tar.gz .
+CMD ["sh"]
+
+:wq
+
+$ docker build -t copyaddtest:v4 .
+
+$ docker run -it --name copyaddtest4 copyaddtest:v4 sh
+
+cd /tmp/
+
+
+this above example RUN tar keep and also remove it
+-----------------------------------------------------
+
+FROM URL
+-----------
+Note:-tomcat download from uRL take tar file it
+
+vi Dockerfile
+
+FROM busybox
+WORKDIR /tmp/
+ADD  https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.53/bin/apache-tomcat-9.0.53.tar.gz .
+CMD ["sh"]
+
+Build the image
+----------------
+$ docker build -t test:v5 .
+
+$ docker run -it --name copyaddtest5 copyaddtest:v5
+
+
+Note:->1) wget,curl commands used to in linux download URL ,ADD not secure download we can use in local we can copy that time ADD we use and better but not the url internet remote.
+
+2)ADD And COPY both are the same purpose , when use the COPY local to docker images,
+3)when use the ADD is the download internet we copy the tar file extract,remove the tar file.instead the we can Use RUN and CURL command.
+
+
+Finally one more :
+---------------------
+One more noteworthy difference between ADD and COPY is that COPY has the --from=<name|index> flag that lets you copy files from a previous build stage in a multi-stage build. ADD does not have this option.
+This is another reason to use COPY as your preferred option.
+
+
+multistage docker that time we use the copy but many previous builds that copy of the one dockerfile.its reduce the space.
+---------------------------------------------------------------------------------------------------------------------------
+espacially for golangauge.
+----------------------------
+
+2)ENTRYPOINT CMD RUN ->there are same purpose but run different
+----------------------------------------------------------------
+
+RUN ->build image time
+
+ENTRYPOINT and CMD -> running container time
+
+ENTRYPOINT -> we cant override the parameters  (running /bin/bash)
+
+CMD -> we can override the parameters        (running /bin/bash)
+
+
+ENTRYPOINT and CMD are both friends so ENTRYPOINT we can put in executable, CMD put into parameters,when we use executable not changing and parameters only change that time we use in the dockerfile
+
+RUN_CMD_ENTRYPOINT
+===================
+Some Docker instructions look similar and cause confusion among developers who just started using Docker or do it irregularly. In this post I will explain the difference between CMD, RUN, and ENTRYPOINT on examples.
+
+ RUN executes command(s) in a new layer and creates a new image. E.g., it is often used for installing software packages.
+ CMD sets default command and/or parameters, which can be overwritten from command line when docker container runs.
+ ENTRYPOINT configures a container that will run as an executable.
+
+Docker images and layers
+-------------------------
+When Docker runs a container, it runs an image inside it. This image is usually built by executing Docker instructions, which add layers on top of existing image or OS distribution. OS distribution is the initial image and every added layer creates a new image.
+Final Docker image reminds an with OS distribution inside and a number of layers on top of it. For example, your image can be built by installing a number of deb packages and your application on top of Ubuntu 14.04 distribution.
+
+Shell and Exec forms
+-----------------------
+All three instructions (RUN, CMD and ENTRYPOINT) can be specified in shell form or exec form. Let’s get familiar with these forms first, because the forms usually cause more confusion than instructions themselves.
+Shell form
+<instruction> <command>
+mkdir cmd_run_ent
+
+cd mkdir cmd_run_ent
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install python3 -y
+CMD echo "Hello world from CMD"
+ENTRYPOINT echo "Hello world from Entrypoint"
+
+:wq
+
+
+$ docker build -t test .
+$ docker run -it --name testing test .
+
+o/p -> from entrypoint
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install python3 -y
+ENTRYPOINT echo "Hello world from Entrypoint"
+CMD echo "Hello world from CMD"
+
+
+:wq
+
+$ docker build -t test:v2 .
+$ docker run -it --name testing2 test:v2 .
+
+
+o/p -> from entrypoint  .    but whereever put cmd in case entrypoint is ther execute o/p only entrypoint
+
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install python3 -y 
+#ENTRYPOINT echo "Hello world from Entrypoint"    ->we comment bthis line see what o/p execute
+CMD echo "Hello world from CMD"
+
+
+:wq
+
+$ docker build -t test:v3 .
+$ docker run -it --name testing3 test:v3 .
+
+
+o/p -> only cmd since here no entrypoint know ,cmd and entrypoint .o/p only entrypoint.
+
+
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install python3 -y 
+#ENTRYPOINT echo "Hello world from Entrypoint"
+CMD echo "Hello world from CMD.....1"
+CMD echo "Hello world from CMD......2"
+CMD echo "Hello world from CMD......3"
+
+:wq
+
+
+$ docker build -t test:v4 .
+$ docker run -it --name testing4 test:v4 .
+
+o/p -> Hello world from CMD......3      -> only last of the cmd.
+
+shell form executable
+------------------------
+
+When instruction is executed in shell form it calls /bin/sh -c <command> under the hood and normal shell processing happens. For example, the following snippet in Dockerfile
+
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+ENV name madhu sudhan
+ENTRYPOINT echo "Hello, $name"
+
+:wq
+
+$ docker build -t test:v5 .
+$ docker run -it --name testing5 test:v5 .
+
+o/p ->Hello madhu sudhan
+
+
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+ENV name madhu sudhan
+#ENTRYPOINT echo "Hello, $name"
+ENTRYPOINT ["echo","Hello, $name"]
+
+:wq
+
+$ docker build -t test:v6 .
+$ docker run -it --name testing6 test:v6 .
+
+o/p ->Hello, $name
+
+
+Note:->
+This is the preferred form for CMD and ENTRYPOINT instructions.
+<instruction> ["executable", "param1", "param2", ...]
+---------------------------------------------------------
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+ENV name madhu sudhan
+#ENTRYPOINT echo "Hello, $name"
+ENTRYPOINT ["/bin/bash","-c","echo Hello, $name"]
+
+:wq
+
+$ docker build -t test:v7 .
+$ docker run -it --name testing7 test:v7 .
+
+o/p ->Hello madhu sudhan
+
+
+
+
+RUN
+----
+
+vi Dockerfile
+
+
+FROM ubuntu
+RUN apt-get update -y
+CMD echo "Hello world"
+
+:wq
+
+$ docker build -t test:v8 .
+$ docker run -it --name testing8.1 test:v8 /bin/bash
+root$:exit
+
+$ docker run -it --name testing9 test:v9 ls -ltra
+
+-> above the example override container
+---------------------------------------
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+#CMD echo "Hello world"
+ENTRYPOINT echo "Hello world"
+
+wq
+
+$ docker build -t test:v10 .
+$ docker run -it --name testing10 test:v10 /bin/bash
+
+
+o/p-> Hello World   -> entrypoint cant override
+--------------------------------------------------
+
+
+BOTH combinations (EXEC format)
+--------------------
+CMD and ENTRYPOINT
+-------------------
+
+vi Dockerfile
+
+FROM ubuntu
+RUN apt-get update -y
+ENTRYPOINT ["/bin/echo", "Hello"]
+CMD ["world"]
+
+:wq
+
+$ docker build -t test:v11 .
+$ docker run -it --name testing11 test:v11
+
+o/p-> Hello World
+
+$ docker run -it --name testing11.1 test:v11 siva             ->override
+o/p-> Hello siva
+
+$ docker run -it --name testing11.2 test:v11 siva ramu        ->override
+o/p-> Hello siva ramu
+
+
+INTERVIEW Questions
+====================
+vi Dockerfile
+From ubuntu
+RUN apt-get update -y
+#CMD echo "Hello World"
+ENTRYPOINT echo "Hello World"
+
+:wq
+
+$ docker build -t test:v12 .
+
+$ docker run -it --name testing12 test:v12 
+
+o/p-> Hello World 
+
+$ docker run -it --entrypoint "/bin/echo" test:v11 madhu
+
+we cant override ENTRYPOINT in parameters but when we can override the entrypoint then we can pass the --entrypoint "/bin/echo" image:version name that time override
+
+example:-> docker run -it --entrypoint "/bin/echo" test:v11 madhu
+
+
+17-September-2021
+=================
+
+Docker
+------
+ONBUILD
+--------
+ example 
+
+     father                             Child
+        |                                 |
+  FROM ubuntu                       FROM parent:v1
+  ONBUILD RUN install               RUN echo "my child"              
+       |                                  |
+  docker build -t parent:v1       docker build -t child:v1
+  
+The ONBUILD instruction adds triggers to images. A trigger is executed when the image is used as the basis of another image (e.g., if you have an image that needs source code added from a specific location that might not yet be available, or if you need to execute a build script that is specific to the environment in which the image is built).
+
+A Docker build executes ONBUILD commands before any command in a child Dockerfile.
+
+The trigger inserts a new instruction in the build process, as if it were specified right after the FROM instruction. The trigger can be any build instruction. For example:
+                            ONBUILD <command>  <arguments>
+ONBUILD ADD . /usr/src/app
+ONBUILD RUN yum install httpd
+
+
+
+
+------------
+mkdir onbuild_ex
+------------------
+ls -ltra
+
+vi Dockerfile
+
+FROM busybox
+ONBUILD RUN echo "You won't see me until later"
+
+
+:wq
+
+docker build -t onbuildtest:v1 .
+
+vi Dockerfile_child
+
+FROM onbuildtest:v1
+RUN echo "i am child"
+
+:wq
+
+docker build -t child -f Dockerfile_child .
+
+docker build -t child:v1 -f Dockerfile_child .
+
+//////////////////////////////////////////////
+here 2nd time build ite showing cache
+--------------------------------------
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM onbuildtest:v1
+# Executing 1 build trigger
+ ---> Using cache
+ ---> 8d8888cf68b6
+Step 2/2 : RUN echo "i am child"
+ ---> Using cache
+ ---> f85c711d8c84
+Successfully built f85c711d8c84
+Successfully tagged child:v1
+//////////////////////////////////////////////////
+
+
+we dont cache we buld like command
+-------------------------------------
+
+docker build --no-cache=true -t child:v1 -f Dockerfile_child .
+
+Note:-> we use the --no-cache=true it's fresh build
+
+////////////////////////////
+
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM onbuildtest:v1
+# Executing 1 build trigger
+ ---> Running in fd663b2b0e52
+You won't see me until later
+Removing intermediate container fd663b2b0e52
+ ---> cdaf17363a85
+Step 2/2 : RUN echo "i am child"
+ ---> Running in 9c61e98b3b78
+i am child
+Removing intermediate container 9c61e98b3b78
+ ---> 321eccbb2a69
+Successfully built 321eccbb2a69
+Successfully tagged child:v1
+////////////////////////////////
+
+vi Dockerfile
+
+FROM nginx:1.16-alpine
+LABEL Auther="Madhu Sudhan Reddy"
+WORKDIR /usr/share/nginx/html
+COPY index.html .
+
+:wq
+ 
+docker build -t parent:v2 .
+
+
+Note:-> faild due to index.html file no more so.(COPY failed: file not found in build context or excluded by .dockerignore: stat index.html: file does not exist)
+----------------------------------------------------
+
+vi Dockerfile
+
+FROM nginx:1.16-alpine
+LABEL Auther="Madhu Sudhan Reddy"
+WORKDIR /usr/share/nginx/html
+ONBUILD COPY index.html .
+
+:wq
+ 
+docker build -t parent:v2 .
+
+
+
+vi Dockerfile_child
+
+FROM parent:v2
+
+:wq
+
+
+docker build -t child:v2 -f Dockerfile_child .
+
+Note:-> COPY failed: file not found in build context or excluded by .dockerignore: stat index.html: file does not exist.
+-----
+
+vi index.html
+
+<!doctype html>
+<html>
+  <head>
+	<h1> this is my web site</h1>
+  </head>
+</html>
+
+:wq
+
+docker build -t child:v2 -f Dockerfile_child .
+
+..............prgress
+
+docker run -t -p 80:80 --name mycontainer child:v2
+
+docker ps 
+
+docker rm $(docker ps -qa)
+
+docker ps
+
+docker run -d -p 80:80 --name mycontainer child:v2
+
+docker ps    -> now conatiner running
+
+
+now go browser ip address IP:80
+
+docker ps 
+
+vi index.html
+
+<!doctype html>
+<html>
+  <head>
+	<h1> i am getting sleep today</h1>
+  </head>
+</html>
+
+:wq
+
+
+docker rm -f (2 letters of conatinerID)
+
+docker build -t child:v3 -f Dockerfile_child .
+
+docker run -d -p 80:80 --name mycontainer child:v3
+
+
+my changes are in browser
+----------------------------
+
+EXPOSE 80,8080    ->we add in Dockerfile
+
+we more read in browser EXPOSE.
+
+
+
+
+20-September-2021
+==================
+healthcheck
+-------------
+1. What is a health check?
+Health checks are exactly what they sound like - a way of checking the health of some resource. In the case of Docker, a health check is a command used to determine the health of a running container.
+When a health check command is specified, it tells Docker how to test the container to see if it's working. With no health check specified, Docker has no way of knowing whether or not the services running within your container are actually up or not.
+
+
+healthcheck docker instructions
+--------------------------------
+mkdir flsk_app
+cd flsk_app/
+
+vi app.py/
+
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello_world():
+return 'Hello world'
+if __name__ == '__main__':
+app.run(host='0.0.0.0')
+
+
+:wq
+
+
+vi requirements.txt
+
+Flask==0.12.2
+
+:wq
+ 
+ Note:-> above the requirements are all python dependencies automatically petch.
+ 
+
+vi Dockerfile
+
+FROM python:3.6-alpine
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+
+:wq
+
+$ docker build -t docker-flask .
+
+$ docker run --rm --name docker-flask -p 5000:5000 docker-flask
+
+$ docker ps
+
+i can also run in daemon background
+------------------------------------
+
+docker run -d --name docker-flask -p 5000:5000 docker-flask 
+
+$ docker ps
+
+
+take myip IP:5000 running or not in browser we also add in inbound 5000.
+-------------------------------------------------------------------------
+ refresh the browser.
+ 
+ go to dockerfile and add the healthcheck
+ -------------------------------------------
+
+vi Dockerfile
+
+FROM python:3.6-alpine
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+HEALTHCHECK CMD curl --fail http://localhost:5000/ || exit 1
+CMD ["python", "app.py"]
+
+
+:wq
+
+
+now rebuild it
+--------------
+Let's rebuild and run our container.
+---------------------------------------
+$ docker build -t docker-flask .
+
+i can kill the previous container
+------------------------------------
+$ docker rm -f <two letters or number of conatiner>
+
+ 
+$ docker run -d --name docker-flask -p 5000:5000 docker-flask
+
+$ docker ps 
+
+we can status of the container
+-------------------------------
+up healthcheck :starting
+
+
+we can browser in google healthcheck
+----------------------------------------
+
+we can check the inspect the container
+--------------------------------------
+
+docker inspect --format='{{json .State.Health}}' docker-flask
+
+
+docker inspect docker-flask         -> we dont want json format
+
+
+docker run -it --name docker-flask -p 5002:5000 docker-flask
+
+docker ps -a
+
+docker run --rm -it  --name docker-flask2 -p 5003:5000 docker-flask      -> stop and remove the container automatically
+
+docker ps -a 
+
+
+VOLUME
+-------
+
+we dont want loss the conatiner data we use the docker valume persistance and continuously take up the background
+-------------------------------------------------------------------------------------------------------------------
+
+docker run -it --name myubuntu ubuntu
+
+mkdir vijay
+
+cd vijay
+
+echo "this is the docker course" > sample.txt
+
+cat sample.txt
+
+cd 
+
+ls -ltra /
+
+cd vijay/
+
+ls -ltra
+
+exit    -> exit the conatiner
+
+docker ps 
+
+
+docker rm -f <conatiner id>
+
+docker ps -a
+
+docker rm -f <conatinerID> <conatinerID>
+
+docker start <conatinerID image-ubuntu>
+
+docker ps
+
+docker exec -it <conatinerID> bash
+
+ls -ltra
+
+exit
+
+docker ps 
+
+docker rm -f <conatinerID>
+
+docker run -it --name myubuntu ubuntu
+
+ls -ltra
+
+exit
+
+if the conatiner delete all the data also remove we dont want to remove what we can do.now we use valume
+----------------------------------------------------------------------------------------------------------
+
+docker ps 
+
+docker ps -a
+
+docker rm -f <containerid>
+
+Volume:-
+
+$ docker volume create --name mydata
+
+$ docker run -ti --rm -v mydata:/c_mydata ubuntu            -> if we execute the --rm we lose the conatiner but not data
+
+ls -ltra
+
+cd c_mydata/
+
+ls -ltra
+
+no data
+----------
+we create one file
+-----------------
+
+echo "i am from the container" > sample.txt
+
+
+open the one more terminal also same connect it we can the valume
+------------------------------------------------------------------
+
+cd /var/lib/docker/
+
+ls -ltra
+
+sudo -i
+
+cd /var/lib/docker/
+
+ls -ltra
+
+cd valumes
+
+ls -ltra
+
+cd mydata/
+
+ls -ltra
+
+cd _data/
+
+ls -ltra
+
+
+cat sample.txt
+i am from container
+
+vi sample.txt
+ i am from conatiner
+ i am come from main server
+ 
+ :wq
+ 
+go to first terminal
+----------------------
+cat sample.txt
+
+i am from conatiner
+ i am come from main server
+
+echo "i again from the conatiner" >> sample.txt
+
+go to second terminal
+----------------------
+
+cat sample.txt
+
+  i am from conatiner
+ i am come from main server
+ i again from the conatiner
+ 
+ 
+ we can check the first terminal (main)conatiner
+ -----------------------------------------------
+ exit
+ 
+ docker ps 
+ 
+ docker ps -a 
+ 
+ no more container we lose the data -> No ,check it
+ -----------------------------------------------------
+ 
+$ docker run -ti --rm -v mydata:/c_mydata ubuntu            -> once again run this conatiner this will run
+
+ls -ltra
+
+cat sample.txt
+
+above the i am new container  but same previous valume
+-------------------------------------------------------
+
+Note:->we realize that previous we use all the softwares like jenkins home directory,maven,promothese,grafana,elastick search,nexus,sonarqube whatever softwares are deploy only conatiner there is no manually relations 
+
+exit
+
+docker ps 
+
+docker ps -a    -> gone the conatiner
+
+we want to inspect tha data we the command
+-------------------------------------------
+
+docker volume inspect mydata
+
+ -> mountpoint is the where is the store the data.
+ 
+if we want volume list
+------------------------
+
+docker volume ls
+
+
+ 
+ we can create new one volume conatiner
+ ---------------------------------------
+
+$ docker run -ti --rm -v /newdata:/new_data ubuntu        -> -v /newdata this slash is the blind mount not to save docker area.
+
+cd new_data/
+
+ls -ltra
+
+echo "this is data from the conatiner" > example.txt
+
+
+cat example.txt
+
+
+
+
+go to second terminal 
+----------------------
+
+cd 
+
+docker volume ls
+
+
+cd /
+
+ls -ltra
+
+ newdata
+ 
+cd newdata/
+
+
+ls -ltra
+
+
+if we want change in this file
+------------------------------
+
+vi example.txt
+
+this is data from the conatiner
+
+this is the host machine
+
+
+:wq
+
+
+
+ 
+
+go to first terminal
+-----------------------
+exit
+
+
+
+
+
+new multiple conatiner create it
+---------------------------------
+
+first terminal
+
+docker run -ti --name ubuntu1 -v /newdata:/new_data ubuntu
+
+cd /newdata/
+
+ls -ltra
+
+echo "add new line from the conatiner" > example.txt
+
+cat example.txt
+
+
+this above the inside of the conatiner
+-----------------------------------------
+
+go to second terminal (out side of the terminal)
+-------------------------------------------------
+cat example.txt
+
+
+docker run -ti --name ubuntu2 --volumes-from ubuntu1 ubuntu
+
+we see new data 
+---------------
+ls -ltra
+
+cat new_data/
+
+echo " i am from the another ubuntu2 conatiner" >> example.txt
+
+cat example.txt
+here loss 4 line
+
+go to first conatiner
+----------------------
+
+cat example.txt
+
+here also 4 line
+
+
+exit 
+
+
+cat /newdata/example.txt
+
+here also 4 line  -> is the conatiner as the volume
+
+interview Questions
+-----------------------
+1)how do you mention the size in the docker volume ?
+->docker volume create -d flocker -0 size=20GB my-named-volume
+
+2)how do you mention the drivers in the docker volume ?
+-> $ docker volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt0=size=100m,uid=1000
+
+
+
+
+
+21-September-2021
+===================
+docker private repo    ->   
+
+
+Go to google in search official jenkins image
+----------------------------------------------
+
+Install Jenkins using docker 
+---------------------------------
+$ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11                  -> port 50000 means slave purpose
+
+IP:8080 in browser
+
+administrator password put here
+
+
+1)under which path jenkins store?
+->home_directoty    -->jenkins_home/
+
+Note:->jenkins install same like previous how to install but her one command to everything jenkins mentains the one conatiner install.
+
+docker ps
+
+docker ps -a
+
+docker rm -f <conatinerID or [conatiner 2 number or letters]>
+
+
+docker run -d -p 8080:8080 -p 50000:50000 -u root -v /Jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+docker ps 
+
+docker ps -a
+
+docker logs <conatinerID>
+
+
+note:-> no space here showing 
+
+df -kh
+
+docker images
+
+docker rmi -f $(docker images| awk '{print $3}')
+
+docker images
+
+docker ps -a
+
+docker rm -rf <conatinerID>
+
+
+df -kh
+
+same conatiner again run it
+----------------------------
+docker run -d -p 8080:8080 -p 50000:50000 -u root -v /Jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+my docker jenkins server stop and start
+---------------------------------------
+
+now check conatinerID
+-----------------------
+
+docker ps 
+
+docker ps -a
+
+stop the conatiner
+-------------------
+
+docker rm <conatinerID>
+
+
+docker run --restart=always -u root -p 8080:8080 -p 50000:50000 -v /Jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
+
+docker ps 
+
+
+once again stop my instance EC2 and start it
+-----------------------------------------------
+
+docker ps   -> conatiner now will be the running jenkins never down
+
+
+now go to browser
+
+IP:8080
+
+open the port but ask the password how to find out
+---------------------------------------------------
+
+how can see again same password in conatiner
+----------------------------------------------
+cd /
+
+ls -ltra
+
+cd jenkins_home/
+
+sudo cd secrets/
+
+sudo -i
+
+cd /jenkins_home/
+
+cd secrets/
+
+ls -ltra
+
+
+cat intialAdminPassword
+
+copy it and paste in server browser
+---------------------------------------
+new item
+
+first
+
+freestyle job
+
+build -> execute shell
+
+echo "i am docker jenkins"
+
+save
+
+and build now 
+
+
+-------------------
+
+no go to terminal
+
+docker ps 
+
+docker rm -f <containerid>
+
+
+now my docker jenkins server is gone  (also reagain run that command)
+----------------------------------------------------------------------
+
+docker run --restart=always -u root -p 8080:8080 -p 50000:50000 -v /Jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
+
+docker ps 
+
+IP:8080 refresh it    -> this new conatiner not old but old job , old  pluins are available.
+
+
+Docker Registry
+-------------------
+
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
+
+docker ps
+
+we can inbond port 5000 add or not ,if added ok 
+------------------------------------------------
+IP:5000/index.html    -> there no ui port.
+
+
+
+
+
+we want to push one images before i can any images pull then push. now i can try to see.
+-----------------------------------------------------------------------------------------
+Pull (or build) some image from the dockerhub
+------------------------------------------
+$ docker pull ubuntu
+
+$ docker pull alpine
+
+
+Tag the image so that it points to your registry
+------------------------------------------------
+$ docker image tag ubuntu localhost:5000/my-ubuntu
+
+
+push it your private registry
+-------------------------------
+$ docker push localhost:5000/my-ubuntu
+
+
+remove your local image and try to pull from local repository.
+---------------------------------------------------------------
+$ docker image remove ubuntu
+
+docker images | grep ubuntu     -> there images not available
+
+$ docker pull localhost:5000/my-ubuntu     ->its download the images in local
+
+$ docker images | grep ubuntu 
+
+I can remove the images
+------------------------
+$ docker image remove localhost:5000/my-ubuntu
+
+docker ps
+
+docker rm -f <containerid of the ubuntu 5000>
+
+docker ps
+
+once again download the server but that server gone
+---------------------------------------------------
+$ docker pull localhost:5000/my-ubuntu
+
+
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
+
+$ docker pull localhost:5000/my-ubuntu
+
+this above unbale download since volume not created
+--------------------------------------------------------
+docker ps
+
+docker rm -f <conatinerID of the registry>
+
+docker run -d \ 
+-p 5000:5000 \ 
+--restart=always \
+--name registry \ 
+-v /mnt/registry:/var/lib/registry \ 
+registry:2
+
+
+
+$ docker pull ubuntu
+
+$ docker image tag ubuntu localhost:5000/my-ubuntu
+
+$ docker push localhost:5000/my-ubuntu
+
+$ docker image remove localhost:5000/my-ubuntu
+
+$ docker image remove ubuntu
+
+$ docker images | grep ubuntu
+
+no images here
+--------------
+
+$ docker pull localhost:5000/my-ubuntu
+
+$ docker images | grep ubuntu
+
+$ docker rmi localhost:5000/my-ubuntu
+
+$ docker images | grep ubuntu
+
+$ docker ps 
+
+docker rm -f <conatinerID registry>
+
+docker ps
+
+$ docker images | grep ubuntu
+
+
+$ docker run -d -p 5000:5000 --restart=always --name registry -v /mnt/registry:/var/lib/registry registry:2    -> new container
+
+$ docker ps
+
+$ docker images | grep ubuntu               -> no images
+
+$ docker pull localhost:5000/my-ubuntu       -> now create volumes  so never lose the jobs 
+
+*how to check how many images are pushed and which version images are there how to know that we pushed blindly also where is the store images how to know that information?
+
+search in browser docker private registry rest api
+
+we can push some images to understand
+----------------------------------------
+$ docker tag localhost:5000/my-ubuntu localhost:5000/my-ubuntu:v1
+
+$ docker tag localhost:5000/my-ubuntu localhost:5000/my-ubuntu:v2
+
+$ docker push localhost:5000/my-ubuntu:v1
+
+$ docker push localhost:5000/my-ubuntu:v2
+
+
+get the list of images in my private registry.
+-----------------------------------------------
+$ curl -X GET http://localhost:5000/v2/_catalog
+
+$ docker tag alpine localhost:5000/alpine:v1
+
+$ docker push localhost:5000/alpine:v1
+
+get the list of images in my private registry.
+-----------------------------------------------
+
+$ curl -X GET http://localhost:5000/v2/_catalog   -> list if the images are showing
+
+
+If you want get the all tags form a particular image.
+-------------------------------------------------------
+
+curl -X GET http://localhost:5000/v2/my-ubuntu/tags/list
+
+curl -X GET http://localhost:5000/v2/alpine/tags/list
+
+
+if you want delete a tag first we need to get a catalog and tags and then use bellow command
+----------------------------------------------------------------------------------------------
+
+curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET http://localhost:5000/v2/alpine/manifests/latest 2>&1 | grep Docker-Content-Digest | awk '{print ($3)}'
+
+we can get one sha id
+----------------------
+copy the shaID
+
+Run the command given below with manifest value:
+-------------------------------------------------
+curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X DELETE http://127.0.0.1:5000/v2/my-ubuntu/manifests/ sha256:f2557f94cac1cc4509d0483cb6e302da841ecd6f82eb2e91dc7ba6cfd0c580ab
+
+405 metthod is not allow
+
+if you want to delete the images we must set the environment variable called REGISTRY_STORAGE_DELETE_ENABLED=true
+---------------------------------------------------------------------------------------------------------------------
+
+docker run -d -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true -v /mnt/registry:/var/lib/registry --restart=always --name registry registry:2
+
+
+
+curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X DELETE http://127.0.0.1:5000/v2/my-ubuntu/manifests/ sha256:f2557f94cac1cc4509d0483cb6e302da841ecd6f82eb2e91dc7ba6cfd0c580ab
+
+
+
+202 Accepted
+
+
+curl -X GET http://localhost:5000/v2/my-ubuntu/tags/list
+
+tags null
+
+
+
+
+22-September-2021
+---------------------
+connect docker server
+
+ls -ltra
+
+sudo -i
+
+ls -ltra
+
+vi config.yml
+
+version: 0.1
+log:
+fields:
+service: registry
+storage:
+delete:
+enabled: true
+cache:
+blobdescriptor: inmemory
+filesystem:
+rootdirectory: /var/lib/registry
+http:
+addr: :5000
+headers:
+X-Content-Type-Options: [nosniff]
+Access-Control-Allow-Origin: ['http://35.154.204.15']
+Access-Control-Allow-Methods: ['HEAD', 'GET', 'OPTIONS', 'DELETE']
+Access-Control-Allow-Headers: ['Authorization', 'Accept']
+Access-Control-Max-Age: [1728000]
+Access-Control-Allow-Credentials: [true]
+Access-Control-Expose-Headers: ['Docker-Content-Digest']
+
+
+
+
+:wq
+
+
+docker ps
+
+
+docker rm -f <conatinerID of the registry>  -> remove and once again start
+
+docker ps
+
+docker run -d -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true -v `pwd`/config.yml:/etc/docker/registry/config.yml -v /mnt/registry:/var/lib/registry --restart=always --name registry registry:2.7.1
+
+$ curl -X GET http://localhost:5000/v2/_catalog
+
+
+$ docker images
+
+$ docker pull dockervijayammanagi/greeting:v1
+
+$ docker tag dockervijayammanagi/greeting:v1 localhost:5000/greeting:v1     -> new images name of tag
+
+$ docker tag ynmsr/greeting:v1 localhost:5000/greeting:v2
+
+$ docker push localhost:5000/greeting:v1
+
+ 
+$ docker push localhost:5000/greeting:v2   ->is the already there.
+
+$ curl -X GET http://localhost:5000/v2/_catalog
+
+$ curl -X GET http://localhost:5000/v2/greeting/tags/list
+
+$ docker run -d -p 80:80 -e URL=http://65.1.94.194:5000 -e DELETE_IMAGES=true --name=registry_ui joxit/docker-registry-ui:1.5-static
+
+$ docker ps
+
+copy the ip   80 is already open .
+----------------------------------
+now check port also you can also delele file in UI mode
+-------------------------------------------------------------
+
+
+
+
+Now we can create new one serve name it :- docker-registry-server
+------------------------------------------------------------------
+another terminal open do it
+---------------------------
+
+$ sudo yum update -y
+
+$ sudo yum install docker -y
+
+$ sudo usermod -aG docker ec2-user
+
+$ sudo systemctl start docker
+
+$ sudo systemctl status docker        -> docker running or not
+
+$ exit    -> exit the console
+
+Now login the console
+
+$ docker images
+
+$ docker ps
+
+
+Go to the first terminal means docker server
+--------------------------------------------
+docker ps
+
+docker rm -f <conatinerID of the joxit> <containerid of the registry>
+
+docker ps
+
+
+Now i go to another terminal means docker-registry-server
+---------------------------------------------------------
+
+docker run -d -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true -v /mnt/registry:/var/lib/registry --restart=always --name registry registry:2
+
+
+docker ps   -> conatiner running
+
+$ curl -X GET http://localhost:5000/v2/_catalog
+
+  no list
+
+we can download any images
+--------------------------
+$ docker pull hello-world
+
+$ docker images   -> now see two images
+
+
+now go to first terminal docker server but copy the ip docker-registry-server put into the docker server
+---------------------------------------------------------------------------------------------------------
+$ docker tag ynmsr/greeting:v1 192.168.12.33:5000/greeting:v1
+
+$ docker push 192.168.12.33:5000/greeting:v1
+
+now get problem http we can solve to daemon 
+-----------------------------------------------
+
+vi /etc/docker/daemon.json
+
+
+{
+"insecure-registries" : ["192.168.12.33:8085"]                                         -> we can docker-registry-server ip
+}
+
+
+:wq
+
+
+$ sudo service docker restart
+
+
+Now we try to push
+-------------------
+
+$ docker push 192.168.12.33:5000/greeting:v1
+
+
+
+Now i go to another terminal means docker-registry-server
+---------------------------------------------------------
+earlyr no list
+--------------
+
+$ curl -X GET http://localhost:5000/v2/_catalog
+
+now list
+
+
+
+
+now we can try to push nexus repository war file pip,docker,maven
+--------------------------------------------------------------------
+we can install in nexus server
+------------------------------
+we can percuise it nexus previous class
+-----------------------------------------
+
+third terminal to connect nexus server
+----------------------------------------
+
+$ sudo netstat -plnt       (ports are running)               
+
+what is the port of the nexus(8081)
+-----------------------------------
+
+switch the nexus user
+---------------------
+
+su - nexus
+
+password : admin
+
+$ /etc/init.d/nexus start
+
+$ sudo netstat -plnt
+
+access the server to ip:8081
+-----------------------------
+
+user:admin
+pwd:admin
+
+create new repository
+-------------------
+docker(hosted)
+
+name:greeting
+
+http
+click the mark: 8083
+
+Enable Docker V1 API
+--------------------
+
+
+create the repo
+-----------------
+
+$ docker tag ynmsr/greeting:v1 nexusIP:8083/greeting:v1
+
+
+$ docker login -u admin -p admin nexusIP:8083
+
+here also https daemon problem so we can do 
+-----------------------------------------------
+we add ip /etc/docker/daemon
+
+$ /etc/docker/daemon
+
+{
+"insecure-registries" : ["docker-registry-server ip:5000","nexusIP:8083"]
+}
+
+:wq
+
+
+once done we restart it
+-----------------------
+
+$ sudo service docker restart
+
+
+$ docker login -u admin -p admin nexusIP:8083
+
+
+security in nexus application
+-------------------------------
+Realms
+ docker Bearer token Realm
+ 
+ save 
+ 
+also go to inbound role add the port 8083 in nexus server
+---------------------------------------------------------
+ 
+$ docker login -u admin -p admin nexusIP:8083
+
+$ docker push nexusIP:8083/greeting:v1
+
+
+we go to check the nexus application in browser
+-------------------------------------------------
+nexus 
+ Browse
+   v2
+    blobs
+	  greeting
+	  
+	  
+	  
+one ngnix loadlancer to conect two servers but one server is down another server immidiatly connect
+--------------------------------------------------------------------------------------------------
+Loadbalancer with nginx
+-----------------------
+
+Here webapp1 and webapp2 is running our application instances.
+Loadbalancer is running with nginx load balancer.
+First we will install docker on webapp1 and awebapp2 instances (as of now I am installing manually. We will automate this step using ansible to install docker )
+
+sudo apt-get update           ->web1
+sudo apt-get update            ->web2
+
+sudo apt-get upgrade -y   ->web1
+sudo apt-get upgrade -y   ->web2
+
+sudo apt-get install docker.io –y   ->web1
+sudo apt-get install docker.io –y   ->web2
+
+Now I will write a small static page using html
+--------------------------------------------------
+sudo mkdir -p /data/www           ->web1
+
+cd /data/www/
+
+vi index.html
+
+<h1>hello1</h1>
+
+:wq
+
+sudo docker run --name nginx -v /data/www:/usr/share/nginx/html:ro -d -p 80:80 nginx
+
+browser it ip
+----------------
+
+sudo mkdir -p /data/www          ->web2
+
+cd /data/www/
+
+vi index.html
+
+<h1>hello2</h1>
+
+:wq
+
+sudo docker run --name nginx -v /data/www:/usr/share/nginx/html:ro -d -p 80:80 nginx
+
+browser it ip
+---------------
+
+
+now let’s configure loadbalncer
+---------------------------------
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install nginx -y
+
+Now open the /etc/nginx/nginx.conf file add your server details.
+-------------------------------------------------------------------
+
+sudo vi /etc/nginx/nginx.conf
+
+note:- open it also delele all lines (1,$d)
+
+events {
+worker_connections 768;
+# multi_accept on;
+}
+http {
+upstream backend {
+server ec2-13-233-195-248.ap-south-1.compute.amazonaws.com;
+server ec2-13-233-148-64.ap-south-1.compute.amazonaws.com;
+}
+server {
+listen 80;
+location / {
+proxy_pass http://backend;
+}
+}
+}
+
+:wq
+
+
+To check the syntax error use below command
+----------------------------------------------
+sudo nginx -t
+
+
+reload the nginx
+-----------------
+
+sudo systemctl reload nginx
+
+sudo systemctl status nginx
+
+
+
+we go in browser any ip or dns name put in browser check
+--------------------------------------------------------
+hello1
+hello2
+
+hello1
+hello2
+
+
+if any server down we stop web1
+-------------------------------
+
+check
+------
+
+hello2   ->only work
+
+
+
+
+26-September-2021
+=================
+today's task
+------------
+1)run jenkins server with you custome docker file with dependencies
+2)create a free style jenkins job with docker integration.
+
+
+Build a Jenkins and Docker server
+----------------------------------
+To provide our Jenkins server, we’re going to build an image from a Dockerfile
+that both installs Jenkins and Docker.
+
+mkdir jenkins_server
+cd jenkins_server
+
+vi Dockerfile
+
+FROM jenkins/jenkins:lts
+MAINTAINER vijay ammanagi
+USER root
+RUN apt-get -y update; apt-get install -y sudo; apt-get install -y git wget
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN wget http://get.docker.com/builds/Linux/x86_64/docker-latest.tgz
+RUN tar -xvzf docker-latest.tgz
+RUN mv docker/* /usr/bin/
+USER jenkins
+
+
+
+:wq
+
+docker build -t msrjenkins .
+
+ 
+already conatiner is their just remove
+--------------------------------------
+docker ps 
+docker rm -f <conatinerID>
+
+docker run -d --restart=always -u root -p 8080:8080 -p 50000:50000 -v /jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --name jenkins msrjenkins:latest
+
+
+docker ps
+
+browser it IP:8080 (already volume mounted so all jobs are came)
+-----------------------------------------------------------------
+new item
+--------
+docker freestyle
+
+build 
+-----
+execute shell
+
+docker version
+
+apply and save
+
+build now
+--------
+
+
+
+
+
+-----------------------
+go to github login        (check it any docker file if no way we can push to github)
+---------------------
+cd ..
+ls -ltra
+cd docker_practice/
+ls -ltra
+cd hello/
+ls ltra
+
+we create new repository ->hello
+
+
+ls -ltra
+
+cd ../
+
+cd ..
+
+mkdir hello
+
+cp -r docker_practice/hello hello/
+
+cd hello/
+
+ls -ltra
+
+git init
+
+git remote -v
+
+git remote add origin https://github.com/vijayammanagi1234/hello.git
+
+git status
+
+git add .
+
+git status
+
+git commit -m "added the docker file"
+
+git push origin master
+
+username
+
+generate one docker token
+--------------------------
+copy the token and paste here
+
+Now we are go to running jenkins 
+----------------------------------
+
+git 
+
+ clone repo:-> here
+
+add credentials
+--------------
+username:-vijayammanagi1234
+password:-vijay@89042
+
+ID:->github_credentials
+
+descriptions
+-------------
+github_credentials
+
+add it 
+
+
+apply and save
+
+now just clone build now.
+------------------------
+successfully
+
+then we install plugins
+-----------------------
+manage jenkins
+     manage plugins
+	    available
+        cloudbees docker build and publish
+		
+		
+docker freestyle 
+ configure
+ build trigger
+  poll scm
+    */1 * * * *
+
+
+build
+------
+ docker build and publish
+
+Repo name:->ybmsr/jms31_java   -> dockerhub name yours
+
+tag:-> v1.0          
+
+registry_credentials:->
+add
+
+username:->vijayammanagi1234
+password:-> Vijay@89042
+
+id
+--
+dockerhub_credentials
+
+descriptions
+------------
+dockerhub credentials
+
+add and save
+
+registry_credentials advanced
+------------------------------
+click -> force pull
+click -> create fingerprint
+click -> skip tag as latest
+
+
+
+apply and save
+
+
+
+build now
+
+
+if fail then we do docker login in volume in cli
+-------------------------------------------------
+docker ps
+
+docker exec -it <conatinerID of msrjenkins> bash
+
+docker login
+
+username:->dockervijayammanagi
+password:->Vijay@89042
+
+
+
+go to jenkins and build now
+---------------------------
+
+successfully
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  not use it 
+if not get successfully another way
+-----------------------------------
+$ docker login
+<enter user name and password for Docker Hub Repository>
+
+$ docker tag first-image {docker-hub-username}/{default-repo-folder-name}:first-image
+$ docker tag dockervijayammanagi/dockervijayammanagi
+
+$ docker push {docker-hub-username}/{default-repo-folder-name}:first-image
+$ docker push dockervijayammanagi/dockervijayammanagi
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ 
+
+
+go to dockerhub and refresh it
+-------------------------------
+here docker images are pushed here
+-------------------------------------
+
+go to github
+--------------
+hello
+ HelloWorld.java
+   some change it 
+    system.out.println("docker");
+	
+	
+change commit it UI level
+------------------------
+
+
+go to jenkins automatically trigger
+
+here two version showing
+------------------------
+one is the latest and previous
+
+
+go to dockerhub
+----------------
+refresh it that images latest is pushed
+---------------------------------------
+
+jenkins we can tag in docker
+----------------------------
+tag:-> ${BUILD_NUMBER}
+
+apply and save
+
+
+
+
+--------------------
+Go amazonaws   ECR
+------------
+ECR -> elastick conatiner registry
+
+create
+
+repository name:->jmsth31_docker
+
+
+click it -> create repository
+
+ecr repository copy it 
+-----------------------
+
+
+$ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 490048825081.dkr.ecr.ap-south-1.amazonaws.com/jmsth31_docker
+
+
+
+cli command
+-------------
+exit
+
+hello]$  aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 490048825081.dkr.ecr.ap-south-1.amazonaws.com/jmsth31_docker
+
+docker images
+
+docker tag alpine <ecr repository pste here>:v1
+
+docker push <ecr repository pste here>:v1
+
+now go to check in ECR amazonaws and refresh it 
+-----------------------------------------------
+
+
+assignment
+-----------
+push docker image to nexus,ecr using jenkins freestyle job
+push docker image to nexus,ecr using jenkins pipeline job
+
+(https://www.coachdevops.com/2021/02/automate-docker-builds-using-jenkins.html)
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Reechas Notes
+-------------
+below the pushing the ecr 
+------------------------
+
+pipeline {
+    agent any 
+    environment {
+        registry = "073111206621.dkr.ecr.us-east-1.amazonaws.com/my_ecr_repo"
+    }
+    stages {
+      stage ('checkout') {        
+        steps{
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/akannan1087/myPythonDockerRepo.git']]])
+             }  
+        }
+      stage ('docker build') {
+        steps{
+            script {
+                dockerImage=docker.build registry
+                
+            }
+        }  
+      }
+      stage ('docker image push') {
+        steps {
+           script {
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 073111206621.dkr.ecr.us-east-1.amazonaws.com'
+                sh 'docker push 073111206621.dkr.ecr.us-east-1.amazonaws.com/my_ecr_repo:latest'
+         }    
+        }  
+      }
+    }
+}
+
+below the docker pushing
+-------------------------
+
+pipeline {
+    agent any 
+    environment {
+        registry = "dockervijayammanagi/hello"
+		registryCredential = 'dockerhub_credentials'
+		dockerImage = ''
+    }
+    stages {
+      stage ('checkout') {        
+        steps{
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vijayammanagi1234/hello.git']]])
+             }  
+        }
+      stage ('docker build') {
+        steps{
+            script {
+                dockerImage=docker.build registry + ":$BUILD_NUMBER"
+                
+            }
+        }  
+      }
+      stage ('docker image push') {
+        steps {
+           script {
+                docker.withRegistry('', registryCredential){
+				dockerImage.push()
+                }    
+                
+            }    
+        }  
+      }
+    }
+}
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+OR - OR - OR - OR -OR above and below script one
+-----------------------------------------------
+
+
+27-September-2021
+===================
+jenkins docker integration with pipeline
+-----------------------------------------
+pipeline {
+    agent any 
+    environment {
+        registry = "dockervijayammanagi/hello"
+		registryCredential = 'dockerhub_credentials'
+		dockerImage = ''
+    }
+    stages {
+      stage ('git scm') {        
+        steps{
+             git credentialsID: 'Github_credentials', url: 'https://github.com/vijayammanagi1234/hello.git'
+             }  
+        }
+      stage ('docker build') {
+        steps{
+            script {
+                dockerImage=docker.build registry + ":$BUILD_NUMBER"
+                
+            }
+        }  
+      }
+      stage ('docker image push') {
+        steps {
+           script {
+                docker.withRegistry('', registryCredential){
+				dockerImage.push()
+         }    
+        }  
+      }
+    }
+	stage("Remove the Old docker Image"){
+	  steps{
+	     sh "docker rmi $registry:$BUILD_NUMBER"
+	  }
+	}
+  }
+}
+
+
+copy it and 
+
+go to jenkins
+-------------
+new item
+---------
+name: docker_pipeline_dockerhub
+
+pipeline script
+---------------
+
+
+save and build
+
+install -> docker pipeline plugins
+
+once again save and build
+--------------------------
+
+refresh the dockerhub .
+------------------------
+
+
+pull it in local
+---------------
+
+$ docker pull dockervijayammanagi/hello
+
+$ docker run -it --name javaapp dockervijayammanagi/hello
+
+show it what is the inside hello.
+madhu
+DevOps
+Docker
+containers
+
+
+once complete it this conatiner remove
+-------------------------------------
+
+$ docker ps -a
+
+$ docker ps 
+
+$ docker rm -f <conatinerID hello>
+
+
+
+
+
+another one
+----------
+
+
+go to amazonaws account create one ecr repo
+-------------------------------------------
+
+repo -> hellojava
+
+in jenkins we should install amazon ecr plugins
+--------------------------------------------------
+manage jenkins
+--------------
+    manage credentials
+	-------------------
+	we can go to aws and  create one IAM and also access key and secrets key .
+	-------------------------------------------------------------
+
+go and create new item in jenkins
+-----------------------------------
+new item
+--------
+ docker_freestyle_ecr
+ ----------------------
+  freestyle project
+  -----------------
+  git
+  ---
+  repo url:
+   https://github.com/vijayammanagi1234/hello.git
+   
+   git credentials
+   
+build 
+-----
+docker build and publish
+-------------------------
+repo name:- hellojava
+
+tag
+---
+${BUILD_NUMBER}
+
+docker repository url: 490048825081.dkr.ecr.ap-south-1.amazonaws.com/hellojava
+
+registry credentials:amazon ecr ap-south-1
+
+advanced
+---------
+click -> force pull
+click -> create fingerprint
+click -> skip tag as latest
+
+apply ans save
+
+if and fail and if miss the protocol https://ecr_repo
+------------------------------------------------------
+
+$ docker ps
+
+$ docker exec -it <conatinerID msrjenkins> bash
+
+$ docker ps -a
+
+$ docker rm -f <containerid msrjenkins>
+
+$ docker run -d --restart=always -u root -p 8080:8080 -p 50000:50000 -v /jenkins_home:/var/jenkins_home -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /home/ec2-user/.docker/config.json:/root/.docker/config.json --name jenkins msrjenkins:latest
+
+
+sudo apt install awscli
+sudo apt-get install python3-pip
+sudo pip3 install --upgrade awscli
+aws configure
+
+$ docker login
+
+$ docker ps 
+
+$ docker exec -it <conatinerID msrjenkins> bash
+
+$ sudo $(aws ecr get-login --no-include-email --region us-east-1)
+
+$ cd ~/.aws
+$ ls -ltra
+$ vi credentials
+ copy it 
+ 
+$ aws configure
+ 
+
+$ eval $(aws ecr get-login --no-include-email --region us-east-1 | sed 's|https://||')
+
+
+ 
+ 
+$ cat /home/ec2-user/.docker/config.json
+
+
+
+incomplete
+
+
+
+
+
+28-September-2021
+=================
+pipeline{
+agent any
+ environment{
+    VERSION = "${BUILD_NUMBER}"
+	PROJECT = "nodeapp31"
+	IMAGE = "$PROJECT:$VERSION"
+	ECRURL = 'https://490048825081.dkr.ecr.ap-south-1.amazonaws.com/nodeapp31'
+	ECRCRED ='ecr:ap-south-1:aws_credentials'
+	}
+	stages{
+	   stage('GetSCM'){
+	     steps{
+		   git 'https://github.com/vijayammanagi1234/hello.git'
+		 }
+	   }
+	  stage('Image Build'){
+	    steps{
+		   script{
+		    docker.build('$IMAGE')
+		   }
+		 }
+	  } 
+	  stage('Push Image'){
+	   steps{
+	     script{
+		   docker.withRegistry(ECRURL,ECRCRED){
+		     docker.image(IMAGE).push()
+		    }
+	      }
+	    }
+	}
+  }
+  post
+  {
+    always{
+	 sh "docker rmi $IMAGE | true"
+	}
+  }
+}
+
+opy it and 
+
+go to jenkins
+-------------
+new item
+---------
+name: docker_pipeline_ecr
+
+pipeline script
+---------------
+paste here
+
+save and build
+
+successfully.
+
+
+
+Use execute shell to build and run the container..
+# Build the image to be used for this job.
+$ sudo docker build -t vijayammanagi1234/jenkins_javaapp . | tail -1 | awk '{ print $NF }'
+
+
+
+workspace what will do  means where your store project in jenkins(/var/jenkins_home/workspace/test__jenkins_workspace)
+------------------------------------------------------------------
+in jenkins we can create one new item
+-------------------------------------
+new item:- test_work
+
+freestyle
+
+git
+----
+
+clone paste here
+
+build
+------
+execute shell
+
+echo "$WORKSPACE"
+
+apply and save
+
+
+we can search in google in jenkins workspace
+--------------------------------------------
+
+we can create multi configuration project in jenkins (diff os,diff,version,diff environment)
+---------------------------------------------------------------------------------------------
+multi_config_docker ->fork from ybmadhu -> vijayammanagi1234
+
+
+new item
+---------
+docker_multi_config
+
+job:- multi configuration project
+
+git -> clone of the docker_multi_config
+
+configuration matrix:-
+---------------------
+user defined Axis
+-----------------
+
+name:os
+
+values
+------
+alpine
+latest
+slim
+
+
+Build environment
+----------------
+use the secret text(s)
+
+bindings
+--------
+
+username and password (seperated)
+------------------------
+usename:-DOCKERHUB_USER
+password:-DOCKERHUB_PASS
+
+credentials:->dockerhub
+
+build:-
+------
+Execute Shell
+--------------
+
+cd $OS;
+# Build the image to be used for this job.
+IMAGE=$(sudo docker build -t ybmsr/${OS}_javaapp . | tail -1 | awk '{ print $NF }')
+# Build the directory to be mounted into Docker.
+MNT="$WORKSPACE/.."
+echo $MNT
+sudo docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+sudo docker push $IMAGE
+# Execute the build inside Docker.
+CONTAINER=$(sudo docker run -d -v $MNT:/opt/project/ $IMAGE)
+# Attach to the container so that we can see the output.
+sudo docker logs $CONTAINER
+# Get its exit code as soon as the container stops.
+RC=$(sudo docker wait $CONTAINER)
+# Delete the container we've just used.
+sudo docker rm $CONTAINER
+# Exit with the same value as that with which the process exited.
+exit $RC
+
+
+
+
+------------
+we can go to check the hello in folder 
+------------------------------------------
+hello]$ df -kh
+
+docker system prune
+
+hello]$ control+c
+
+docker system prune
+
+y
+
+docker images 
+
+docker rmi -f <imageid>
+
+
+
+
+
+
+
+
+
+
+
+
+1-Oct-2021 (63)
+============
+https://certbot.eff.org/lets-encrypt/centosrhel7-nginx.html
+
+https
+------
+task
+----
+1)deploy the application into the server using docker
+2)access app with custome domain
+3)setup https using reverse proxy (nginx) with certboat letsencrypt (free)
+
+
+
+
+4-Oct-2021
+-----------
+
+
+How do will run multiple container in single at time.
+
+
+
+Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
+
+docker-compose
+---------------
+docker containers
+
+Dockerfile
+
+docker-compose.yaml
+
+docker-compose up
+
+
+Official documentation of docker compose
+----------------------------------------
+https://docs.docker.com/compose/compose-file/
+
+https://docs.docker.com/compose/install/
+
+
+vi app.py
+--------
+import time
+
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return 'Hello World! I have not  been seen {} times.\n'.format(count)
+	
+if __name__ == "__main__": 
+    app.run(host="0.0.0.0", debug=True)	
+	
+	
+:wq	
+	
+	
+	
+
+vi requirements.txt
+flask 
+redis
+
+
+:wq
+
+vi Dockerfile
+-------------
+
+FROM python:3.4-alpine
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+
+:wq
+
+vi docker-compose.yml
+---------------------
+
+version: '3'
+services:
+       web:
+		 build: .
+         ports:
+          - "5000:5000"
+	   redis:
+         image: "redis:alpine"
+
+
+
+
+:wq
+
+
+$ docker-compose up -d
+
+
+$ docker ps
+
+
+
+$ docker-compose down   (remove the container no one show you)
+
+
+Once again you can run also edit app.py and docker-compose file
+-----------------------------------------------------------------
+
+$ docker ps
+
+
+vi app.py
+--------
+import time
+
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return 'Hello World! I have not  been seen {} times.\n'.format(count)
+	
+if __name__ == "__main__": 
+    app.run(host="0.0.0.0", debug=True)	
+	
+	
+:wq	
+
+
+
+
+vi docker-compose.yml
+---------------------
+
+version: '3'
+services:
+       web:
+		 build: .
+         ports:
+          - "5000:5000"
+		  volumes: 
+		  - .:/code
+       redis:
+         image: "redis:alpine"
+
+:wq
+
+
+$ docker network ls
+
+$ ifconfig
+
+$ docker-compose ps
+
+
+
+Example all of the conatains
+-----------------------------
+https://github.com/docker/awesome-compose
+
+https://github.com/kstaken/dockerfile-examples
+
+
+5-oct-2021
+===========
+Docker Networking
+-----------------
+docker ps
+
+ifconfig
+
+docker create 3 types of network
+--------------------------------
+docker network ls
+
+docker network rm composetest_default
+
+we can run  another container
+------------------------------
+$ docker run --rm -it --name myubuntu2 ubuntu
+
+docker ps
+
+docker inspect <conatinerID of myubuntu>
+
+
+ifconfig
+
+sudo yum install bridge-utils -y
+
+brctl show
+
+
+bridge name     bridge id               STP enabled     interfaces
+docker0         8000.0242a36bcb42       no              veth0ea22c4
+                                                        veth22ccb03
+
+
+$ docker run --rm -it --name myubuntu3 ubuntu
+
+
+docker ps
+
+docker inspect <conatinerID of myubuntu2>
+
+brctl show
+
+bridge name     bridge id               STP enabled     interfaces
+docker0         8000.0242a36bcb42       no              veth0ea22c4
+                                                        veth22ccb03
+                                                        veth6396964
+														
+
+
+$ docker exec -it <containerid myubuntu> bash
+
+$ apt-get update && apt install -y iputils-ping && apt install iproute2 -y
+
+$ ip addr
+
+$ ping 172.17.xx.xx 
+
+it connecting the IP address
+-------------------------------
+^c
+
+
+control+p+q
+
+Create custom network - bridge network
+---------------------------------------
+$ docker network create mynetwork --subnet=10.0.0.1/16 --gateway=10.0.10.100
+
+$ docker network ls
+
+$ docker inspect <mynetwork bridge name>
+
+
+we can go in google search IPAddressguide
+-----------------------------------------
+put it Ip address
+-----------------
+
+$ brctl show
+
+$ ifconfig
+
+
+docker run -it --net mynetwork1 --name myubuntu3 ubuntu
+
+48 minutes
+------------
+
+
+
+========================
+Ineterview Questions
+----------------------
+=========================
+
+1)what is docker?
+===================
+->a)docker is a container based technology to build , ship and run applications
+  b)reduce the resources and deployment is very fast.
+  
+2)what is difference between vm's and docker ?
+===============================================
+->
+VM level
+-----------
+
+(ubuntu)    (cent os)
+Guest os    Guest os 
+  |           |
+ apps       apps
+ |            |
+ lib         lib 
+----------------------
+   Hypervisor
+----------------------
+   os
+----------------------
+   hardware
+----------------------
+  VM
+----------------------   
+
+Docker level
+------------
+
+container 
+app      app      app
+ |        | _______|
+ lib         lib
+ -------------------------
+ docker
+ -------------------------
+ os
+ --------------------------
+ hardware
+ --------------------------
+ 
+ Or
+ 
+VirtualBox and VMWare are virtualization apps that create virtual machines that are isolated at the hardware level.but not share the libraries  and it take lot of resources compare to less resource take docker applications 
+Docker is a containerization app that isolates apps at software level. is the share the libraries
+If a VM is a house then a docker container is a hotel room.
+ ... Some like to boast that Docker is better than VirtualBox
+
+
+3)what is dockerfile?
+=====================
+->
+a)A Dockerfile is a text file that defines a Docker image
+b)Dockerfile to create our own custom Docker image.
+c)custom environment to be used in a Docker container
+
+        repo
+ build-> ship  ->run
+ image         container 
+
+dockerfiles         image        repo      
+------------
+FROM
+COPY           ->            ->   all image       -> run in container
+ADD
+CMD
+ENTRYPOINT  
+
+set of the dockerfile instructions
+-----------------------------------
+          Dockerfile
+		  ------------
+FROM                    ubuntu
+LABEL/MAINTAINER        vijay
+ARG                     port:8080
+ENV                     JAVA_HOME=/bin
+COPY                    <source><destination>
+ADD                     <s><v>
+RUN                     installation commands
+EXPOSE                  ports are exposing
+VALUME                  persistance you want data
+USER                     which you want use 
+WORKDIR                 
+HEALTHCHECK
+ONBUILD
+CMD                     executable
+
+
+4)what is difference between the kill and stop?
+===============================================
+-> whereas kill just kills the process by default (but also allows to send any other signal).
+The SIGTERM signal is sent to a process to request its termination,stop attempts to trigger a graceful shutdown by sending the standard POSIX signal SIGTERM.
+
+there are two ways we can terminate our detached container
+-----------------------------------------------------------
+1)killing it using the docker kill command
+2)stopping it the docker stop command
+
+the first one stops the conatainer immediately by using the kill signal.
+the second one is more graceful it sends a TERM signal after 10 seconds.if the container has not stopped .it sends kill.
+
+5)what is difference between and Add and copy commands in a dockerfile?
+=======================================================================
+->
+COPY
+------
+1)The COPY instruction copies files or directories into the Docker image.
+2)It takes a src and destination as arguments.
+3)Source can be absolute or relative from current WORKDIR or wild cards.
+4)Destination path can be absolute or relative to current WORKDIR.
+
+ADD
+----
+1)The ADD instruction copies files, directories, remote file or tar archive into the Docker image.
+2)It takes a src and destination as arguments.
+3)Source can be files and directories.
+4)Source can be a URL. The ADD instruction will download the file from the URL and save it to the destination. We don’t need to use curl or wget to download a file.
+5)Source can be a local tar/zip archive. The ADD instruction will automatically extract it to the destination. We don’t need to run unarchive commands manually.
+6)Use ADD when you want download a file from a URL or extract local archive file.
+
+6)what is difference between cmd and entrypoint 
+===============================================
+->
+ENTRYPOINT CMD RUN ->there are same purpose but run different
+----------------------------------------------------------------
+
+RUN ->build image time
+
+ENTRYPOINT and CMD -> running container time
+
+ENTRYPOINT -> we cant override the parameters  (running /bin/bash)  it take fixed command.ownership
+
+CMD -> we can override the parameters        (running /bin/bash)    many CMD are in Dockerfile but last CMD execute.
+
+
+ENTRYPOINT and CMD are both friends so ENTRYPOINT we can put in executable, CMD put into parameters,when we use executable not changing and parameters only change that time we use in the dockerfile.
+
+
+7)which is the base image you will prefer your docker file ? 
+============================================================
+-> Alpine linux
+
+
+8)how login a running container?
+==================================
+->1)Use docker ps to get the name of the existing container
+  2)Use the command docker exec -it <container name> /bin/bash to get a bash shell in the container.
+  
+
+9)how to check live logs in docker containers?
+==============================================
+->1)docker container logs [OPTIONS] CONTAINER
+ 2)NUM=`docker run -d --user 1013830000 -p 4567:4567 container_test:v1`
+  docker logs -f $NUM
+  docker stop $NUM
+
+or
+docker logs -f --tail 10 container-id
+
+
+10)how to check no.of containers running your machine?
+=======================================================
+->docker ps   
+
+11)how to check stop and running containers ? 
+=============================================
+->docker ps -a
+
+12)what is port forwarding? 
+============================
+-> -p 8181:9090
+
+<host port>:<container-port>
+
+
+13)How to run a container in background?
+========================================
+-> use the -d flag
+
+with -d (detached mode)
+
+14)what is first line in a dockerfile? what are the commands have you used in your docker file ? FROM RUN CMD ENTRYPOINT label workdir COPY ADD EXPOSE VOLUME  ENV ARG HEALTHCHECK
+=========================================================================================================================
+->1)The FROM line starts from a base image that gives you most of what you need,
+       --------- 
+  then copies your code to the image 
+  and runs a few commands to get dependencies and compile the app.
+  
+  FROM                    ubuntu
+LABEL/MAINTAINER         vijay
+ARG                      port:8080
+ENV                     JAVA_HOME=/bin
+COPY                    <source><destination>
+ADD                     <s><v>
+RUN                     installation commands
+EXPOSE                  ports are exposing
+VALUME                  persistance you want data
+USER                     which you want use 
+WORKDIR                 
+HEALTHCHECK
+ONBUILD
+CMD                     executable
+
+LABEL->The LABEL instruction adds metadata to an image. 
+
+
+
+
+
+15)what is label in dockerfile?
+===============================
+->mentaines of username
+
+16)what is docker tag ?
+=======================
+->Docker tags convey useful information about a specific image version/variant.
+
+17)How you store data persistently? 
+===================================
+-> volumes
+
+
+
+18)have you worked on docker volumes? 
+=========================================
+-> -v hostmachie/path:container/data/path
+
+
+19)what is docker network ? types of networks ?
+=================================================
+->primarily used to establish communication between Docker containers and the outside world via the host machine 
+where the Docker daemon is running. 
+Docker supports different types of networks, each fit for certain use cases.
+
+ 3 common docker network
+-----------------------------
+1)Bridge
+2)host
+3)none
+
+
+20)I have a one web application is running on one container and database is running in one container how you communicate these two containers?
+===========================================================================================================================
+->by attaching them to the same network
+
+21)where you are store docker images?  
+======================================
+-> Registry2
+
+in real time -> AWS ECR 
+
+22)how to run multiple containers at a time? 
+==============================================
+->docker-compose
+
+23)what is difference between exec and attach ?
+==================================================
+->docker exec executes a new command / create a new process in the container's environment, w
+hile docker attach just connects the standard input/output/error of the main process(with PID 1) inside the container to corresponding standard input/output/error of current terminal
+
+24)what is save and load commands in docker?
+============================================
+->1) docker run --volumes-from container1 --name container2
+
+2)To share or back up our image, we use the docker save command
+
+
+3)load command load an image or repository from a tar archive. It restores both images and tags.
+
+
+docker load < compsetest_web.tar
+
+
+
+
+
+
+
+
+
+
+Real time scenario Problems
+-----------------------------
+
+
+
+FROM ubuntu
+ARG VERSION=8.5.71
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y install openjdk-8-jdk wget
+RUN mkdir /usr/local/tomcat
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-8/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz -O /tmp/tomcat.tar.gz
+RUN cd /tmp && tar xvfz tomcat.tar.gz
+RUN cp -Rv /tmp/apache-tomcat-${VERSION}/* /usr/local/tomcat/
+EXPOSE 8080
+CMD /usr/local/tomcat/bin/catalina.sh run
+
+
+
+
+
+ARG VERSION=latest
+FROM python:$VERSION
+ARG VERSION
+ENV MYVERSION=$VERSION
+RUN echo $VERSION
+CMD echo myversionis ${MYVERSION}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

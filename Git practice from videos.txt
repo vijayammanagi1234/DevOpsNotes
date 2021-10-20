@@ -1,0 +1,1831 @@
+git --version
+git init
+git add 
+git commit 
+git push
+git pull
+git remote -v
+git log
+git status
+git remote add origin  <url>
+git config --global edit
+git branch
+git branch <branchname>
+git checkout <branchname>   
+ or git checkout -b <branchname>
+git branch -d <branchname>
+git push origin -d <branchname>
+git merge <branchname>
+git clone <url>
+
+
+14-july-2021
+------------
+Linux in Github
+----------------
+mkdir third
+
+we can check which is git version
+----------------------------------
+git --version
+
+if git was not there we can install it which command through,let do
+----------------------------------------------------------------------
+sudo yum install git -y
+
+cd third/
+
+ls -ltr
+-----------
+zero files
+------------
+
+vi sample.txt
+
+this is one sample files
+
+:wq
+
+ls -ltr
+
+git init
+
+ls -ltra
+
+we can check which branch there that command we can use
+---------------------------------------------------------
+git branch
+
+git status
+
+git add .
+
+git status
+
+git commit -m "added the sample file"
+
+git config --global --edit   -> just enter
+
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+        name = jmstechhome11
+        email = vijayammanagi1234
+
+
+:wq
+
+git log   -> default user name showing thus what can we do every time who develop this code that why this command use.
+
+where is the store my file
+------------------------------
+cat ~/.gitconfig
+
+
+
+  Author: EC2 Default User <ec2-user@ip-172-31-41-39.ap-south-1.compute.internal>
+Date:   Thu Jul 15 15:03:23 2021 +0000
+
+    added sample file
+[ec2-user@ip-172-31-41-39 third]$ git config --global --edit
+[ec2-user@ip-172-31-41-39 third]$ cat ~/.gitconfig
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+        name = jmstechhome11
+        email = vijayammanagi1234
+
+
+
+
+we have any destination we can check
+-------------------------------------
+git remote -v
+
+now what can do next we go to github then create new repository that name we want create know third
+-----------------------------------------------------------------------------------------------------
+
+git remote add origin https://github.com/vijayammanagi1234/third.git
+
+
+now we can check
+-------------------
+
+git remote -v
+
+now push to github
+-------------------
+
+git push origin master
+
+   Username for 'https://github.com': vijayammanagi1234
+Password for 'https://vijayammanagi1234@github.com':Vijay@
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 266 bytes | 266.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/vijayammanagi1234/third.git
+ * [new branch]      master -> master
+ 
+ now go to github we check it sample file is there
+ ----------------------------------------------------
+ 
+ Now we add one more file in this third project  simply do futher step
+ ----------------------------------------------------------------------
+ vi test.txt
+ 
+ this another one more file
+ 
+ :wq
+ 
+ git add .
+ 
+ git commit -m "another one file created "
+ 
+ git push origin master
+ 
+ every time ask username and password just dynamically put it
+ ---------------------------------------------------------------
+ 
+ got to github and checkit
+ ----------------------------
+ one more test.txt file is added
+ 
+ 
+
+ Now Exited file how we can work on it
+ ---------------------------------------
+example :- one company inside alredy exit project how to do work there
+------------------------------------------------------------------------
+
+mkdir myproject
+
+Readme.md
+balaba.txt
+
+git clone https://--------------------------
+
+ls -ltra
+
+vi myfile.log
+
+ jdgjshsjk
+ 
+ :wq
+ 
+
+git init is not required since alredy exit project we are download from git so.
+----------------------------------------------------------------------------------
+ git status
+ 
+ git add .
+ 
+ git commit -m"added log file"
+ 
+ git status
+ 
+ git log ->means commitment status
+ 
+ we dont required git remote -v since alredy git clone we are download from url so.
+ -------------------------------------------------------------------------------
+ 
+ 
+ git push origin master
+ 
+  git push origin main
+  
+ username:- cvdcnb
+ password:-xvsvxcbnz
+ 
+ now we can go in github refresh it
+ ----------------------------------
+ update it code
+ -----------------
+ overide the commit we can check command
+ ----------------------------------------
+ cd .git
+ 
+ ls -ltra
+ 
+ clone means -> download file from central repository to local 
+ ---------------------------------------------------------------
+ 
+ Fork
+ ----
+ 
+ go to google search in sample helloworld java code
+ ---------------------------------------------------
+ 
+ example:-luisjosesanchesz/   ->this guy project entire file to Fork means thay guy project forking to your account 
+ -------------------------------------------------------------------------------------------------------------------
+  another one option we dont want fork we need to download files and create new project or your name now we can use
+--------------------------------------------------------------------------------------------------------------------
+
+git clone https:-------------------
+
+ls -ltra
+
+mv hello-world-java hello-java
+
+cd hello-java/
+
+that guy project copy to we new create how means 
+---------------------------------------------------
+git remote -v
+
+git remote add origin https:----------------------------
+
+its alredy exits
+-----------------
+git remote set-url origin https:------------------------
+
+git remote -v
+-------------
+
+git status
+
+ls -ltra
+
+vi HelloWorld.java
+
+something change 
+
+git status
+
+ls -ltra
+gir add .
+
+git commit -m "added dots"
+
+git push origin master    ->this is not forking. new create project that guy to new
+
+ refresh github
+ ----------------
+ 
+ realtime  we use passwordless athentication
+ --------------------------------------------
+ cd ~/.ssh/
+ 
+ cat ~/.ssh/id_rsa.pub
+ 
+ ssh-keygen
+ 
+ copy key to github inside settings - SSH key & GPS Key- new ssh key -> title-,inux machine-key,->key->paste here-> Github confirm password
+ ----------------------------------------------------------------------------------------------------------------------------------
+ something change in file create one file
+ --------------------------------------------
+ vi newfile.txt
+ 
+  this is new file
+  
+  :wq
+  
+  git add .
+  
+  git commit -m "add new file"
+  
+  git push origin master
+  
+  git remote -v
+  
+ we can go to setting repository --> hello-java -> go to clone here --> ssh copied  --> 
+  --------------------------------------------------------------------------------------
+  
+  git remote add origin (ssh paste here )
+  
+  its showing alredy exit
+  ------------------------
+  git remote set-url origin ssh-----------------------
+  
+  git remote -v
+  
+  git push origin master 
+  
+  yes
+  
+  if we want generate key phase authentication 
+  ---------------------------------------------
+  settings
+  
+  Developer settings
+  
+  personal access tokens
+  
+  generate new token
+  
+  if want permissions all user
+  -------------------------------
+  
+  
+  
+  Import repository
+  -------------------
+  any other/old repository 
+  
+  You old repository's clone URL
+  -------------------------------
+  
+  
+  
+  realtime Organization level
+  -----------------------------
+  
+  free
+  
+  join for free
+  --------------
+  
+  set up your organization
+  -------------------------
+  
+  organization account name
+  -------------------------
+  
+  contact email
+  -------------
+  
+  my personal account
+  ---------------------
+  
+  verify
+  ------
+  
+  done
+  ----
+  
+  search by username ,full name or email address
+  --------------------------------------------------
+  add it 
+  
+  any one want other person in organization group
+  -----------------------------------------------
+  got to organization group
+  ---------------------------
+  go to inside invite 
+  ---------------------
+  
+  owner means admin 
+  ------------------
+  
+  in organization group
+  ----------------------
+  
+  create repository 
+  ------------------
+  
+  repository name
+  -----------------
+  
+  test
+  -----
+  
+  public
+  -------
+  
+  create repository
+  -----------------
+  
+  git clone ssh:--------------------
+  ------------------------------------
+  
+  ls -ltra
+  ----------
+  
+  cd test
+  
+  vi testfile.txt
+  
+  dhgchgcj
+  
+  :wq
+  
+  git add .
+  
+  git commit -m  "added some file"
+  
+ git remote -v
+ 
+ git push origin master
+ 
+ now refresh it we can see and test
+ ----------------------------------
+ 
+15-july-2021
+-------------
+
+merge conflicts
+----------------
+
+github
+--------
+
+first project
+-------------
+first
+
+take one example.txt
+------------------------
+
+    first
+	example.txt
+	
+	
+	madhu-> little slow he also edit the second line.         jyo->is the written second line
+	
+	
+git clone ssh:-------------------------
+
+cd first/
+
+ls -ltra
+
+vi example.txt
+ this is madhu line
+ 
+ :wq
+ 
+
+git add .
+
+git commit -m "added madhu line "
+
+git push origin master
+
+rejected  why means alredy running this repository
+----------------------------------------------------
+
+git pull origin master
+
+ auto merging was failed since merge conflicts failed try to fix it
+ ---------------------------------------------------------------------
+ when will come this problem two developer working in same file and same line
+ ------------------------------------------------------------------------------
+ 
+ who is the conflict means  who  is pushing right now that guy is conflict (madhu)
+ ------------------------------------------------------------------------------------
+ 
+ 
+ now we open the example.txt 
+ 
+ 
+ // this is first line examplefile
+    jyo second line
+	<<<<<<HEAD
+	this is madhu line
+	=======
+	this is third line jyo
+	>>>>>>commit #id
+	
+	//
+	
+
+
+git log
+
+vi example.txt
+ 
+  // this is first line examplefile
+    jyo second line
+	this is madhu line
+	this is third line jyo
+   // delete unwanted line
+   
+   :wq
+   
+ git status
+ 
+ git add .
+ 
+ git commit -m "resolve merge conflicts madhu "
+ 
+ git push origin master
+ 
+  now we can go to Github also check first/example.txt
+  --------------------------------------------------------
+  4 lines code are available
+  -----------------------------
+  
+  
+  Now Discussing git branching 
+  -------------------------------
+  git branching --> master --> branch-> production system
+                   pre-prod
+				   stage
+				   hotfix
+				   bugfix
+				   future -25july
+
+
+git branch
+git branch -al
+(git branch means where we are standing )
+------------------------------------------
+
+we can create one branch (custome branch)
+----------------------------------------------
+
+master is default branch 
+---------------------------
+
+git branch future
+
+git branch
+ 
+  future  
+ master *
+ 
+ we want switch to custome means future branch
+ -----------------------------------------------
+ git checkout future
+ 
+ git branch
+ * future
+  master
+ 
+now can create file in future branch
+--------------------------------------
+
+vi future1.txt
+
+ sfgajgfcaskdf
+ 
+ :wq
+ 
+ 
+ 
+ git log
+ 
+ 
+ vi future2.txt
+ 
+  gcdasjfadshfs
+  
+  :wq
+  
+  git add .
+  
+  git commit "all future file added"
+  
+ git log
+ 
+ git push origin future
+ 
+ note :- compare and pull request if we want full request UI level (but we are practice in linux )
+ --------------------------------------------------------------------------------------------------
+ 
+ we can click on future branch how many files are here
+ --------------------------------------------------------
+ master in 2 file
+ future in 4 file
+  
+git checkout master
+
+git branch
+
+git merge future
+
+git add .
+
+git commit -m " all future files are added"
+
+git push origin master
+
+we go to check in master we got the 4 file 
+---------------------------------------------
+
+git branch -al
+
+git branch -d future
+
+git branch -al
+
+git push -d origin future
+
+git branch -al
+
+
+no we can go github refresh it check only in master branch
+------------------------------------------------------------
+
+git checkout -b hotfix -> (new create branch also switch to the branch)
+-------------------------------------------------------------------------
+
+
+
+
+16-july-2021
+------------
+
+git tagging 
+------------
+
+git means:- version control system
+
+now releasing tagging
+-----------------------
+
+git pull origin master 
+
+git log
+
+git tag -a v1.0 -m "the first release"
+
+git tag
+
+git tag --help 
+
+git tag v1.1
+
+git log
+
+git tag v0.1  seven commit id <17145cb>
+
+now check it 
+-------------
+
+git log
+
+
+git tag   ->how many tags are created
+
+git push origin v0.1
+
+
+go on check in github refresh it tag will appear inside commit msg 
+------------------------------------------------------------------
+
+git push origin --tags         ->means remaining tha tags are pushed
+
+
+go on check in github also refresh it 3 tags are available
+------------------------------------------------------------
+
+
+in realtime senario we go for release or else go for tags  ->draft a new release
+--------------------------------------------------------------------------------
+ we select branch ->master
+  we give the version -> v1.2
+  
+  publishe it
+  ---------------
+  
+  
+  
+ now goto terminal 
+--------------------
+
+git fetch
+
+git log
+
+also available are tags version
+----------------------------------
+
+we want delete git tag or multi tags
+----------------------- -------------
+
+git tag -d v0.1 v1.0 v1.1 v1.2
+
+git tag    ->check it no tags are there
+
+
+git push origin :refs/tags/v0.1
+
+go an check in github refresh it only 3 tags are available
+-----------------------------------------------------------
+
+if we want delete all tags same way but 
+------------------------------------------
+
+git tag v1.0
+
+git push origin --tags
+
+git tag
+
+git tag -l
+
+git log --pretty=oneline
+
+
+
+go on refresh it
+-----------------
+
+
+
+
+git branch
+
+git checkout -b hotfix
+
+vi hotfix.txt
+
+ this is hotfix file 
+ 
+ 
+ :wq
+ 
+ 
+ git add .
+ 
+ git commit -m "this is hotfix"
+ 
+ git push origin hotfix
+ 
+ 
+ 
+19-july-2021
+---------------
+
+git undoing
+----------------
+
+         repo area  (github)
+              |
+         commit area
+              |
+         staging area or index area
+               |
+         working area
+		 
+		 
+		 
+git checkout master
+
+git remote -v
+
+opent the sample file modified it
+------------------------------------
+
+vi sample.txt
+
+ this i like devops is sample file
+ this is second line
+ 
+ 
+ :wq
+ 
+ vi example.txt             -> edit it and add something
+ 
+   this one more line
+   
+   :wq
+   
+   
+ git status
+
+
+ git diff sample.txt
+ 
+ 
+ 
+ git diff example.txt
+ 
+ 
+ git checkout sample.txt    ->undo means where are in previous line that line will showing
+ 
+ 
+ git status
+ 
+ vi sample.txt   -> now there are previous line that where are we start that line we know  (working area)
+ 
+ 
+ what we learn in this command today
+ --------------------------------------
+ git diff
+ git show
+ git checkout .or filename
+ 
+
+vi sample.txt   ->we add extra line
+
+ dsfgsjdfkhjskh
+ mncfsjdfvjszvjkds
+ dcfgsdjhfsdjlkfckslda
+ 
+ 
+ :wq
+ 
+ git status
+ 
+ cat sample.txt
+ 
+ git add .
+ 
+ git status
+ 
+ git commit -m "we added the sample file"
+ 
+ git log   ->whatever we commit here we dont want,we want to undo to change
+ 
+ what we do let see
+ ------------------
+ git reset 
+  
+  git reset  --soft   HEAD~1             -->we back to index area commit msg delete(commit msg was wrong that time we use it)
+  git reset  --mixed  HEAD~1             -->default guy
+  git reset  --hard   HEAD~1
+  
+ 
+ git log
+ 
+ git reset  --soft   HEAD~1
+ 
+ git status
+ 
+ git log    ->resent commit msg was delete (just back to one stage so we need once commit it)
+ 
+ git commit -m "we added sample file"
+ 
+ git log
+ 
+ git reset  --mixed  HEAD~1   (means its come back working area back to 2 stage but file change dont delete)
+ ----------------------------------------------------------------------------------------------------------------
+
+ git reset  --mixed  HEAD~1 
+ 
+ git log   -->commit msg delete
+ 
+ git status  ->now working area a means red file ,not add but not delete file changes
+ 
+ cat sample.txt
+
+ vi sample.txt   ->if we want anything change we can do or else we just keep it
+ 
+ 
+ :wq
+ 
+ git add .
+ 
+ git commit -m "adde the commit"
+ 
+ git log
+ 
+ git reset  --hard   HEAD~1    (come back working area also  whatever changes in file that also delete git status nothing showing)
+ -----------------------------------------------------------------------------------------------------------------------------------
+ 
+ git status  ->everything clean
+ 
+ cat sample.txt    ->>whatever changes everything delete
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ vi sample.txt
+ 
+ now we add new line
+  something one more
+  
+  :wq
+  
+  git add .
+  
+  git commit -m" new we added file"
+  
+  git push origin master
+  
+  git pull origin master
+  
+  git push origin master
+  
+  
+  now we go to check github new line add in file 
+  -----------------------------------------------
+  
+  git log 
+  
+  git revert seven id number latest commit
+
+   vi sample.txt   ->our code was gone
+
+  :q!
+
+ git add .
+
+ git push origin master
+
+git status
+
+ git log
+
+
+
+
+20-july-2021 (git merge vs git rebase vs git cherrypick )
+------------
+
+https://github.com/ybmadhu/shell_script_practice
+
+
+we can try again scratch to one more its best practice
+-------------------------------------------------------
+
+mkdir fourth
+
+cd fourth
+
+ls -ltra
+
+git init
+
+one create file here
+----------------------
+
+vi sample.txt
+
+ this is sample line 1
+ 
+ :wq
+ 
+ git commit -m "m1"
+ 
+ we not destination repository  check it
+ -----------------------------------------
+ git remote -v
+ 
+ check it which branch now
+ -------------------------
+ git branch
+ 
+ got to github central repository create one new repository that is fourth
+ ---------------------------------------------------------------------------
+ repositoryname :- fourth
+ 
+ git remote add origin ssh:----------
+ 
+ git push origin master
+ 
+ 
+ then refresh github
+ --------------------
+ 
+ one more file create here fourth repository
+ ---------------------------------------------
+ 
+ vi example.txt
+ 
+  this is example line one
+  
+  :wq
+  
+  git status
+  
+  git add .
+  
+  git commit -m"m2"
+  
+  git push origin master
+  
+  
+  what is squash future?
+  ------------------------
+  ->we will lost the history of the future branch ,means who committed ,when committed and what is the commit msg .
+    we will use squash command.
+
+  or combining multiple commits into single commit is called a squash
+    ------------------------------------------------------------------
+
+we can create one more branch future
+------------------------------------
+also commit f1 and f2 
+----------------------
+ git checkout -b feature
+
+ ls -ltra
+
+ git log
+
+ vi feature1.txt
+  
+   this is feature line 1
+   
+   
+   :wq
+   
+ git add .
+
+git commit -m"f1"
+
+git log
+
+vi feature2.txt
+
+ this is feature 2
+
+ :wq
+
+git add .
+
+ git commit -m"f2"
+
+git log
+
+git checkout master
+
+git log 
+
+vi example.txt  ->open add code
+
+ this is line 3
+
+:wq
+
+
+git add .
+
+git commit -m"m3"
+
+git log
+
+vi example.txt  ->open add code
+
+ this is line 4
+ 
+ 
+ :wq
+ 
+ git add .
+ 
+ git commit -m "m4"
+ 
+ 
+ git log
+ 
+ but got to feature branch how much commitis there check it
+ -----------------------------------------------------------
+ 
+ git checkout feature
+ 
+ git log
+ 
+ only 4 commit show
+ ---------------------
+ 
+ we want merge m3 and m4 we go to master branch
+ -----------------------------------------------
+ 
+ git checkout master
+ 
+ git branch
+ 
+ git log
+ 
+ ls -ltra
+ 
+ git merge --squash feature
+ 
+ git status
+ 
+ git commit -m "merging"
+ 
+ now see
+ ---------
+ 
+ git log
+ 
+ we lost feature commits and only master branch commits are available also feature branch files are come (data come but lost commit history)
+ ---------------------------------------------------------------------------------------------------------------------------
+ 
+ ls -ltra
+ 
+ 
+ 
+ now we are rebase
+ -----------------
+ 
+ git branch 
+ 
+ git checkout -b bugfix
+ 
+ git log
+ 
+ 
+ 
+ vi bugfile1.txt
+ 
+ this bug 1
+ 
+ :wq
+ 
+ git add .
+ 
+ git commit -m "b1"
+ 
+ 
+ 
+ vi bugfile1.txt
+ 
+  this bug 2
+  
+  :wq
+  
+  git add .
+  
+  git commit -m "b2"
+  
+  git log
+  
+  git branch
+  
+  git checkout master
+  
+  vi example.txt
+  
+  this is line m6
+  
+  :wq
+  
+  git add .
+  
+  git commit -m "m6"
+  
+  
+  vi example.txt
+  
+   this is line 7
+   
+   
+   :wq
+   
+   git add .
+   
+   git commit -m "m7"
+   
+   git log 
+   
+   git branch
+   
+   git checkout bugfix
+   
+    git log
+	
+	git rebase master    ->successfully rebase
+	
+	git log
+	
+	git checkout master
+
+    git rebase bugfix   ->successfully rebase
+	
+	git log   -> now update all the commits
+	
+	git status  -> here no blue color
+	
+    git branch
+	
+    ls -ltra
+
+  means uptodate code
+  ---------------------
+  
+  now new branch create newfeature for cherrypick
+  -----------------------------------------------
+  
+  git checkout -b newfeature
+  
+  git branch
+  
+  
+  
+  vi newfefile1.txt
+  
+  this is new file1
+  
+  
+  :wq
+  
+  git add .
+  
+  git commit -m "n1"
+  
+  vi newfefile2.txt
+  
+   this is new file2
+   
+   
+   :wq
+   
+   git log
+   
+   
+  we dont merge all commits we only specific commit we use cherrypick
+  --------------------------------------------------------------------
+  pickest commit specific on commit we want to merge is called as cherrypick
+  ---------------------------------------------------------------------------
+  
+  how to do see
+  --------------
+  
+  we want only n2 commit seven id copy it
+  -------------------------
+  
+  git checkout master
+  
+  git log
+  
+  ls -ltra
+  
+  git cherry-pick idpste
+  
+  
+  git log 
+  
+  
+  all master commit and newfeature only n2 commit come here
+  ----------------------------------------------------------
+  
+  why dont use in realtime merge
+  ------------------------------
+  
+  git checkout -b june
+  
+  vi jun.txt
+  
+   this is june line
+   
+   :wq
+   
+   git add .
+   
+   git commit -m "j1"
+   
+   vi jun2.txt
+   
+   this is june 2 line
+   
+   :wq
+   
+   git add .
+   
+   git commit -m "j2"
+   
+   git log 
+   
+   
+   git checkout master
+   
+   
+   
+   vi example.txt
+   
+   this is june line
+   
+   :wq
+   
+   git add .
+   
+   git commit -m"m9"
+   
+   vi example.txt
+   
+   this is june line 7
+   
+   :wq
+   
+   git add .
+   
+   git commit -m "m10"
+   
+   git log
+   
+   git merge june
+   
+   it asking merge branch june 
+   ---------------------------
+   
+   :wq
+   
+   
+   
+   merge made by the recursive stratergy
+   ----------------------------------------
+   
+   now see git log
+   
+   git log
+     
+	 
+	 j1 and j2 come middle thats why dont use merge it better go to rebase
+	 ---------------------------------------------------------------------
+	 
+	 
+ git branch
+
+ git checkout bugfix
+
+git push origin bugfix
+
+ 
+go to github
+
+compare and pull request
+
+create pull request
+
+rebase pull request
+
+ 
+22-july-2021   (stash,squash and ammend)
+-------------
+cd fourth
+
+ls -ltra
+
+git branch
+
+git switch master   or  git checkout master
+
+git branch
+
+git log
+
+git log --oneline
+
+git log --pretty=oneline
+
+git log --format=short
+
+git commit --ammend -m "merging done for july release"
+
+
+now we can see rename the latest commit also commit id will change
+--------------------------------------------------------------------
+
+when 2nd commit msg and 3rd commit msg is wrong that time what we can do let see
+---------------------------------------------------------------------------------
+
+git rebase -i HEAD~5                ->last one is the latest one
+
+git log
+
+git branch
+
+then which commit msg what to change pick replace r(reword)
+ also save :wq  once save ask the changes (write it)
+---------------------------------------------------------------------------------------------------------------
+
+git log 
+
+this time 2nd commit msg change
+---------------------------------
+
+
+now we can change commit, test ,fail and commit, test ,fail that multiple commit its not good so whta we can use -> 
+squash feature
+---------------------------------------------------------------------------------------------------------------------------
+
+git rebase -i HEAD~10
+
+
+git rebase --abort 
+
+git rebase -i HEAD~10
+
+
+
+s 3657894 m6
+
+s sdfr6785 m5
+
+s rfrdf67 m4
+
+ 
+ :wq
+ 
+ 
+ all the msgs showing here
+ 
+ :wq
+ 
+ git log   -> all into the single commit  (in realtime scinario we kept latest msg commit  if you want remaining we can delete)
+ 
+ 
+ 
+ cd ../third/
+ 
+ git branch
+ 
+ git pull origin master
+ 
+ it showing upto date code
+ -------------------------
+ 
+ git log
+ 
+ ls -ltra
+ 
+ we modified sample file
+ ------------------------
+ 
+ vi sample.txt  -> you made some edit and add code
+ 
+ fhhvhjj
+ mdsfgvjdvj
+ 
+ 
+ :wq
+ 
+ 
+ Go to github second project 
+ ---------------------------
+ here sample file someone developer add the code 
+ ------------------------------------------------
+ also commit it 
+ ------------------
+ 
+ let see in local machine befor going commit you use git stash 
+ --------------------------------------------------------------
+ 
+ git stash
+ 
+ cat sample.txt
+ 
+ 
+ git diff
+ 
+ 
+ 
+ you know the difference and + means added  - means deleted
+ -----------------------------------------------------------
+ 
+ git stash         ->saved working directory and index state wip on master : id
+ 
+ git status      -> its gone
+ 
+ vi sample.txt
+ 
+  Your changes not here  (this kept it seperately)
+  ------------------------------------------------
+  
+  git pull origin master              -> auto merging CONFLICTS  (failed)
+  
+  
+  git add .
+  
+  git commit -m "added changes"
+  
+  git log
+  
+  git stash list
+
+  git stash pop            ->this time the merge conflict
+  
+  vi sample.txt
+  
+  just keep it code remaining unwanted remove it
+  -----------------------------------------------
+  
+  :wq
+  
+  
+  git status
+  
+   
+   when will use the git stash means -> we dont want share property key and access key that time this scinario use
+   -------------------------------------------------------------------------------------------------------------------
+   
+   and git stash and commit if we want get back to git stash pop  you test to locally
+   -----------------------------------------------------------------------------------
+   
+
+   
+   
+  
+  MAX COVER TOPICs
+  ---------------------
+  
+  
+  
+ 
+ 
+ 
+ 
+Interview Questions and answers
+--------------------------------
+1.what is the git?
+
+->Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+
+2. What is difference between git and GitHub and GitLab?
+->
+
+3. Any other version control tools other than git?
+
+->GitHub. GitHub helps software teams to collaborate and maintain the entire history of code changes. ...
+GitLab. ...
+Beanstalk. ...
+PerForce. ...
+Apache Subversion. ...
+AWS CodeCommit. ...
+Microsoft Team Foundation Server. ...
+Mercurial.
+
+
+4. What is difference between svn and git?
+->
+
+5. What is merge conflicts have you faced ever in you experience? if you face how you resolve?
+->
+
+
+	 
+   
+   
+  
+  
+  
+  
+  
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	
+	
+	
+  
+  
+ 
+ 
+ 
+
+ 
+
+ 
+	
+
+	
+  
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
+ 
+ 
+  
+ 
+ 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+
+
+  
+  
+ 
+ 
+   
+   
+	
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
